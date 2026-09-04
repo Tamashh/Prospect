@@ -10,7 +10,6 @@
 	"DocsURL": "https://github.com/DaedalicEntertainment/ue4-test-automation",
 	"MarketplaceURL": "",
 	"SupportURL": "https://github.com/DaedalicEntertainment/ue4-test-automation/issues",
-	"EngineVersion": "4.27.2",
 	"EnabledByDefault": false,
 	"CanContainContent": true,
 	"IsBetaVersion": false,
