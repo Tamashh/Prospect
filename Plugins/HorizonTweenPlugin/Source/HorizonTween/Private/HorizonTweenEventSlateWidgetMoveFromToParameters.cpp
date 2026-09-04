@@ -1,0 +1,5 @@
+#include "HorizonTweenEventSlateWidgetMoveFromToParameters.h"
+
+FHorizonTweenEventSlateWidgetMoveFromToParameters::FHorizonTweenEventSlateWidgetMoveFromToParameters() {
+}
+

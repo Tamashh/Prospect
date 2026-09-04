@@ -1,0 +1,5 @@
+#include "HorizonTweenEventSlateWidgetScaleFromToParameters.h"
+
+FHorizonTweenEventSlateWidgetScaleFromToParameters::FHorizonTweenEventSlateWidgetScaleFromToParameters() {
+}
+

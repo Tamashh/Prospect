@@ -1,0 +1,8 @@
+#pragma once
+#include "CoreMinimal.h"
+#include "YControllerVictimCompensationUpdatedSignatureDelegate.generated.h"
+
+class UYControllerVictimCompensationComponent;
+
+UDELEGATE(BlueprintCallable) DECLARE_DYNAMIC_MULTICAST_DELEGATE_OneParam(FYControllerVictimCompensationUpdatedSignature, UYControllerVictimCompensationComponent*, victimCompensationComponent);
+

@@ -1,0 +1,54 @@
+{
+	"FileVersion": 3,
+	"Version": 1,
+	"VersionName": "1.0",
+	"FriendlyName": "Backend Plugin",
+	"Description": "Plugin that contains protobuf and backend communication classes.",
+	"Category": "Programming YAGER.Plugins",
+	"CreatedBy": "YAGER Interactive GmbH",
+	"CreatedByURL": "http://yager.de",
+	"DocsURL": "",
+	"MarketplaceURL": "",
+	"SupportURL": "",
+	"CanContainContent": false,
+	"IsBetaVersion": false,
+	"IsExperimentalVersion": false,
+	"Installed": false,
+	"Modules": [
+		{
+			"Name": "Backend",
+			"Type": "Runtime",
+			"LoadingPhase": "Default",
+			"WhitelistPlatforms": [
+				"Win64",
+				"Linux"
+			]
+		}
+	],
+	"Plugins": [
+		{
+			"Name": "YOnlineSubsystemUtilsPlugin",
+			"Enabled": true
+		},
+		{
+			"Name": "YFileSender",
+			"Enabled": true
+		},
+		{
+			"Name": "YTools",
+			"Enabled": true
+		},
+		{
+			"Name": "YSocialCompatibilityPlugin",
+			"Enabled": true
+		},
+		{
+			"Name": "BackendModels",
+			"Enabled": true
+		},
+		{
+			"Name": "YPlayfab",
+			"Enabled": true
+		}
+	]
+}

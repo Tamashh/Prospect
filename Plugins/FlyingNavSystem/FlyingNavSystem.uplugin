@@ -1,0 +1,29 @@
+{
+	"FileVersion": 3,
+	"Version": 1,
+	"VersionName": "1.0.12",
+	"FriendlyName": "Flying Navigation System",
+	"Description": "Enables complex flying AI behavior",
+	"Category": "Navigation",
+	"CreatedBy": "Ben Sutherland",
+	"CreatedByURL": "https://ninepointeightgame.com/about",
+	"DocsURL": "https://blendersleuth.github.io/FlyingNavSystemSite/",
+	"MarketplaceURL": "com.epicgames.launcher://ue/marketplace/product/65b9b3247c5c458dbb6de81c79cdc8f0",
+	"SupportURL": "https://github.com/BlenderSleuth/FlyingNavSystemSupport",
+	"CanContainContent": true,
+	"IsBetaVersion": false,
+	"IsExperimentalVersion": false,
+	"Installed": true,
+	"Modules": [
+		{
+			"Name": "FlyingNavSystem",
+			"Type": "Runtime",
+			"LoadingPhase": "Default",
+			"WhitelistPlatforms": [
+				"Win64",
+				"Mac",
+				"Linux"
+			]
+		}
+	]
+}

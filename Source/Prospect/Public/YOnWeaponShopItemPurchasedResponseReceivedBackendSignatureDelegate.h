@@ -1,0 +1,7 @@
+#pragma once
+#include "CoreMinimal.h"
+#include "EYPurchaseWeaponShopItemStatus.h"
+#include "YOnWeaponShopItemPurchasedResponseReceivedBackendSignatureDelegate.generated.h"
+
+UDELEGATE(BlueprintCallable) DECLARE_DYNAMIC_MULTICAST_DELEGATE_OneParam(FYOnWeaponShopItemPurchasedResponseReceivedBackendSignature, const EYPurchaseWeaponShopItemStatus, purchaseWeaponShopItemStatus);
+

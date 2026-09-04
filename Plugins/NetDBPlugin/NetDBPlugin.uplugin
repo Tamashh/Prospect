@@ -1,0 +1,28 @@
+{
+	"FileVersion": 3,
+	"Version": 1,
+	"VersionName": "1.0.5",
+	"FriendlyName": "NetDB",
+	"Description": "NetDB is an easy to use library that let's you use a PostgreSQL database from the comfort of blueprints!",
+	"Category": "Networking",
+	"CreatedBy": "HowToCompute",
+	"CreatedByURL": "https://How2Compute.cf",
+	"DocsURL": "https://docs.google.com/document/d/1RMyn7UiIKiOEQZ2EcIURjh6ssRljv1sIRubVC-W7g4I/edit?usp=sharing",
+	"MarketplaceURL": "com.epicgames.launcher://ue/marketplace/content/7f151e336eea43fe8f023cf101d0fb8d",
+	"SupportURL": "mailto:howtocompute123@gmail.com",
+	"CanContainContent": true,
+	"IsBetaVersion": false,
+	"IsExperimentalVersion": false,
+	"Installed": true,
+	"Modules": [
+		{
+			"Name": "NetDBPlugin",
+			"Type": "Runtime",
+			"LoadingPhase": "PreLoadingScreen",
+			"WhitelistPlatforms": [
+				"Win64",
+				"Linux"
+			]
+		}
+	]
+}

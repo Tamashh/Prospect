@@ -1,0 +1,8 @@
+#pragma once
+#include "CoreMinimal.h"
+#include "YControllerInventoryInsuranceRequestCompletedSignatureDelegate.generated.h"
+
+class UYControllerInventoryInsuranceComponent;
+
+UDELEGATE(BlueprintCallable) DECLARE_DYNAMIC_MULTICAST_DELEGATE_TwoParams(FYControllerInventoryInsuranceRequestCompletedSignature, UYControllerInventoryInsuranceComponent*, insuranceComponent, bool, success);
+

@@ -1,0 +1,42 @@
+{
+	"FileVersion": 3,
+	"Version": 1,
+	"VersionName": "1.0",
+	"FriendlyName": "YPlayfabServices",
+	"Description": "",
+	"Category": "Other",
+	"CreatedBy": "YAGER",
+	"CreatedByURL": "",
+	"DocsURL": "",
+	"MarketplaceURL": "",
+	"SupportURL": "",
+	"CanContainContent": true,
+	"IsBetaVersion": false,
+	"IsExperimentalVersion": false,
+	"Installed": false,
+	"Modules": [
+		{
+			"Name": "YPlayfabServices",
+			"Type": "Runtime",
+			"LoadingPhase": "Default"
+		}
+	],
+	"Plugins": [
+		{
+			"Name": "BackendModels",
+			"Enabled": true
+		},
+		{
+			"Name": "PlayFab",
+			"Enabled": true
+		},
+		{
+			"Name": "YSocialCompatibilityPlugin",
+			"Enabled": true
+		},
+		{
+			"Name": "SignalR",
+			"Enabled": true
+		}
+	]
+}

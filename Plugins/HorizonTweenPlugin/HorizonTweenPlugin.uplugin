@@ -1,0 +1,31 @@
+{
+	"FileVersion": 3,
+	"Version": 137,
+	"VersionName": "4.22.0",
+	"FriendlyName": "HorizonTweenPlugin",
+	"Description": "Runtime Animation For UE4",
+	"Category": "Horizon",
+	"CreatedBy": "dorgon chang",
+	"CreatedByURL": "http://dorgon.horizon-studio.net",
+	"DocsURL": "http://horizon-studio.net/ue4/horizon_tween_plugin/doc/doxygen/html/index.html",
+	"MarketplaceURL": "com.epicgames.launcher://ue/marketplace/content/3c3a469e7e4e48daa2fcaf6a19b4d1a8",
+	"SupportURL": "http://dorgon.horizon-studio.net",
+	"CanContainContent": false,
+	"IsBetaVersion": false,
+	"IsExperimentalVersion": false,
+	"Installed": true,
+	"Modules": [
+		{
+			"Name": "HorizonTween",
+			"Type": "Runtime",
+			"LoadingPhase": "Default",
+			"WhitelistPlatforms": [
+				"Win64",
+				"Win32",
+				"Mac",
+				"IOS",
+				"Android"
+			]
+		}
+	]
+}

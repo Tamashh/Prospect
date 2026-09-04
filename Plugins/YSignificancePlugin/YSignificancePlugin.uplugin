@@ -1,0 +1,30 @@
+{
+	"FileVersion": 3,
+	"Version": 1,
+	"VersionName": "1.0",
+	"FriendlyName": "YSignificancePlugin",
+	"Description": "Yager Custom Significance Manager",
+	"Category": "Runtime",
+	"CreatedBy": "YAGER Interactive GmbH",
+	"CreatedByURL": "http://yager.de",
+	"DocsURL": "",
+	"MarketplaceURL": "",
+	"SupportURL": "",
+	"CanContainContent": false,
+	"IsBetaVersion": false,
+	"IsExperimentalVersion": false,
+	"Installed": false,
+	"Modules": [
+		{
+			"Name": "YSignificancePlugin",
+			"Type": "Runtime",
+			"LoadingPhase": "PostConfigInit"
+		}
+	],
+	"Plugins": [
+		{
+			"Name": "SignificanceManager",
+			"Enabled": true
+		}
+	]
+}

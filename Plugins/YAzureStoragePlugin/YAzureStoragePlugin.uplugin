@@ -1,0 +1,29 @@
+{
+	"FileVersion": 3,
+	"Version": 1,
+	"VersionName": "1.0",
+	"FriendlyName": "YAzureStoragePlugin",
+	"Description": "Allows sending authorized requests to Azure.",
+	"Category": "Yager",
+	"CreatedBy": "Yager Interactive GmbH",
+	"CreatedByURL": "https://www.yager.de",
+	"DocsURL": "",
+	"MarketplaceURL": "",
+	"SupportURL": "",
+	"EnabledByDefault": false,
+	"CanContainContent": false,
+	"IsBetaVersion": false,
+	"IsExperimentalVersion": false,
+	"Installed": false,
+	"Modules": [
+		{
+			"Name": "YAzureStoragePlugin",
+			"Type": "Runtime",
+			"LoadingPhase": "Default",
+			"WhitelistPlatforms": [
+				"Linux",
+				"Win64"
+			]
+		}
+	]
+}

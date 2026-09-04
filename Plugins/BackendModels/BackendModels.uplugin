@@ -1,0 +1,34 @@
+{
+	"FileVersion": 3,
+	"Version": 1,
+	"VersionName": "1.0",
+	"FriendlyName": "Backend Models Plugin",
+	"Description": "Plugin that contains models.",
+	"Category": "Programming YAGER.Plugins",
+	"CreatedBy": "YAGER Interactive GmbH",
+	"CreatedByURL": "http://yager.de",
+	"DocsURL": "",
+	"MarketplaceURL": "",
+	"SupportURL": "",
+	"CanContainContent": false,
+	"IsBetaVersion": false,
+	"IsExperimentalVersion": false,
+	"Installed": false,
+	"Modules": [
+		{
+			"Name": "BackendModels",
+			"Type": "Runtime",
+			"LoadingPhase": "Default",
+			"WhitelistPlatforms": [
+				"Win64",
+				"Linux"
+			]
+		}
+	],
+	"Plugins": [
+		{
+			"Name": "YOnlineSubsystemUtilsPlugin",
+			"Enabled": true
+		}
+	]
+}

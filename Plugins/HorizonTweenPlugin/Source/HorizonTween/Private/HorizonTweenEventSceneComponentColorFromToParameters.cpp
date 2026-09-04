@@ -1,0 +1,5 @@
+#include "HorizonTweenEventSceneComponentColorFromToParameters.h"
+
+FHorizonTweenEventSceneComponentColorFromToParameters::FHorizonTweenEventSceneComponentColorFromToParameters() {
+}
+

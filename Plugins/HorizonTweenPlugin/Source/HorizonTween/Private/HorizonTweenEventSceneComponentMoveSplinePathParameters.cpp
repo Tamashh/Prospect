@@ -1,0 +1,5 @@
+#include "HorizonTweenEventSceneComponentMoveSplinePathParameters.h"
+
+FHorizonTweenEventSceneComponentMoveSplinePathParameters::FHorizonTweenEventSceneComponentMoveSplinePathParameters() {
+}
+

@@ -1,0 +1,42 @@
+{
+	"FileVersion": 3,
+	"Version": 1,
+	"VersionName": "1.0",
+	"FriendlyName": "YAzureFunctionsUtils",
+	"Description": "",
+	"Category": "Other",
+	"CreatedBy": "YAGER",
+	"CreatedByURL": "",
+	"DocsURL": "",
+	"MarketplaceURL": "",
+	"SupportURL": "",
+	"CanContainContent": true,
+	"IsBetaVersion": false,
+	"IsExperimentalVersion": false,
+	"Installed": false,
+	"Modules": [
+		{
+			"Name": "YAzureFunctionsUtils",
+			"Type": "Runtime",
+			"LoadingPhase": "Default"
+		}
+	],
+	"Plugins": [
+		{
+			"Name": "PlayFab",
+			"Enabled": true
+		},
+		{
+			"Name": "BackendModels",
+			"Enabled": true
+		},
+		{
+			"Name": "YOnlineSubsystemUtilsPlugin",
+			"Enabled": true
+		},
+		{
+			"Name": "OnlineSubsystemPlayfab",
+			"Enabled": true
+		}
+	]
+}

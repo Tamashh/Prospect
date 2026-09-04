@@ -1,0 +1,18 @@
+{
+	"FileVersion": 3,
+	"Version": 1,
+	"VersionName": "2.0",
+	"FriendlyName": "YTrafficLight",
+	"Description": "Shows traffic light bars to give artists an easy way to check the performance implications of their work.",
+	"Category": "YAGER.Plugins",
+	"CreatedBy": "YAGER Interactive GmbH",
+	"CreatedByURL": "http://yager.de",
+	"DocsURL": "https://wiki.yager.de/display/DNTL/Viewport+Traffic+Light",
+	"MarketplaceURL": "",
+	"SupportURL": "",
+	"EnabledByDefault": false,
+	"CanContainContent": true,
+	"IsBetaVersion": false,
+	"IsExperimentalVersion": false,
+	"Installed": false
+}

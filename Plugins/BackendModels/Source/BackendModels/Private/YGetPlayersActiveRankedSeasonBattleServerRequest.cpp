@@ -1,0 +1,5 @@
+#include "YGetPlayersActiveRankedSeasonBattleServerRequest.h"
+
+FYGetPlayersActiveRankedSeasonBattleServerRequest::FYGetPlayersActiveRankedSeasonBattleServerRequest() {
+}
+

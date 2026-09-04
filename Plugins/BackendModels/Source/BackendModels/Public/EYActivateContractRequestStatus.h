@@ -1,0 +1,24 @@
+#pragma once
+#include "CoreMinimal.h"
+#include "EYActivateContractRequestStatus.generated.h"
+
+UENUM(BlueprintType)
+enum class EYActivateContractRequestStatus : uint8 {
+    UNKNOWN_ERROR,
+    CONTRACT_OF_THIS_FACTION_IS_ALREADY_ACTIVE,
+    FAILED_GETTING_PROGRESS,
+    FAILED_GETTING_STATIC_DATA,
+    FAILED_STORING_CONTRACT,
+    NOT_ENOUGH_MONEY,
+    NO_ACTIVE_CONTRACT,
+    NO_CONTRACTS_BOARDS_DATA_FOUND,
+    WRONG_CONTRACT_ID,
+    WRONG_FACTION_ID,
+    WRONG_STORED_FACTION_ID,
+    ALREADY_ACTIVE,
+    NOT_UNLOCKED,
+    JOB_NOT_ON_BOARD,
+    OK,
+    MAX,
+};
+

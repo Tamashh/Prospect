@@ -1,0 +1,42 @@
+{
+	"FileVersion": 3,
+	"Version": 1,
+	"VersionName": "1.0",
+	"FriendlyName": "YSocialCompatibilityPlugin",
+	"Description": "",
+	"Category": "Other",
+	"CreatedBy": "Jox0r",
+	"CreatedByURL": "",
+	"DocsURL": "",
+	"MarketplaceURL": "",
+	"SupportURL": "",
+	"CanContainContent": true,
+	"IsBetaVersion": false,
+	"IsExperimentalVersion": false,
+	"Installed": false,
+	"Modules": [
+		{
+			"Name": "YSocialCompatibilityPlugin",
+			"Type": "Runtime",
+			"LoadingPhase": "Default"
+		}
+	],
+	"Plugins": [
+		{
+			"Name": "YOnlineSubsystemUtilsPlugin",
+			"Enabled": true
+		},
+		{
+			"Name": "YFileSender",
+			"Enabled": true
+		},
+		{
+			"Name": "YTools",
+			"Enabled": true
+		},
+		{
+			"Name": "BackendModels",
+			"Enabled": true
+		}
+	]
+}

@@ -1,0 +1,34 @@
+{
+	"FileVersion": 3,
+	"Version": 1,
+	"VersionName": "1.0",
+	"FriendlyName": "YFileSender",
+	"Description": "",
+	"Category": "Programming YAGER.Plugins",
+	"CreatedBy": "YAGER Interactive GmbH",
+	"CreatedByURL": "",
+	"DocsURL": "",
+	"MarketplaceURL": "",
+	"SupportURL": "",
+	"CanContainContent": true,
+	"IsBetaVersion": false,
+	"IsExperimentalVersion": false,
+	"Installed": false,
+	"Modules": [
+		{
+			"Name": "YFileSender",
+			"Type": "Runtime",
+			"LoadingPhase": "Default"
+		}
+	],
+	"Plugins": [
+		{
+			"Name": "DaedalicAmazonAWSPlugin",
+			"Enabled": true
+		},
+		{
+			"Name": "YAzureStoragePlugin",
+			"Enabled": true
+		}
+	]
+}

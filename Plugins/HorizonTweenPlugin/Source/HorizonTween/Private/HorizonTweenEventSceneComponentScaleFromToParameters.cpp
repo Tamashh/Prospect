@@ -1,0 +1,5 @@
+#include "HorizonTweenEventSceneComponentScaleFromToParameters.h"
+
+FHorizonTweenEventSceneComponentScaleFromToParameters::FHorizonTweenEventSceneComponentScaleFromToParameters() {
+}
+

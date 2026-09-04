@@ -1,0 +1,34 @@
+{
+	"FileVersion": 3,
+	"Version": 1,
+	"VersionName": "1.0",
+	"FriendlyName": "YGameAnalytics",
+	"Description": "Sends in-game analytics data to a backend service",
+	"Category": "Programming YAGER.Plugins",
+	"CreatedBy": "YAGER Interactive GmbH",
+	"CreatedByURL": "http://yager.de",
+	"DocsURL": "",
+	"MarketplaceURL": "",
+	"SupportURL": "",
+	"CanContainContent": false,
+	"IsBetaVersion": false,
+	"IsExperimentalVersion": false,
+	"Installed": false,
+	"Modules": [
+		{
+			"Name": "YGameAnalytics",
+			"Type": "Runtime",
+			"LoadingPhase": "Default",
+			"WhitelistPlatforms": [
+				"Win64",
+				"Linux"
+			]
+		}
+	],
+	"Plugins": [
+		{
+			"Name": "YAzureFunctionsUtils",
+			"Enabled": true
+		}
+	]
+}
