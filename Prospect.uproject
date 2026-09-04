@@ -21,6 +21,11 @@
 				"ApexDestruction",
 				"GameplayAbilities"
 			]
+		},
+		{
+			"Name": "ProspectEditor",
+			"Type": "Editor",
+			"LoadingPhase": "Default"
 		}
 	],
 	"Plugins": [
