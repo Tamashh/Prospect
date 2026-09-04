@@ -13,19 +13,19 @@ class PROSPECT_API UYAudioEffectZoneComponent : public UActorComponent {
     GENERATED_BODY()
 public:
 protected:
-    UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
+    UPROPERTY(BlueprintReadOnly, EditAnywhere, meta=(AllowPrivateAccess=true))
     FYAudioEffectZoneDataType m_audioEffectZoneData;
     
-    UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
+    UPROPERTY(BlueprintReadOnly, EditDefaultsOnly, meta=(AllowPrivateAccess=true))
     EYAudioEffectZoneBoundsType m_boundsType;
     
-    UPROPERTY(BlueprintReadWrite, EditAnywhere, Transient, meta=(AllowPrivateAccess=true))
+    UPROPERTY(Transient, meta=(AllowPrivateAccess=true))
     TArray<FInstancedStaticMeshInstanceData> m_trackedStaticMeshDataArray;
     
-    UPROPERTY(BlueprintReadWrite, EditAnywhere, Transient, meta=(AllowPrivateAccess=true))
+    UPROPERTY(Transient, meta=(AllowPrivateAccess=true))
     TArray<FYAudioEffectZoneInstanceData> m_connectedActors;
     
-    UPROPERTY(BlueprintReadWrite, EditAnywhere, Transient, meta=(AllowPrivateAccess=true))
+    UPROPERTY(Transient, meta=(AllowPrivateAccess=true))
     FVector m_trackedStaticMeshLocation;
     
 public:

@@ -1,6 +1,6 @@
 #pragma once
 #include "CoreMinimal.h"
-#include "ReplicationGraphNode_ActorList.h"
+#include "ReplicationGraph.h"
 #include "YReplicationGraphNode_AlwaysRelevant_ForTeam.generated.h"
 
 UCLASS(Blueprintable, NonTransient)

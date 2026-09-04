@@ -1,6 +1,6 @@
 #pragma once
 #include "CoreMinimal.h"
-#include "ReplicationGraphNode_AlwaysRelevant_ForConnection.h"
+#include "ReplicationGraph.h"
 #include "YReplicationGraphNode_AlwaysRelevant_ForOwner.generated.h"
 
 UCLASS(Blueprintable, NonTransient)

@@ -21,6 +21,7 @@ public class Prospect : ModuleRules {
             "GameplayAbilities",
             "GameplayCameras",
             "GameplayTags",
+            "GameplayTasks",
             "InputCore",
             "NavigationSystem",
             "PhysicsCore",

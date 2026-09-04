@@ -5,15 +5,17 @@
 
 class UTextBlock;
 
+DECLARE_DYNAMIC_MULTICAST_DELEGATE_OneParam(FOnItemComponentTextDescription, FText, Description);
+
 UCLASS(Blueprintable, EditInlineNew)
 class UYWidget_ItemComponentTextDescription : public UYWidget_ItemComponentBase {
     GENERATED_BODY()
 public:
-    UPROPERTY(BlueprintAssignable, BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
+    UPROPERTY(BlueprintAssignable, meta=(AllowPrivateAccess=true))
     FOnItemComponentTextDescription OnItemComponentTextDescription;
     
 protected:
-    UPROPERTY(BlueprintReadWrite, EditAnywhere, Instanced, meta=(AllowPrivateAccess=true))
+    UPROPERTY(BlueprintReadOnly, EditAnywhere, Instanced, meta=(AllowPrivateAccess=true))
     UTextBlock* m_descriptionText;
     
 public:

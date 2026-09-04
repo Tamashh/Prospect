@@ -13,22 +13,22 @@ UCLASS(Blueprintable, MinimalAPI)
 class UYEnvQueryTest_TraceMaterial : public UEnvQueryTest {
     GENERATED_BODY()
 public:
-    UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
+    UPROPERTY(EditDefaultsOnly, meta=(AllowPrivateAccess=true))
     FEnvTraceData TraceData;
     
-    UPROPERTY(AdvancedDisplay, EditAnywhere, meta=(AllowPrivateAccess=true))
+    UPROPERTY(AdvancedDisplay, EditDefaultsOnly, meta=(AllowPrivateAccess=true))
     FAIDataProviderFloatValue ItemHeightOffset;
     
-    UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
+    UPROPERTY(EditDefaultsOnly, meta=(AllowPrivateAccess=true))
     TSubclassOf<UEnvQueryContext> Context;
     
-    UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
+    UPROPERTY(EditDefaultsOnly, meta=(AllowPrivateAccess=true))
     TArray<TEnumAsByte<EPhysicalSurface>> AllowedSurfaceTypes;
     
-    UPROPERTY(EditAnywhere, meta=(AllowPrivateAccess=true))
+    UPROPERTY(EditDefaultsOnly, meta=(AllowPrivateAccess=true))
     FAIDataProviderFloatValue TraceStartOffset;
     
-    UPROPERTY(EditAnywhere, meta=(AllowPrivateAccess=true))
+    UPROPERTY(EditDefaultsOnly, meta=(AllowPrivateAccess=true))
     FAIDataProviderFloatValue TraceEndOffset;
     
     UYEnvQueryTest_TraceMaterial();

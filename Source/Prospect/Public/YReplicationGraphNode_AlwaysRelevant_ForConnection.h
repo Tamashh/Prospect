@@ -1,7 +1,6 @@
 #pragma once
 #include "CoreMinimal.h"
-#include "AlwaysRelevantActorInfo.h"
-#include "ReplicationGraphNode.h"
+#include "ReplicationGraph.h"
 #include "YReplicationGraphNode_AlwaysRelevant_ForConnection.generated.h"
 
 class AActor;
@@ -11,10 +10,10 @@ class UYReplicationGraphNode_AlwaysRelevant_ForConnection : public UReplicationG
     GENERATED_BODY()
 public:
 private:
-    UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
+    UPROPERTY(meta=(AllowPrivateAccess=true))
     AActor* LastPawn;
     
-    UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
+    UPROPERTY(meta=(AllowPrivateAccess=true))
     TArray<FAlwaysRelevantActorInfo> PastRelevantActors;
     
 public:

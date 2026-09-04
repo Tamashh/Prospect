@@ -1,6 +1,6 @@
 {
 	"FileVersion": 3,
-	"EngineAssociation": "",
+	"EngineAssociation": "{57AA33EA-4E67-5FD2-38A6-5DB83D95B0CF}",
 	"Category": "",
 	"Description": "",
 	"Modules": [
@@ -250,10 +250,6 @@
 			"Enabled": false
 		},
 		{
-			"Name": "RenderingViewModesFix",
-			"Enabled": true
-		},
-		{
 			"Name": "Synthesis",
 			"Enabled": true
 		},
@@ -419,11 +415,6 @@
 		{
 			"Name": "CommonUI",
 			"Enabled": false
-		},
-		{
-			"Name": "MeshBake",
-			"Enabled": true,
-			"MarketplaceURL": "com.epicgames.launcher://ue/marketplace/product/278558c1c26643d9b820f30cd8004a12"
 		},
 		{
 			"Name": "GameplayAbilities",

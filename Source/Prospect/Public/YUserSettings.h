@@ -1,6 +1,6 @@
 #pragma once
 #include "CoreMinimal.h"
-#include "UDLSSMode.h"
+#include "DLSSLibrary.h"
 #include "GameFramework/GameUserSettings.h"
 #include "EFSRUpscalingMode.h"
 #include "EYGfxQualityPreset.h"

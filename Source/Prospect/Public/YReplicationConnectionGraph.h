@@ -1,6 +1,6 @@
 #pragma once
 #include "CoreMinimal.h"
-#include "NetReplicationGraphConnection.h"
+#include "ReplicationGraph.h"
 #include "YReplicationConnectionGraph.generated.h"
 
 class UYReplicationGraphNode_AlwaysRelevant_ForConnection;

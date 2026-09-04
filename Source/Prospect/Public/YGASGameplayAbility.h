@@ -1,6 +1,6 @@
 #pragma once
 #include "CoreMinimal.h"
-#include "GameplayAbility.h"
+#include "Abilities/GameplayAbility.h"
 #include "EYGASAbilityInputID.h"
 #include "YGASGameplayAbility.generated.h"
 

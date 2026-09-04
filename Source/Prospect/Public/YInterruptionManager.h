@@ -62,7 +62,7 @@ private:
     void OnPlayerInitializationCompleteCallback();
     
 public:
-    UFUNCTION(BlueprintCallable, meta=(WorldContext="WorldContext"))
+    UFUNCTION()
     void OnMapLoadedCallback(FWorldContext& WorldContext, const FURL& URL, float loadDuration);
     
 private:

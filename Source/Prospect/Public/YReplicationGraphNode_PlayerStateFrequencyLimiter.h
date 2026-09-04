@@ -1,6 +1,6 @@
 #pragma once
 #include "CoreMinimal.h"
-#include "ReplicationGraphNode.h"
+#include "ReplicationGraph.h"
 #include "YReplicationGraphNode_PlayerStateFrequencyLimiter.generated.h"
 
 UCLASS(Blueprintable, NonTransient)

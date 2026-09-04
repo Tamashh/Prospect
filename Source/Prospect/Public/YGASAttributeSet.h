@@ -1,7 +1,6 @@
 #pragma once
 #include "CoreMinimal.h"
 #include "AttributeSet.h"
-#include "GameplayAttributeData.h"
 #include "YGASAttributeSet.generated.h"
 
 UCLASS(Blueprintable)
