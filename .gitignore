@@ -12,3 +12,6 @@
 !*.ini
 !*.uplugin
 !*.uproject
+
+# Unreal build products, including plugin-local intermediates.
+**/Intermediate/
