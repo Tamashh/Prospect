@@ -15,3 +15,9 @@
 
 # Unreal build products, including plugin-local intermediates.
 **/Intermediate/
+
+# LoadingScreen is vendored so its complete source and resources are retained.
+!Plugins/LoadingScreen/
+!Plugins/LoadingScreen/**
+Plugins/LoadingScreen/Binaries/
+Plugins/LoadingScreen/Intermediate/
