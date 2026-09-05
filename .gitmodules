@@ -1,3 +1,6 @@
 [submodule "UEFSR"]
 	path = Plugins/UEFSR
 	url = https://github.com/lucoiso/UEFSR
+[submodule "EasyCookEditor"]
+	path = Plugins/EasyCookEditor
+	url = https://github.com/magnv/EasyCookEditor.git

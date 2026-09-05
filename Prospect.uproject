@@ -42,6 +42,10 @@
 			"Enabled": true
 		},
 		{
+			"Name": "EasyCookEditor",
+			"Enabled": true
+		},
+		{
 			"Name": "FbxAutomationTestBuilder",
 			"Enabled": true
 		},
