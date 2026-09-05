@@ -122,7 +122,11 @@ bool UYProspectExternalFunctions::IsFirstLogin(UObject* WorldContext) {
 }
 
 bool UYProspectExternalFunctions::IsEditor() {
+#if WITH_EDITOR
+    return true;
+#else
     return false;
+#endif
 }
 
 bool UYProspectExternalFunctions::IsDuoMode(UObject* WorldContextObject) {
