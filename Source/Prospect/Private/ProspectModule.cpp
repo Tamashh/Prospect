@@ -2,6 +2,7 @@
 
 #if WITH_EDITOR
 #include "Engine/DataTable.h"
+#include "Engine/Engine.h"
 #include "Engine/Level.h"
 #include "Engine/World.h"
 #include "EngineUtils.h"
@@ -32,6 +33,15 @@ public:
         PostWorldInitializationHandle = FWorldDelegates::OnPostWorldInitialization.AddRaw(
             this,
             &FProspectModule::OnPostWorldInitialization);
+
+        if (GEngine) {
+            for (const FWorldContext& WorldContext : GEngine->GetWorldContexts()) {
+                UWorld* World = WorldContext.World();
+                if (World && World->WorldType == EWorldType::Editor) {
+                    InitializeEditorMapMaterialParameters(World);
+                }
+            }
+        }
 #endif
     }
 
@@ -156,6 +166,7 @@ private:
                 It.RemoveCurrent();
             }
         }
+        InitializeEditorMapMaterialParameters(World);
         InitializeEditorMapVisuals(World);
     }
 
