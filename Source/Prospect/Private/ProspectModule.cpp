@@ -95,6 +95,14 @@ private:
         }
 
         static const FName MapParameterName(TEXT("MAP"));
+        const float CurrentMapSelector = UKismetMaterialLibrary::GetScalarParameterValue(
+            World,
+            GlobalParameters,
+            MapParameterName);
+        if (CurrentMapSelector == MapSelector) {
+            return;
+        }
+
         UKismetMaterialLibrary::SetScalarParameterValue(
             World,
             GlobalParameters,
@@ -171,6 +179,7 @@ private:
     }
 
     void OnLevelAddedToWorld(ULevel*, UWorld* World) {
+        InitializeEditorMapMaterialParameters(World);
         InitializeEditorMapVisuals(World);
     }
 
