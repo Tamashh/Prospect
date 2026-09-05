@@ -6,6 +6,8 @@
 #include "Engine/World.h"
 #include "EngineUtils.h"
 #include "GameFramework/Actor.h"
+#include "Kismet/KismetMaterialLibrary.h"
+#include "Materials/MaterialParameterCollection.h"
 #include "Misc/PackageName.h"
 #include "UObject/StructOnScope.h"
 #include "UObject/UObjectGlobals.h"
@@ -27,6 +29,9 @@ public:
         LevelAddedHandle = FWorldDelegates::LevelAddedToWorld.AddRaw(
             this,
             &FProspectModule::OnLevelAddedToWorld);
+        PostWorldInitializationHandle = FWorldDelegates::OnPostWorldInitialization.AddRaw(
+            this,
+            &FProspectModule::OnPostWorldInitialization);
 #endif
     }
 
@@ -34,6 +39,7 @@ public:
 #if WITH_EDITOR
         FCoreUObjectDelegates::PostLoadMapWithWorld.Remove(PostLoadMapHandle);
         FWorldDelegates::LevelAddedToWorld.Remove(LevelAddedHandle);
+        FWorldDelegates::OnPostWorldInitialization.Remove(PostWorldInitializationHandle);
         InitializedVisualManagers.Reset();
 #endif
 
@@ -42,6 +48,57 @@ public:
 
 #if WITH_EDITOR
 private:
+    static bool GetMapMaterialSelector(const UWorld* World, float& OutMapSelector) {
+        if (!World || !World->PersistentLevel) {
+            return false;
+        }
+
+        const FName PersistentMapName(
+            *FPackageName::GetShortName(World->PersistentLevel->GetOutermost()->GetName()));
+        if (PersistentMapName == TEXT("MP_Map02_P")) {
+            OutMapSelector = 2.0f;
+            return true;
+        }
+        if (PersistentMapName == TEXT("MP_Map01_P")) {
+            OutMapSelector = 1.0f;
+            return true;
+        }
+        if (PersistentMapName == TEXT("MP_AlienCaverns_P")) {
+            OutMapSelector = 3.0f;
+            return true;
+        }
+
+        return false;
+    }
+
+    static void InitializeEditorMapMaterialParameters(UWorld* World) {
+        float MapSelector = 0.0f;
+        if (!GetMapMaterialSelector(World, MapSelector)) {
+            return;
+        }
+
+        UMaterialParameterCollection* GlobalParameters = LoadObject<UMaterialParameterCollection>(
+            nullptr,
+            TEXT("/Game/Core/Misc/Global_MPC.Global_MPC"));
+        if (!GlobalParameters) {
+            return;
+        }
+
+        static const FName MapParameterName(TEXT("MAP"));
+        UKismetMaterialLibrary::SetScalarParameterValue(
+            World,
+            GlobalParameters,
+            MapParameterName,
+            MapSelector);
+
+        UE_LOG(
+            LogTemp,
+            Display,
+            TEXT("Initialized cooked map material selector to %.0f for %s"),
+            MapSelector,
+            *World->PersistentLevel->GetOutermost()->GetName());
+    }
+
     static FName FindMapInfoRowName(const UDataTable* MapsInfoTable, const UWorld* World) {
         if (!MapsInfoTable || !World || !World->PersistentLevel) {
             return NAME_None;
@@ -104,6 +161,12 @@ private:
 
     void OnLevelAddedToWorld(ULevel*, UWorld* World) {
         InitializeEditorMapVisuals(World);
+    }
+
+    void OnPostWorldInitialization(UWorld* World, const UWorld::InitializationValues) {
+        if (World && World->WorldType == EWorldType::Editor) {
+            InitializeEditorMapMaterialParameters(World);
+        }
     }
 
     void InitializeEditorMapVisuals(UWorld* World) {
@@ -184,6 +247,7 @@ private:
 
     FDelegateHandle PostLoadMapHandle;
     FDelegateHandle LevelAddedHandle;
+    FDelegateHandle PostWorldInitializationHandle;
     TSet<TWeakObjectPtr<AActor>> InitializedVisualManagers;
 #endif
 };
