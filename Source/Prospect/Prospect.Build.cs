@@ -45,5 +45,9 @@ public class Prospect : ModuleRules {
             "YSocialCompatibilityPlugin",
             "YStateMachineModule",
         });
+
+        if (Target.bBuildEditor) {
+            PrivateDependencyModuleNames.Add("Water");
+        }
     }
 }

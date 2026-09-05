@@ -1,9 +1,11 @@
 #include "Modules/ModuleManager.h"
 
 #if WITH_EDITOR
+#include "Containers/Ticker.h"
 #include "Engine/DataTable.h"
 #include "Engine/Engine.h"
 #include "Engine/Level.h"
+#include "Engine/LevelStreaming.h"
 #include "Engine/World.h"
 #include "EngineUtils.h"
 #include "GameFramework/Actor.h"
@@ -13,6 +15,7 @@
 #include "UObject/StructOnScope.h"
 #include "UObject/UObjectGlobals.h"
 #include "UObject/UnrealType.h"
+#include "WaterSubsystem.h"
 #include "YMapInfoRow.h"
 #include "YMatchFlowRow.h"
 #include "YMatchPhaseData.h"
@@ -39,6 +42,7 @@ public:
                 UWorld* World = WorldContext.World();
                 if (World && World->WorldType == EWorldType::Editor) {
                     InitializeEditorMapMaterialParameters(World);
+                    QueueEditorWaterRefresh(World);
                 }
             }
         }
@@ -50,6 +54,11 @@ public:
         FCoreUObjectDelegates::PostLoadMapWithWorld.Remove(PostLoadMapHandle);
         FWorldDelegates::LevelAddedToWorld.Remove(LevelAddedHandle);
         FWorldDelegates::OnPostWorldInitialization.Remove(PostWorldInitializationHandle);
+        if (WaterRefreshTickerHandle.IsValid()) {
+            FTicker::GetCoreTicker().RemoveTicker(WaterRefreshTickerHandle);
+            WaterRefreshTickerHandle.Reset();
+        }
+        PendingWaterRefreshWorlds.Reset();
         InitializedVisualManagers.Reset();
 #endif
 
@@ -176,17 +185,71 @@ private:
         }
         InitializeEditorMapMaterialParameters(World);
         InitializeEditorMapVisuals(World);
+        QueueEditorWaterRefresh(World);
     }
 
     void OnLevelAddedToWorld(ULevel*, UWorld* World) {
         InitializeEditorMapMaterialParameters(World);
         InitializeEditorMapVisuals(World);
+        QueueEditorWaterRefresh(World);
     }
 
     void OnPostWorldInitialization(UWorld* World, const UWorld::InitializationValues) {
         if (World && World->WorldType == EWorldType::Editor) {
             InitializeEditorMapMaterialParameters(World);
+            QueueEditorWaterRefresh(World);
         }
+    }
+
+    void QueueEditorWaterRefresh(UWorld* World) {
+        if (!World || World->WorldType != EWorldType::Editor) {
+            return;
+        }
+
+        PendingWaterRefreshWorlds.Add(World);
+        if (!WaterRefreshTickerHandle.IsValid()) {
+            WaterRefreshTickerHandle = FTicker::GetCoreTicker().AddTicker(
+                FTickerDelegate::CreateRaw(this, &FProspectModule::RefreshEditorWaterAfterStreaming),
+                0.1f);
+        }
+    }
+
+    bool RefreshEditorWaterAfterStreaming(float) {
+        for (auto WorldIt = PendingWaterRefreshWorlds.CreateIterator(); WorldIt; ++WorldIt) {
+            UWorld* World = WorldIt->Get();
+            if (!World || World->WorldType != EWorldType::Editor) {
+                WorldIt.RemoveCurrent();
+                continue;
+            }
+
+            bool bStreamingPending = World->IsVisibilityRequestPending();
+            for (ULevelStreaming* StreamingLevel : World->GetStreamingLevels()) {
+                if (StreamingLevel && StreamingLevel->IsStreamingStatePending()) {
+                    bStreamingPending = true;
+                    break;
+                }
+            }
+            if (bStreamingPending) {
+                continue;
+            }
+
+            UWaterSubsystem* WaterSubsystem = UWaterSubsystem::GetWaterSubsystem(World);
+            if (WaterSubsystem && WaterSubsystem->GetWaterMeshActor()) {
+                WaterSubsystem->MarkAllWaterMeshesForRebuild();
+                UE_LOG(
+                    LogTemp,
+                    Display,
+                    TEXT("Refreshed cooked water meshes after editor level streaming for %s"),
+                    *World->GetName());
+            }
+            WorldIt.RemoveCurrent();
+        }
+
+        if (PendingWaterRefreshWorlds.Num() == 0) {
+            WaterRefreshTickerHandle.Reset();
+            return false;
+        }
+        return true;
     }
 
     void InitializeEditorMapVisuals(UWorld* World) {
@@ -268,6 +331,8 @@ private:
     FDelegateHandle PostLoadMapHandle;
     FDelegateHandle LevelAddedHandle;
     FDelegateHandle PostWorldInitializationHandle;
+    FDelegateHandle WaterRefreshTickerHandle;
+    TSet<TWeakObjectPtr<UWorld>> PendingWaterRefreshWorlds;
     TSet<TWeakObjectPtr<AActor>> InitializedVisualManagers;
 #endif
 };
