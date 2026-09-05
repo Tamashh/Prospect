@@ -6,6 +6,7 @@
 #include "NavigationData.h"
 #include "EThreadSubdivisions.h"
 #include "FlyingNavGenerationFinishedEventDelegate.h"
+#include "FlyingNavSystemTypes.h"
 #include "SVOQuerySettings.h"
 #include "FlyingNavigationData.generated.h"
 
@@ -77,6 +78,8 @@ public:
     
     AFlyingNavigationData(const FObjectInitializer& ObjectInitializer);
 
+    virtual void Serialize(FArchive& Ar) override;
+
     UFUNCTION(BlueprintCallable)
     void StopRebuild();
     
@@ -103,6 +106,17 @@ public:
     
     UFUNCTION(BlueprintCallable)
     void CompactMemory();
-    
+
+    FSVOData& GetSVOData();
+    const FSVOData& GetSVOData() const;
+
+private:
+    // Preserve the original 1.0.12 native class layout. These bytes contain
+    // runtime-only delegates and locks in the shipping plugin.
+    uint8 NativeStateBeforeSVOData[0x40];
+    TSharedRef<FSVOData, ESPMode::ThreadSafe> SVOData;
+    TSharedRef<FSVOData, ESPMode::ThreadSafe> BuildingSVOData;
+    uint32 SerializationVersion;
+    uint8 NativeStateAfterSerializationVersion[0x8C];
 };
 
