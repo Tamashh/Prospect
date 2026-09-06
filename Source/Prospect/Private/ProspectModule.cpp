@@ -15,8 +15,7 @@
 #include "UObject/StructOnScope.h"
 #include "UObject/UObjectGlobals.h"
 #include "UObject/UnrealType.h"
-#include "WaterMeshActor.h"
-#include "WaterMeshComponent.h"
+#include "WaterSubsystem.h"
 #include "YMapInfoRow.h"
 #include "YMatchFlowRow.h"
 #include "YMatchPhaseData.h"
@@ -234,27 +233,15 @@ private:
                 continue;
             }
 
-            int32 RebuiltWaterMeshCount = 0;
-            int32 RebuiltWaterMeshNodeCount = 0;
-            for (AWaterMeshActor* WaterMeshActor : TActorRange<AWaterMeshActor>(World)) {
-                if (!IsValid(WaterMeshActor)) {
-                    continue;
-                }
-
-                WaterMeshActor->MarkWaterMeshComponentForRebuild();
-                WaterMeshActor->Update();
-                ++RebuiltWaterMeshCount;
-                if (const UWaterMeshComponent* WaterMeshComponent = WaterMeshActor->GetWaterMeshComponent()) {
-                    RebuiltWaterMeshNodeCount += WaterMeshComponent->GetWaterQuadTree().GetNodeCount();
-                }
-            }
-            if (RebuiltWaterMeshCount > 0) {
+            UWaterSubsystem* WaterSubsystem = UWaterSubsystem::GetWaterSubsystem(World);
+            if (WaterSubsystem && WaterSubsystem->GetWaterMeshActor()) {
+                // Match the native water update path: selection changes only mark the
+                // mesh dirty, then UWaterSubsystem::Tick rebuilds it at the safe point.
+                WaterSubsystem->MarkAllWaterMeshesForRebuild();
                 UE_LOG(
                     LogTemp,
                     Display,
-                    TEXT("Rebuilt %d cooked water mesh actor(s) with %d quadtree node(s) after editor level streaming for %s"),
-                    RebuiltWaterMeshCount,
-                    RebuiltWaterMeshNodeCount,
+                    TEXT("Queued cooked water mesh rebuild after editor level streaming for %s"),
                     *World->GetName());
             }
             WorldIt.RemoveCurrent();
