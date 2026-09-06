@@ -5,5 +5,6 @@ FYMatchmakingSetupRow::FYMatchmakingSetupRow() {
     this->maxServersToCreatePerUpdate = 0;
     this->pendingMatchmakingRequestTimeoutTime = 0;
     this->removeSessionsNotInPlayfab = false;
+    this->sessionIntegrityCheckCooldownSeconds = 0;
 }
 

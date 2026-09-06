@@ -83,7 +83,7 @@ private:
     void HandleOnInventoryInitialized();
     
     UFUNCTION(BlueprintCallable)
-    void HandleOnInventoryDataUpdated(TArray<EYInventoryPlayerTypes> changed);
+    void HandleOnInventoryDataUpdated(const TArray<EYInventoryPlayerTypes>& typesChanged);
     
     UFUNCTION(BlueprintCallable)
     void HandleOnInsurancePayoutPackageVoided(const TArray<FYInsurancePayoutPackage>& remainingPackages);

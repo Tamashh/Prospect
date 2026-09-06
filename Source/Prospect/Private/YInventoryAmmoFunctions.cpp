@@ -7,12 +7,12 @@ bool UYInventoryAmmoFunctions::TryGetAmmoDataFromInventoryItem(AActor* actorCont
     return false;
 }
 
-bool UYInventoryAmmoFunctions::GetCompatibleWeaponsForAmmoType(UObject* objectContext, const FName& ammoId, TMap<FString, TSoftObjectPtr<UTexture2D>>& outWeaponData) {
-    return false;
-}
-
 FName UYInventoryAmmoFunctions::GetAmmoTypeFromSlot(AActor* actorContext, EYPlayerSetType Slot) {
     return NAME_None;
+}
+
+FDataTableRowHandle UYInventoryAmmoFunctions::GetAmmoRowByWeaponID(UObject* WorldContextObject, FName RowName) {
+    return FDataTableRowHandle{};
 }
 
 FName UYInventoryAmmoFunctions::GetAmmoIDFromWeaponRow(const FDataTableRowHandle& rowHandle) {

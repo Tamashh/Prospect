@@ -5,9 +5,10 @@
 #include "UObject/Object.h"
 #include "Engine/DataTable.h"
 #include "YAzureFunctionResult.h"
+#include "YClaimCouponCodeResult.h"
 #include "YPlayfabStoreItemEntry.h"
 #include "YPlayfabStoreItemsResult.h"
-#include "YRedeemCouponResult.h"
+#include "YFeatureToggles.h"
 #include "EYGetErrorHandling.h"
 #include "YOnCurrenciesAddedDelegate.h"
 #include "YOnCustomItemsUpdatedShopSignatureDelegate.h"
@@ -23,7 +24,7 @@ public:
     DECLARE_DYNAMIC_MULTICAST_DELEGATE_OneParam(FYOwnedEntitlementsChanged, const TArray<FString>&, ownedEntitlements);
     DECLARE_DYNAMIC_MULTICAST_DELEGATE_OneParam(FYOneTimePurchaseCompleted, const TArray<FString>&, ItemIds);
     DECLARE_DYNAMIC_MULTICAST_DELEGATE(FYNewArchetypePurchased);
-    DECLARE_DYNAMIC_MULTICAST_DELEGATE_OneParam(FYCouponRedeemedSignature, const FYRedeemCouponResult&, redeemResult);
+    DECLARE_DYNAMIC_MULTICAST_DELEGATE_TwoParams(FYCouponRedeemedSignature, const FYClaimCouponCodeResult&, redeemResult, const TArray<FDataTableRowHandle>&, itemRows);
     DECLARE_DYNAMIC_MULTICAST_DELEGATE_OneParam(FOnPlayFabStoresFetched, const FString&, StoreId);
     
     UPROPERTY(BlueprintAssignable, BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
@@ -77,6 +78,9 @@ private:
     UFUNCTION(BlueprintCallable)
     void OnFetchEntitlementsResponse(const FYAzureFunctionResult& azureResult);
     
+    UFUNCTION(BlueprintCallable)
+    void OnFeatureTogglesUpdated(const FYFeatureToggles& featureToggles);
+
     UFUNCTION(BlueprintCallable)
     void OnEntitlementsUpdated(const TArray<FName>& entitlements);
     

@@ -23,6 +23,7 @@ enum class EYWeaponPlayState : uint8 {
     MeleeLightImpact,
     MeleeHeavy,
     MeleeHeavyImpact,
+    Inspect,
     MAX,
 };
 

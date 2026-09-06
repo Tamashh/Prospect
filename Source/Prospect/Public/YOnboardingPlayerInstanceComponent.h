@@ -38,6 +38,10 @@ protected:
     UFUNCTION(BlueprintCallable)
     void SetCompletedMissionResult(EYMissionResultType missionResultType);
     
+public:
+    UFUNCTION(BlueprintCallable, Reliable, Server)
+    void ServerRestartMetaQuest();
+
 private:
     UFUNCTION(BlueprintCallable)
     void OnRep_MissionReplicatedStateData();

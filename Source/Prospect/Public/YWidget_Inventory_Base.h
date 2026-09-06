@@ -2,6 +2,7 @@
 #include "CoreMinimal.h"
 #include "YWidget.h"
 #include "EYPlayerSetType.h"
+#include "EYUIInventoryInitializationType.h"
 #include "YInventoryItem.h"
 #include "YUIInventoryData.h"
 #include "YWidget_Inventory_Base.generated.h"
@@ -28,7 +29,7 @@ public:
     FOnMoveItemToSlotSignature OnMoveItemToSlotDelegate;
     
     UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
-    bool m_isCustomInitialized;
+    EYUIInventoryInitializationType m_uiInventoryInitializionType;
     
 protected:
     UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
@@ -67,6 +68,10 @@ private:
     UFUNCTION(BlueprintCallable)
     void OnContainerInventoryDataUpdatedCallback(UYStateInventoryComponent* inventoryComponent);
     
+protected:
+    UFUNCTION(BlueprintCallable, BlueprintPure)
+    bool IsInventoryCustomInitialized() const;
+
 public:
     UFUNCTION(BlueprintCallable, BlueprintPure)
     UYStateInventoryComponent* GetRelevantStateInventoryComponent() const;
@@ -74,6 +79,11 @@ public:
     UFUNCTION(BlueprintCallable, BlueprintPure)
     int32 GetInventoryId() const;
     
+protected:
+    UFUNCTION(BlueprintCallable, BlueprintPure)
+    bool DoesInventoryShowWeight() const;
+
+public:
     UFUNCTION(BlueprintCallable, BlueprintNativeEvent, BlueprintPure)
     EYPlayerSetType BP_GetTargetSetType(UUserWidget* InWidget) const;
     

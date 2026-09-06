@@ -1,6 +1,8 @@
 #pragma once
 #include "CoreMinimal.h"
 #include "YWidget.h"
+#include "Components/SlateWrapperTypes.h"
+#include "YLazyScrollGridHostInterface.h"
 #include "EYInventoryListType.h"
 #include "EYPlayerSetType.h"
 #include "YInventoryItem.h"
@@ -9,11 +11,12 @@
 #include "YWidget_SetItemList.generated.h"
 
 class APlayerState;
+class UYLazyScrollGrid;
 class UYStateInventoryComponent;
 class UYWidget_ItemContainer;
 
-UCLASS(Blueprintable, EditInlineNew)
-class UYWidget_SetItemList : public UYWidget, public IYResourceExecutionInterface {
+UCLASS(Blueprintable, EditInlineNew, Config=Game)
+class UYWidget_SetItemList : public UYWidget, public IYResourceExecutionInterface, public IYLazyScrollGridHostInterface {
     GENERATED_BODY()
 public:
 protected:
@@ -23,6 +26,9 @@ protected:
     UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
     bool m_sendInventoryUpdateOnDestruct;
     
+    UPROPERTY(BlueprintReadWrite, EditAnywhere, Instanced, meta=(AllowPrivateAccess=true))
+    UYLazyScrollGrid* m_scrollGrid;
+
 private:
     UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
     FYPlayerInventory m_cachedStash;
@@ -39,6 +45,9 @@ private:
     UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
     TArray<int32> m_fillItemContainersRequestHandles;
     
+    UPROPERTY(BlueprintReadWrite, Config, EditAnywhere, meta=(AllowPrivateAccess=true))
+    int32 m_maxItemToLoad;
+
     UPROPERTY(BlueprintReadWrite, EditAnywhere, Instanced, meta=(AllowPrivateAccess=true))
     TArray<UYWidget_ItemContainer*> m_availableItemContainers;
     
@@ -76,8 +85,14 @@ protected:
     void BP_UpdateItems(const FString& ItemId);
     
     UFUNCTION(BlueprintCallable, BlueprintImplementableEvent)
+    void BP_TrySetItemVisibility(UYWidget_ItemContainer* itemContainer, ESlateVisibility itemVisibility);
+
+    UFUNCTION(BlueprintCallable, BlueprintImplementableEvent)
     void BP_RemoveItems(const TArray<FYInventoryItem>& itemsToRemove);
     
+    UFUNCTION(BlueprintCallable, BlueprintImplementableEvent)
+    void BP_LoadGridItem(UYWidget_ItemContainer* itemWidget, const FYInventoryItem& inventoryItem, bool wasLoadedOnce);
+
     UFUNCTION(BlueprintCallable, BlueprintImplementableEvent)
     UYWidget_ItemContainer* BP_CreateInventoryItem(FYInventoryItem Item, EYPlayerSetType setSlottype, EYInventoryListType listType, bool isEquipped, int32 Amount);
     

@@ -2,5 +2,6 @@
 
 FYMissionProgressionInfo::FYMissionProgressionInfo() {
     this->progress = 0;
+    this->receivedOnboardingWelcomePackage = false;
 }
 

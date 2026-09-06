@@ -8,9 +8,13 @@ FYMatchmakingListDebugUserInfoResult::FYMatchmakingListDebugUserInfoResult() {
     this->isBeginner = false;
     this->canGoToShieldedMatch = false;
     this->dataTableBeginnerFlagEnabled = false;
+    this->featureToggleUseSingleNvrBracket = false;
+    this->featureToggleUseSingleKdrBracket = false;
     this->featureToggleShieldedMatchmakingEnabled = false;
     this->featureToggleSpentMoneyThresholdEnabled = false;
     this->featureToggleSteamAccountStatusEnabled = false;
     this->featureToggleVeteranPointsEnabled = false;
+    this->featureToggleTotalCompletedContractsEnabled = false;
+    this->featureToggleTotalEvacsEnabled = false;
 }
 

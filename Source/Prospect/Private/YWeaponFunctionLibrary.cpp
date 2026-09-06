@@ -61,7 +61,7 @@ int32 UYWeaponFunctionLibrary::FindAmmoInClipFromRow(AActor* actorContext, const
     return 0;
 }
 
-int32 UYWeaponFunctionLibrary::FindAmmoInClipFromInventoryItem(AActor* actorContext, const FYInventoryItem& inventoryItem) {
+int32 UYWeaponFunctionLibrary::FindAmmoInClipFromInventoryItem(const FYInventoryItem& inventoryItem) {
     return 0;
 }
 

@@ -55,6 +55,9 @@ public:
     UFUNCTION(BlueprintCallable, BlueprintPure, meta=(WorldContext="WorldContextObject"))
     static bool IsOwnedVanity(UObject* WorldContextObject, FName ItemId);
     
+    UFUNCTION(BlueprintCallable, meta=(WorldContext="WorldContext"))
+    static bool IsCharacterVanityItemArchetypeStartingItem(const UObject* WorldContext, FName& ItemId, TArray<FName>& archetypeIdsOut);
+
     UFUNCTION(BlueprintCallable, BlueprintPure)
     static void GetSeperatedVanityEntries(const TArray<FDataTableRowHandle>& vanityRowHandles, FDataTableRowHandle& primaryVanityId, FDataTableRowHandle& secondaryVanityId);
     

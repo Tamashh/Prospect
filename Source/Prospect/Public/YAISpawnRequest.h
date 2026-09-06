@@ -3,7 +3,7 @@
 #include "UObject/NoExportTypes.h"
 #include "UObject/NoExportTypes.h"
 #include "EYSpawnRequestStatus.h"
-#include "YSquadAIType.h"
+#include "YAICharacterDefinition.h"
 #include "YAISpawnRequest.generated.h"
 
 class AYAICharacter;
@@ -29,7 +29,7 @@ public:
     FRotator m_rotation;
     
     UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
-    FYSquadAIType m_aiType;
+    FYAICharacterDefinition m_aiCharacterDefinition;
     
     PROSPECT_API FYAISpawnRequest();
 };

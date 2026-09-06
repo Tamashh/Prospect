@@ -6,6 +6,7 @@
 #include "Engine/DataTable.h"
 #include "EYMatchMapDifficulty.h"
 #include "YMapUnlockStatus.h"
+#include "YMapUnlockInfo.h"
 #include "YMatchmakingSetupEntry.h"
 #include "YMatchmakingSetupMatchEntry.h"
 #include "YMatchmakingSetupRow.h"
@@ -59,6 +60,9 @@ public:
     UFUNCTION(BlueprintCallable)
     static FName GetSelectedMapId(const UObject* objectContext);
     
+    UFUNCTION(BlueprintCallable)
+    static bool GetMapUnlockInfoForRow(UObject* playerContextObject, FDataTableRowHandle mapRowHandle, FYMapUnlockInfo& mapUnlockInfoOut);
+
     UFUNCTION(BlueprintCallable, BlueprintPure)
     static FText GetGameModeTextFromGameModeType(const UObject* objectContext, EYMatchmakeGameModeType gameModeType);
     

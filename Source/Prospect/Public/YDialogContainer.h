@@ -48,6 +48,11 @@ public:
     UFUNCTION(BlueprintCallable)
     void ShowLoadingOverlay(const FText& Message);
     
+private:
+    UFUNCTION(BlueprintCallable)
+    void OnToggleQuickMenuVisiblity(bool newVisibility);
+
+public:
     UFUNCTION(BlueprintCallable)
     void OnShowPlayerDialogSupportMessage(const FText headline, const FText Message, const FText buttonText);
     

@@ -16,7 +16,10 @@ struct FYCharacterCustomizationRowBase : public FYVanityItemRowBase {
     GENERATED_BODY()
 public:
     UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
-    TSoftObjectPtr<USkeletalMesh> m_skelMesh1stP;
+    TSoftObjectPtr<USkeletalMesh> m_femaleSkelMesh1stP;
+
+    UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
+    TSoftObjectPtr<USkeletalMesh> m_maleSkelMesh1stP;
     
     UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
     TArray<FYRandomizationMesEntry> m_randomizedMeshes;
@@ -28,7 +31,10 @@ public:
     UAnimSequence* m_animationSequence;
     
     UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
-    TSoftObjectPtr<USkeletalMesh> m_skelMesh3rdP;
+    TSoftObjectPtr<USkeletalMesh> m_femaleSkelMesh3rdP;
+
+    UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
+    TSoftObjectPtr<USkeletalMesh> m_maleSkelMesh3rdP;
     
     UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
     TArray<FYCharacterCustomizationPieceCollection> m_materialCollections;

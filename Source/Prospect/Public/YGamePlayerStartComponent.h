@@ -12,14 +12,14 @@ UCLASS(Blueprintable, ClassGroup=Custom, Config=Game, meta=(BlueprintSpawnableCo
 class PROSPECT_API UYGamePlayerStartComponent : public UActorComponent {
     GENERATED_BODY()
 public:
+    UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
+    FDataTableRowHandle m_defaultPieMapInfo;
+
 private:
     UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
     TArray<FYPlayerStartCluster> m_clusters;
     
 public:
-    UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
-    FDataTableRowHandle m_defaultPieMapInfo;
-    
     UYGamePlayerStartComponent(const FObjectInitializer& ObjectInitializer);
 
     UFUNCTION(BlueprintCallable, BlueprintPure)

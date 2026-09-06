@@ -26,14 +26,6 @@ bool UYDamageFunctions::IsDamageDealtFromPlayer(const FYDealtDamageData& damageD
     return false;
 }
 
-bool UYDamageFunctions::IsActorTheMostRecentDamageCauserFor(AActor* damageTaker, AActor* DamageCauser) {
-    return false;
-}
-
-bool UYDamageFunctions::IsAbleToPropagetChainMod(AActor* damageTaker) {
-    return false;
-}
-
 bool UYDamageFunctions::IsAbleToHeal(AActor* DamageCauser, AActor* damageTaker) {
     return false;
 }
@@ -42,16 +34,8 @@ bool UYDamageFunctions::IsAbleToDamage(AActor* damageTaker, AActor* DamageCauser
     return false;
 }
 
-APawn* UYDamageFunctions::GetTurretOwnerPawn(AActor* Actor) {
-    return NULL;
-}
-
 TArray<AActor*> UYDamageFunctions::GetHostilePawns(AActor* queryActor, float Radius, AActor* teamActor) {
     return TArray<AActor*>();
-}
-
-FText UYDamageFunctions::GetDamageOriginNameLocalized(const FYDamageOriginInfo& originInfo) {
-    return FText::GetEmpty();
 }
 
 FText UYDamageFunctions::GetDamageCauserNameLocalized(AActor* Actor) {

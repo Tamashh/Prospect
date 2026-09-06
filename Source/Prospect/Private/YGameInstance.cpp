@@ -15,10 +15,13 @@
 #include "YDataTableManager.h"
 #include "YFactionsProgressionManager.h"
 #include "YFortunaPassManager.h"
+#include "YFreeLoadoutManager.h"
 #include "YGameInventoryManager.h"
 #include "YGamePingManager.h"
 #include "YGameSessionManager.h"
+#include "YGamesightManager.h"
 #include "YGeneratorsManager.h"
+#include "YGenericClaimableDataManager.h"
 #include "YGenericNotificationsManager.h"
 #include "YGlobalVanityManager.h"
 #include "YGrantsManager.h"
@@ -28,9 +31,11 @@
 #include "YInventoryManager.h"
 #include "YItemSortingManager.h"
 #include "YKeybindingsManager.h"
+#include "YLoadoutPresetManager.h"
 #include "YManagerSessionResource.h"
 #include "YMarketingManager.h"
 #include "YMatchmakingManager.h"
+#include "YMeshMergingManager.h"
 #include "YMessageManager.h"
 #include "YMissionManager.h"
 #include "YNewsManager.h"
@@ -73,7 +78,7 @@ UYGameInstance::UYGameInstance() {
     this->m_resourceSessionManager = CreateDefaultSubobject<UYManagerSessionResource>(TEXT("ResourceSessionManager"));
     this->m_playerQuarterManager = CreateDefaultSubobject<UYPlayerQuarterManager>(TEXT("PlayerQuarterManager"));
     this->m_missionManager = CreateDefaultSubobject<UYMissionManager>(TEXT("MissionManager"));
-    this->m_passiveGeneratorsManager = CreateDefaultSubobject<UYGeneratorsManager>(TEXT("PassiveGeneratorsManager"));
+    this->m_generatorsManager = CreateDefaultSubobject<UYGeneratorsManager>(TEXT("GeneratorsManager"));
     this->m_userDataManager = CreateDefaultSubobject<UYUserDataManager>(TEXT("UserDataManager"));
     this->m_initializationManager = CreateDefaultSubobject<UYInitializationManager>(TEXT("InitializationManager"));
     this->m_marketingManager = CreateDefaultSubobject<UYMarketingManager>(TEXT("YMarketingManager"));
@@ -93,10 +98,13 @@ UYGameInstance::UYGameInstance() {
     this->m_itemSortingManager = CreateDefaultSubobject<UYItemSortingManager>(TEXT("YItemSortingManager"));
     this->m_playerActionsManager = CreateDefaultSubobject<UYPlayerActionsManager>(TEXT("YPlayerActionsManager"));
     this->m_fortunaPassManager = CreateDefaultSubobject<UYFortunaPassManager>(TEXT("YFortunaPassManager"));
+    this->m_freeLoadoutManager = CreateDefaultSubobject<UYFreeLoadoutManager>(TEXT("YFreeLoadoutManager"));
     this->m_newsManager = CreateDefaultSubobject<UYNewsManager>(TEXT("NewsManager"));
     this->m_twitchDropsManager = CreateDefaultSubobject<UYTwitchDropsManager>(TEXT("YTwitchDropsManager"));
+    this->m_loadoutPresetManager = CreateDefaultSubobject<UYLoadoutPresetManager>(TEXT("YLoadoutPresetManager"));
     this->m_TOCVeteranManager = CreateDefaultSubobject<UYTOCVeteranManager>(TEXT("YTOCVeteranManager"));
     this->m_victimCompensationManager = CreateDefaultSubobject<UYVictimCompensationManager>(TEXT("YVictimCompensationManager"));
+    this->m_gamesightManager = CreateDefaultSubobject<UYGamesightManager>(TEXT("YGamesightManager"));
     this->YCrasher = NULL;
     this->m_actorPoolManager = NULL;
     this->m_authorization = NULL;
@@ -109,6 +117,7 @@ UYGameInstance::UYGameInstance() {
     this->m_automationManager = CreateDefaultSubobject<UYAutomationManager>(TEXT("AutomationManager"));
     this->m_battleEyeInstance = NULL;
     this->m_interruptionManager = CreateDefaultSubobject<UYInterruptionManager>(TEXT("YInterruptionManager"));
+    this->m_meshMergingManager = CreateDefaultSubobject<UYMeshMergingManager>(TEXT("YMeshMergingManager"));
     this->m_globalMaterialParameterCollection = NULL;
     this->m_gameAnalytics = NULL;
     this->m_startRank = 300;
@@ -124,6 +133,7 @@ UYGameInstance::UYGameInstance() {
     this->m_authorizationManager = CreateDefaultSubobject<UYAuthorizationManager>(TEXT("YAuthorizationManager"));
     this->m_accountLinkingManager = CreateDefaultSubobject<UYAccountLinkingManager>(TEXT("YAccountLinkingManager"));
     this->m_friendsImportManager = CreateDefaultSubobject<UYFriendsImportManager>(TEXT("YFriendsImportManager"));
+    this->m_genericClaimableDataManager = CreateDefaultSubobject<UYGenericClaimableDataManager>(TEXT("YGenericClaimableDataManager"));
     this->m_legalAgreementsManager = CreateDefaultSubobject<UYLegalAgreementsManager>(TEXT("YLegalAgreementsManager"));
     this->m_chatLogSize = 30;
     this->m_logSendInterval = 720.0f;
@@ -142,6 +152,9 @@ void UYGameInstance::RenameReplay(const FString& ReplayName, const FString& NewF
 }
 
 void UYGameInstance::PlayReplayFromBP(const FString& ReplayName) {
+}
+
+void UYGameInstance::OnWindowFocusChanged(bool isFocused) {
 }
 
 void UYGameInstance::OnSettingsApplied() {

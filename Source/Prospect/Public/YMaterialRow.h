@@ -28,6 +28,9 @@ public:
     FDataTableRowHandle m_pickUpSoundRowHandle;
     
     UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
+    FDataTableRowHandle m_loopingSoundRowHandle;
+
+    UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
     bool m_isAlienForgeLotteryTicket;
     
     PROSPECT_API FYMaterialRow();

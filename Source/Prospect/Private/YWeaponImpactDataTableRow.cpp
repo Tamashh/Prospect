@@ -5,5 +5,6 @@ FYWeaponImpactDataTableRow::FYWeaponImpactDataTableRow() {
     this->m_nonReplicatedActorToSpawn = NULL;
     this->m_shouldHaveFxCategory = false;
     this->m_useOwnerAsInstigatorForSenseTrigger = false;
+    this->m_playerLocalEffect = EYPlayerLocalEffect::None;
 }
 

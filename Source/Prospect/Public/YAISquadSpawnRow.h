@@ -1,6 +1,6 @@
 #pragma once
 #include "CoreMinimal.h"
-#include "YAISquadDefinition.h"
+#include "YAISquadDefinitionSpawnOption.h"
 #include "YDataTableRowBase.h"
 #include "YAISquadSpawnRow.generated.h"
 
@@ -9,10 +9,7 @@ struct FYAISquadSpawnRow : public FYDataTableRowBase {
     GENERATED_BODY()
 public:
     UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
-    TArray<FYAISquadDefinition> m_spawnOptions;
-    
-    UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
-    TArray<FYAISquadDefinition> m_spawnOptionsStorm;
+    TArray<FYAISquadDefinitionSpawnOption> m_spawnOptions;
     
     PROSPECT_API FYAISquadSpawnRow();
 };

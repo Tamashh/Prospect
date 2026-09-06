@@ -17,5 +17,7 @@ FYPlayerKilledEvent::FYPlayerKilledEvent() {
     this->last_time_damaged_by_a_player = 0;
     this->stamina_on_started_to_get_killed_by_player = 0;
     this->stamina_on_death = 0;
+    this->was_escaping = false;
+    this->scanner_used = false;
 }
 

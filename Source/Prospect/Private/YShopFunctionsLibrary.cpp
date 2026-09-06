@@ -7,7 +7,7 @@ bool UYShopFunctionsLibrary::StartPlatformOfferCheckout(UObject* objectContext, 
     return false;
 }
 
-bool UYShopFunctionsLibrary::RedeemPlayfabCoupon(UObject* objectContext, const FString& CouponCode, const FString& CatalogVersion) {
+bool UYShopFunctionsLibrary::RedeemCoupon(UObject* objectContext, const FString& CouponCode) {
     return false;
 }
 

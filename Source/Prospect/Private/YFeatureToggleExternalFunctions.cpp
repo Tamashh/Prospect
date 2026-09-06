@@ -79,6 +79,10 @@ bool UYFeatureToggleExternalFunctions::IsRegionRepingAtMMFailureEnabled(const UO
     return false;
 }
 
+bool UYFeatureToggleExternalFunctions::IsPinglimitationsInEditorEnabled() {
+    return false;
+}
+
 bool UYFeatureToggleExternalFunctions::IsPingingForSocialActorEnabled(const UObject* objCtx) {
     return false;
 }
@@ -103,6 +107,10 @@ bool UYFeatureToggleExternalFunctions::IsMissionChallengesRandomizationEnabled()
     return false;
 }
 
+bool UYFeatureToggleExternalFunctions::IsLoadoutPresetsEnabled(const UObject* objCtx) {
+    return false;
+}
+
 bool UYFeatureToggleExternalFunctions::IsLeaderboardDataUpdatingEnabled() {
     return false;
 }
@@ -116,6 +124,10 @@ bool UYFeatureToggleExternalFunctions::IsFortunaPassEnabled(const UObject* objCt
 }
 
 bool UYFeatureToggleExternalFunctions::IsForceThirdPersonEnabled() {
+    return false;
+}
+
+bool UYFeatureToggleExternalFunctions::IsEvacV2Enabled(const UObject* objCtx) {
     return false;
 }
 

@@ -23,6 +23,9 @@ void UYSquadHelperFunctions::RequestExitDeployFlow(const UObject* objectContext)
 void UYSquadHelperFunctions::RequestChangeMap(const UObject* objectContext, const FString& selectedMapName) {
 }
 
+void UYSquadHelperFunctions::LogSquadsInfo(const FString& Message) {
+}
+
 bool UYSquadHelperFunctions::LeaveSquad(UObject* objectContext) {
     return false;
 }
@@ -67,7 +70,7 @@ FText UYSquadHelperFunctions::GetSquadName(const EYSquadID squadId) {
     return FText::GetEmpty();
 }
 
-int32 UYSquadHelperFunctions::GetNumSquadMembersAliveOrEscaped(AActor* Context, const EYSquadID squadId) {
+int32 UYSquadHelperFunctions::GetNumSquadMembersAliveOrEscaped() {
     return 0;
 }
 

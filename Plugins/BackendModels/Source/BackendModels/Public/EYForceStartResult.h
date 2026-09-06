@@ -7,5 +7,6 @@ enum class EYForceStartResult : uint8 {
     OK,
     EMPTY_QUEUE,
     WRONG_GAME_MODE,
+    MAX,
 };
 

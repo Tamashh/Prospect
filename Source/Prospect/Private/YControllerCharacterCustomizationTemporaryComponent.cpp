@@ -9,7 +9,7 @@ void UYControllerCharacterCustomizationTemporaryComponent::RequestResetData() {
 void UYControllerCharacterCustomizationTemporaryComponent::RequestCustomizationItemShow(const FYUpdateBodyPartRequestData& Data) {
 }
 
-void UYControllerCharacterCustomizationTemporaryComponent::RequestArchetypeIdPreview(FDataTableRowHandle archetypeRowHandle) {
+void UYControllerCharacterCustomizationTemporaryComponent::RequestArchetypeIdPreview(FDataTableRowHandle archetypeRowHandle, const bool showDefaultArchetype) {
 }
 
 UYControllerCharacterCustomizationTemporaryComponent* UYControllerCharacterCustomizationTemporaryComponent::FindControllerCharacterCustomizationTemporaryComponent(const UObject* objCtx) {

@@ -11,6 +11,9 @@ public:
 
 private:
     UFUNCTION(BlueprintCallable, BlueprintPure)
+    static bool ShouldRepeatCompletedDynamicOnboardingMissions();
+
+    UFUNCTION(BlueprintCallable, BlueprintPure)
     static bool IsBackgroundDropPodEnabled();
     
     UFUNCTION(BlueprintCallable, BlueprintPure)

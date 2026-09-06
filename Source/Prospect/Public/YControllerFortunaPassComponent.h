@@ -90,9 +90,6 @@ public:
     UFUNCTION(BlueprintCallable, BlueprintPure)
     int32 GetPlayerPremiumXpBoost() const;
     
-    UFUNCTION(BlueprintCallable, BlueprintPure)
-    FYFortunaPassPlayerData GetInitialData() const;
-    
 private:
     UFUNCTION(BlueprintCallable)
     static bool GetIfOneDayPassedSinceLastReset(const FDateTime& UtcNow, const FYFortunaPassPlayerData& passPlayerData);

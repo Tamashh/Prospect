@@ -1,8 +1,8 @@
 #include "YPlayerInteractionComponent.h"
 
 UYPlayerInteractionComponent::UYPlayerInteractionComponent(const FObjectInitializer& ObjectInitializer) : Super(ObjectInitializer) {
-    this->m_cachedOwnerStateComponent = NULL;
     this->m_debugInfiniteInteractionPlayer = NULL;
+    this->m_cachedOwnerStateComponent = NULL;
 }
 
 void UYPlayerInteractionComponent::StartInteraction() {
@@ -55,10 +55,6 @@ bool UYPlayerInteractionComponent::HasInteractionIsValid() const {
 }
 
 bool UYPlayerInteractionComponent::HasInteractionInProgress() const {
-    return false;
-}
-
-bool UYPlayerInteractionComponent::HasInteractionCompleted() const {
     return false;
 }
 

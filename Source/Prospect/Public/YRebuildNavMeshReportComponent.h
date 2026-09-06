@@ -10,7 +10,6 @@ UCLASS(Blueprintable, ClassGroup=Custom, meta=(BlueprintSpawnableComponent))
 class PROSPECT_API UYRebuildNavMeshReportComponent : public UActorComponent {
     GENERATED_BODY()
 public:
-private:
     UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
     FName m_tagWhiteListedNavMeshRebuilder;
     
@@ -20,7 +19,6 @@ private:
     UPROPERTY(BlueprintReadWrite, EditAnywhere, Transient, meta=(AllowPrivateAccess=true))
     TMap<FName, int32> m_invokeCountsUnauthorized;
     
-public:
     UYRebuildNavMeshReportComponent(const FObjectInitializer& ObjectInitializer);
 
 private:

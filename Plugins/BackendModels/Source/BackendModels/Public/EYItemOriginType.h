@@ -16,6 +16,7 @@ enum class EYItemOriginType : uint8 {
     FortunaPass,
     Generator,
     Insurance,
+    LoadoutPreset,
     ManualScript,
     MapContainerAlienForge,
     MapContainerLoot,
@@ -38,5 +39,7 @@ enum class EYItemOriginType : uint8 {
     VictimCompensation,
     WeaponAttachment,
     Coupon,
+    VanityMigration,
+    FreeLoadout,
 };
 

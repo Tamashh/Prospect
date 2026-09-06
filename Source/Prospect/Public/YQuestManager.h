@@ -1,6 +1,5 @@
 #pragma once
 #include "CoreMinimal.h"
-#include "EYLoginResult.h"
 #include "UObject/Object.h"
 #include "YQuestManager.generated.h"
 
@@ -10,8 +9,5 @@ class PROSPECT_API UYQuestManager : public UObject {
 public:
     UYQuestManager();
 
-    UFUNCTION(BlueprintCallable)
-    void OnLoginResult(EYLoginResult loginResult);
-    
 };
 

@@ -7,8 +7,4 @@ bool UYItemVisualizationFunctions::RetrieveVisualizationDataForItem(const FDataT
     return false;
 }
 
-bool UYItemVisualizationFunctions::CreateRowHandle(const UObject* WorldContext, const FName& entityToVisualizeId, const FString& callerContext, FDataTableRowHandle& outRowHandle) {
-    return false;
-}
-
 

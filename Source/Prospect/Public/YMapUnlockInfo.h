@@ -14,6 +14,9 @@ public:
     UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
     TArray<FDataTableRowHandle> contracts;
     
+    UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
+    FString m_unlockDateTimeUtc;
+
     PROSPECT_API FYMapUnlockInfo();
 };
 

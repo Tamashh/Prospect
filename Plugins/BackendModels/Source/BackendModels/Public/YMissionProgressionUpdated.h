@@ -21,6 +21,9 @@ public:
     TArray<FYCustomItemInfo> m_rewards;
     
     UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
+    TArray<FString> m_removedItems;
+
+    UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
     TArray<FYCurrencyItem> m_updatedCurrencies;
     
     BACKENDMODELS_API FYMissionProgressionUpdated();

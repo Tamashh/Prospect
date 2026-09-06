@@ -12,5 +12,6 @@ enum class EYLootSourceType : uint8 {
     PlayerItem,
     PlayerItemDroppedOnDeath,
     Debug,
+    AIHowlerLoot,
 };
 

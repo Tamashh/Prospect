@@ -71,7 +71,7 @@ public:
     static int32 FindAmmoInClipFromRow(AActor* actorContext, const FDataTableRowHandle& weaponRowHandle);
     
     UFUNCTION(BlueprintCallable)
-    static int32 FindAmmoInClipFromInventoryItem(AActor* actorContext, const FYInventoryItem& inventoryItem);
+    static int32 FindAmmoInClipFromInventoryItem(const FYInventoryItem& inventoryItem);
     
     UFUNCTION(BlueprintCallable)
     static bool FindActiveWeaponStoredInformation(AActor* actorContext, FYStoredInventoryWeaponData& outStoredData);

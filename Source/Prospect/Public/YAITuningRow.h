@@ -5,9 +5,8 @@
 #include "EYAIState.h"
 #include "EYAIWeakSpotDeathAnimType.h"
 #include "EYEnemyType.h"
-#include "YAIMeleeAttackDefinition.h"
+#include "YAIMeleeAttackComboDefinition.h"
 #include "YAIRangedAttackDefinition.h"
-#include "YAIRangedAttackMontageDefinition.h"
 #include "YAISpawnArchetypeData.h"
 #include "YAIStaggerDefinition.h"
 #include "YAIStaggerTriggerHealthPercentage.h"
@@ -32,28 +31,13 @@ public:
     float m_basePenetration;
     
     UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
-    TArray<FYAIMeleeAttackDefinition> m_meleeAttacks;
-    
-    UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
-    float m_meleeStrafeMoveDistance;
-    
-    UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
-    float m_meleeBackOffDistance;
-    
-    UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
-    float m_weakAreaDamageMultiplier;
+    TArray<FYAIMeleeAttackComboDefinition> m_meleeAttackComboSetup;
     
     UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
     float m_stabilityDamageRagdollThresholds;
     
     UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
     TArray<FYAIRangedAttackDefinition> m_rangedAttacks;
-    
-    UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
-    TArray<FYAIRangedAttackMontageDefinition> m_rangedAttackMontages;
-    
-    UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
-    FDataTableRowHandle m_eqsPreferredRange;
     
     UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
     EYEnemyType m_type;
@@ -95,7 +79,7 @@ public:
     FDataTableRowHandle m_healthRow;
     
     UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
-    TMap<FName, float> m_damageAreas;
+    FDataTableRowHandle m_weakspotsRowHandle;
     
     UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
     TMap<FName, EYAIWeakSpotDeathAnimType> m_weakSpotDeathAnimTypeMap;
@@ -107,8 +91,14 @@ public:
     TArray<FYAIStaggerTriggerHealthPercentage> m_percentageTriggers;
     
     UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
+    bool m_reuseLastHealthPercentageTrigger;
+
+    UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
     TArray<FYAIStaggerTriggerWeakspotHealth> m_weakspotTriggers;
     
+    UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
+    FDataTableRowHandle m_predecessor;
+
     PROSPECT_API FYAITuningRow();
 };
 

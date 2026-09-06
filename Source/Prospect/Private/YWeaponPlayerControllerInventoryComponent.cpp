@@ -11,9 +11,6 @@ UYWeaponPlayerControllerInventoryComponent::UYWeaponPlayerControllerInventoryCom
 void UYWeaponPlayerControllerInventoryComponent::SwitchWeapon(int32 Index) {
 }
 
-void UYWeaponPlayerControllerInventoryComponent::SwitchToMeleeWeapon() {
-}
-
 void UYWeaponPlayerControllerInventoryComponent::SwitchPreviousWeapon() {
 }
 
@@ -53,11 +50,11 @@ void UYWeaponPlayerControllerInventoryComponent::OnCustomizationDataUpdated(FYAc
 void UYWeaponPlayerControllerInventoryComponent::OnAmmoChanged(const FYAmmoUpdateInfo& ammoUpdateInfo) {
 }
 
-bool UYWeaponPlayerControllerInventoryComponent::IsWeaponOwned(FDataTableRowHandle rowHandle, const FString& CustomId) {
+bool UYWeaponPlayerControllerInventoryComponent::IsWeaponOwned(const FDataTableRowHandle& rowHandle, const FString& CustomId) {
     return false;
 }
 
-bool UYWeaponPlayerControllerInventoryComponent::IsWeaponActive(FDataTableRowHandle rowHandle) const {
+bool UYWeaponPlayerControllerInventoryComponent::IsWeaponActive(const FDataTableRowHandle& rowHandle) const {
     return false;
 }
 
@@ -68,7 +65,7 @@ FName UYWeaponPlayerControllerInventoryComponent::GetActiveWeapon() const {
     return NAME_None;
 }
 
-void UYWeaponPlayerControllerInventoryComponent::DebugAddMod(FDataTableRowHandle newMod) {
+void UYWeaponPlayerControllerInventoryComponent::DebugAddMod(const FDataTableRowHandle& newMod) {
 }
 
 void UYWeaponPlayerControllerInventoryComponent::GetLifetimeReplicatedProps(TArray<FLifetimeProperty>& OutLifetimeProps) const {

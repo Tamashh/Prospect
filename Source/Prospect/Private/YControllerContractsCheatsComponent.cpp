@@ -15,6 +15,9 @@ void UYControllerContractsCheatsComponent::ServerDebugRemoveAllActiveContracts_I
 void UYControllerContractsCheatsComponent::ServerDebugGivePlayerContractRewards_Implementation(const FString& UserId, const FString& contractId) {
 }
 
+void UYControllerContractsCheatsComponent::ServerDebugActivateContractWithPredecessor_Implementation(const FString& UserId, const FString& contractId) {
+}
+
 void UYControllerContractsCheatsComponent::ServerDebugActivateContractByRowName_Implementation(const FString& UserId, const FString& contractId) {
 }
 
@@ -24,6 +27,9 @@ UYControllerContractsCheatsComponent* UYControllerContractsCheatsComponent::Find
 
 UYControllerContractsCheatsComponent* UYControllerContractsCheatsComponent::FindContractsCheatComponent(AActor* actorContext) {
     return NULL;
+}
+
+void UYControllerContractsCheatsComponent::DebugOnPlayerRemovedAllCompletedContracts(const FString& UserId) {
 }
 
 void UYControllerContractsCheatsComponent::DebugHandleActiveContractNewProgressReceived(const FString& UserId, const FString& activeContractId, const int32 objectiveIndex, const int32 newProgress) {

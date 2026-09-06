@@ -10,7 +10,6 @@ FYDealtDamageData::FYDealtDamageData() {
     this->m_healthDamage = 0.0f;
     this->m_vehicleDamage = 0.0f;
     this->m_overkillDamage = 0.0f;
-    this->m_stabilityDamage = 0.0f;
     this->m_stabilityDamageForDeathRagdoll = 0.0f;
     this->m_impulseDamage = 0.0f;
     this->m_damageMitigation = 0.0f;
@@ -41,5 +40,6 @@ FYDealtDamageData::FYDealtDamageData() {
     this->m_roleToReplicate = ROLE_None;
     this->m_boneIndexHit = 0;
     this->m_surfaceTypeHit = SurfaceType_Default;
+    this->m_isGodModeDamage = false;
 }
 

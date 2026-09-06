@@ -37,6 +37,9 @@ public:
     UFUNCTION(BlueprintCallable)
     void TrySendBIHook_MinimapOpen();
     
+    UFUNCTION(BlueprintCallable)
+    void SetEscapingFlag(bool escaping);
+
 protected:
     UFUNCTION(BlueprintCallable, Reliable, Server, WithValidation)
     void ServerSendClientMapLoadingStats(const TArray<FYClientMapLoadingStats>& clientMapLoadingStats);

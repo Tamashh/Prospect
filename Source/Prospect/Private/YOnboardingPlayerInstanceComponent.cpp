@@ -7,6 +7,9 @@ UYOnboardingPlayerInstanceComponent::UYOnboardingPlayerInstanceComponent(const F
 void UYOnboardingPlayerInstanceComponent::SetCompletedMissionResult(EYMissionResultType missionResultType) {
 }
 
+void UYOnboardingPlayerInstanceComponent::ServerRestartMetaQuest_Implementation() {
+}
+
 void UYOnboardingPlayerInstanceComponent::OnRep_MissionReplicatedStateData() {
 }
 

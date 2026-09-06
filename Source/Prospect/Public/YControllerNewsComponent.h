@@ -23,9 +23,6 @@ public:
     UFUNCTION(BlueprintCallable, BlueprintPure)
     bool ShouldShowNewsScreen(bool returningFromMatch) const;
     
-    UFUNCTION(BlueprintCallable, BlueprintPure=false)
-    void RefreshNewsData() const;
-    
     UFUNCTION(BlueprintCallable)
     void OnWindowFocusChanged(bool isFocused);
     
@@ -86,9 +83,6 @@ public:
     
     UFUNCTION(BlueprintCallable, BlueprintPure)
     TArray<FYNewsItem> GetCurrentNewsItems() const;
-    
-    UFUNCTION(BlueprintCallable, BlueprintPure)
-    TArray<FYNewsItem> GetAllNewsItems() const;
     
 };
 

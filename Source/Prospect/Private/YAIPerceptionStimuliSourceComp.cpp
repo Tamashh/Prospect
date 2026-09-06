@@ -9,7 +9,7 @@ void UYAIPerceptionStimuliSourceComp::UpdatePerceptionStatus() {
 void UYAIPerceptionStimuliSourceComp::RemoveActorFromPerceptionSystemAndAllAIs() {
 }
 
-void UYAIPerceptionStimuliSourceComp::OnStateChanged(bool wasInterrupted) {
+void UYAIPerceptionStimuliSourceComp::OnReviveStateDeactivated(bool wasInterrupted) {
 }
 
 void UYAIPerceptionStimuliSourceComp::OnAbilityStateChanged(const FYAbilityStateInfo& Info) {

@@ -28,6 +28,9 @@ public:
     UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
     FVector m_fallingImpactLocation;
     
+    UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
+    bool m_startedAsJump;
+
     PROSPECT_API FYFallingDamageInfo();
 };
 

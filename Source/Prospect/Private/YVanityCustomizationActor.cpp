@@ -12,7 +12,6 @@ AYVanityCustomizationActor::AYVanityCustomizationActor(const FObjectInitializer&
     this->m_customizationCameraComponent = CreateDefaultSubobject<UYCustomizationCameraComponent>(TEXT("CustomizationCameraComponent"));
     this->m_bannerActor = NULL;
     this->m_sprayActor = NULL;
-    this->m_vehicleActor = NULL;
     this->m_droppodActor = NULL;
     this->m_meleeActor = NULL;
 }

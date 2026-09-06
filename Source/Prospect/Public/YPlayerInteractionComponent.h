@@ -1,6 +1,7 @@
 #pragma once
 #include "CoreMinimal.h"
 #include "Components/ActorComponent.h"
+#include "Engine/DataTable.h"
 #include "OnInteractionEndedDelegate.h"
 #include "OnInteractionStartedDelegate.h"
 #include "YDealtDamageData.h"
@@ -23,9 +24,6 @@ public:
     DECLARE_DYNAMIC_MULTICAST_DELEGATE_OneParam(FOnInteractionUpdate, const FYInteractionUpdateData&, Data);
     DECLARE_DYNAMIC_MULTICAST_DELEGATE_TwoParams(FOInInteractionDetected, const FYPlayerInteraction&, interactionData, bool, detected);
     
-    UPROPERTY(BlueprintReadWrite, EditAnywhere, Instanced, Transient, meta=(AllowPrivateAccess=true))
-    UYPlayerCharacterStateComponent* m_cachedOwnerStateComponent;
-    
     UPROPERTY(BlueprintAssignable, BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
     FOnInteractionUpdate OnInteractionUpdate;
     
@@ -47,6 +45,15 @@ public:
     UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
     APlayerController* m_debugInfiniteInteractionPlayer;
     
+protected:
+    UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
+    FDataTableRowHandle m_uiEventRowHandle;
+
+private:
+    UPROPERTY(BlueprintReadWrite, EditAnywhere, Instanced, Transient, meta=(AllowPrivateAccess=true))
+    UYPlayerCharacterStateComponent* m_cachedOwnerStateComponent;
+
+public:
     UYPlayerInteractionComponent(const FObjectInitializer& ObjectInitializer);
 
     UFUNCTION(BlueprintCallable)
@@ -70,11 +77,9 @@ private:
     UFUNCTION(BlueprintCallable)
     void OnPlayerDBNOStateChanged(AActor* affectedActor);
     
-protected:
     UFUNCTION(BlueprintCallable)
     void OnOwnerGotDamaged(const FYDealtDamageData& Data);
     
-private:
     UFUNCTION(BlueprintCallable)
     void OnObjectInteractionMessageUpdated();
     
@@ -101,9 +106,6 @@ public:
     
     UFUNCTION(BlueprintCallable, BlueprintPure)
     bool HasInteractionInProgress() const;
-    
-    UFUNCTION(BlueprintCallable, BlueprintPure)
-    bool HasInteractionCompleted() const;
     
     UFUNCTION(BlueprintCallable, BlueprintPure)
     bool HasInteractionActorLocked() const;

@@ -24,9 +24,6 @@ public:
     TArray<FDataTableRowHandle> m_baseSuitItems;
     
     UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
-    TMap<EYCustomizationCategory, FDataTableRowHandle> m_defaultItems;
-    
-    UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
     TMap<EYCustomizationCategory, FYCharacterArchetypeDefaultItemEntry> m_startingItems;
     
     PROSPECT_API FYCharacterCustomizationArchetypeRow();

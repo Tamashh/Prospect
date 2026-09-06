@@ -46,6 +46,9 @@ public:
     
 protected:
     UFUNCTION(BlueprintCallable, BlueprintImplementableEvent)
+    FString GetStaticDescriptionBP() const;
+
+    UFUNCTION(BlueprintCallable, BlueprintImplementableEvent)
     UAnimMontage* GetAnimationToPlay(bool& allowPhysicsRotationDuringAnimation, bool& finishNodeSuccesfullyIfNoAnimIsProvided);
     
 public:

@@ -13,6 +13,9 @@ UCLASS(Blueprintable, EditInlineNew)
 class UYWidget_DamageNumber : public UYWidget {
     GENERATED_BODY()
 public:
+    UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
+    bool m_animateLeft;
+
 protected:
     UPROPERTY(BlueprintReadWrite, EditAnywhere, Instanced, meta=(AllowPrivateAccess=true))
     UTextBlock* m_damageText;
@@ -64,9 +67,6 @@ private:
     UCanvasPanelSlot* m_canvasPanel;
     
 public:
-    UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
-    bool m_animateLeft;
-    
     UYWidget_DamageNumber();
 
     UFUNCTION(BlueprintCallable)

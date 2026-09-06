@@ -9,6 +9,9 @@ enum class EYContractObjectiveType : uint8 {
     OwnNumOfItem,
     DeadDrop,
     VisitArea,
+    FactionLevel,
+    LootContainer,
+    CompletedMission,
     MAX,
 };
 

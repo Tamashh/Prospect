@@ -32,9 +32,6 @@ AYPlayerCharacter* AYPlayerState::TryGetYPlayerCharacter() const {
 void AYPlayerState::SetSelectedFaction(FName factionId) {
 }
 
-void AYPlayerState::SetPlayerNameBP(const FString& newPlayerName) {
-}
-
 void AYPlayerState::SetPlayerMatchState(EYPlayerMatchState newState, const FString& contextString) {
 }
 
@@ -53,7 +50,7 @@ void AYPlayerState::OnRep_PlayerMatchFinishedResult() {
 void AYPlayerState::OnRep_FactionId() {
 }
 
-void AYPlayerState::OnRep_CosmeticDataChanged(FYPlayerCosmeticReplicatedData oldData) const {
+void AYPlayerState::OnRep_CosmeticDataChanged(const FYPlayerCosmeticReplicatedData& oldData) const {
 }
 
 void AYPlayerState::OnMatchStateUpdated(EYMatchState matchState) {
@@ -110,20 +107,8 @@ FYProspectorLevelData AYPlayerState::GetInitialProspectorLevelProgress() const {
     return FYProspectorLevelData{};
 }
 
-FYFactionProgress AYPlayerState::GetInitialFactionProgress() const {
-    return FYFactionProgress{};
-}
-
 FYActiveWeaponCharacterInitializationData AYPlayerState::GetEquippedWeaponData() const {
     return FYActiveWeaponCharacterInitializationData{};
-}
-
-int32 AYPlayerState::GetCachedPlayerSeasonXP() const {
-    return 0;
-}
-
-int32 AYPlayerState::GetCachedPlayerSeasonLevel() const {
-    return 0;
 }
 
 void AYPlayerState::CachePlayerSeasonLevelAndXP(int32 Level, int32 xp) {

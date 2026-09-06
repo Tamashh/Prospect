@@ -3,7 +3,7 @@
 #include "YInventory.h"
 #include "YPlayerSet.h"
 #include "UObject/Object.h"
-#include "EYInventoryPlayerTypes.h"
+#include "YBackendFreeLoadout.h"
 #include "YBackendInventorySignatureDelegate.h"
 #include "YBackendInventoryStateChangedSignatureDelegate.h"
 #include "YInventorySnapshot.h"
@@ -40,17 +40,19 @@ private:
     FYPlayerSet m_rawIncomingPlayerSetData;
     
     UPROPERTY(BlueprintReadWrite, EditAnywhere, Transient, meta=(AllowPrivateAccess=true))
+    FYBackendFreeLoadout m_rawIncomingFreeLoadoutInfo;
+
+    UPROPERTY(BlueprintReadWrite, EditAnywhere, Transient, meta=(AllowPrivateAccess=true))
     bool m_rawInventoryDataReceived;
     
     UPROPERTY(BlueprintReadWrite, EditAnywhere, Transient, meta=(AllowPrivateAccess=true))
     bool m_rawPlayerSetDataReceived;
     
+    UPROPERTY(BlueprintReadWrite, EditAnywhere, Transient, meta=(AllowPrivateAccess=true))
+    bool m_rawFreeLoadoutDataReceived;
+
 public:
     UYBackendInventoryModel();
 
-private:
-    UFUNCTION(BlueprintCallable)
-    void EvaluateInitializationStatus(TArray<EYInventoryPlayerTypes> Type);
-    
 };
 

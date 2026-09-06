@@ -26,7 +26,7 @@ void UYFootstepComponent::PlaySlideFX(TEnumAsByte<EYSlideAnimationState> slideAn
 void UYFootstepComponent::PlayFootstepFXFromAnimNotifier(UMeshComponent* MeshComponent, TEnumAsByte<EYFeet> Feet) {
 }
 
-void UYFootstepComponent::PlayFootstepFX(UMeshComponent* MeshComponent, TEnumAsByte<EYFeet> Feet) {
+void UYFootstepComponent::PlayFootstepFX(TEnumAsByte<EYFeet> Feet) {
 }
 
 void UYFootstepComponent::OnLanding(const FYLandingEventInfo& landingInfo) {

@@ -25,6 +25,9 @@ public:
     uint32 m_numPlayers;
     
     UPROPERTY(EditAnywhere, meta=(AllowPrivateAccess=true))
+    uint32 m_numActivePlayers;
+
+    UPROPERTY(EditAnywhere, meta=(AllowPrivateAccess=true))
     uint32 m_numAIs;
     
     UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))

@@ -18,5 +18,6 @@ enum class FYNewsItemUIButtonActionType : uint8 {
     GoToSettingsMenu,
     GoToSettingsMenuTab,
     GoToURL,
+    OpenEmailNewsletterSignup,
 };
 

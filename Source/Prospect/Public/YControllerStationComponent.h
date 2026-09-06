@@ -2,10 +2,14 @@
 #include "CoreMinimal.h"
 #include "Components/ActorComponent.h"
 #include "Engine/DataTable.h"
+#include "GameplayTagContainer.h"
 #include "EYInputUIStackType.h"
+#include "EYPlayMenuScreenType.h"
 #include "YOnCurrentNPCHandleSetSignatureDelegate.h"
 #include "YOnFactionShopOpenedDelegate.h"
-#include "YOnShopTabTypeOpenedDelegate.h"
+#include "YOnItemNumberInSellAreaChangedDelegate.h"
+#include "YOnPlayMenuScreenOpenedDelegate.h"
+#include "YOnStationTabOpenedDelegate.h"
 #include "YSceneSetupData.h"
 #include "YToggleQuickMenuVisibilityDelegate.h"
 #include "YToggleStationFortunaPassDelegate.h"
@@ -22,6 +26,12 @@ UCLASS(Blueprintable, ClassGroup=Custom, meta=(BlueprintSpawnableComponent))
 class PROSPECT_API UYControllerStationComponent : public UActorComponent {
     GENERATED_BODY()
 public:
+    UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
+    EYPlayMenuScreenType m_activePlayMenuScreen;
+
+    UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
+    FGameplayTag m_activePrimaryTab;
+
     UPROPERTY(BlueprintAssignable, BlueprintCallable, BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
     FYOnCurrentNPCHandleSetSignature OnCurrentNPCHandleSet;
     
@@ -44,10 +54,16 @@ public:
     FYToggleStationObjectiveList OnToggleStationObjectiveList;
     
     UPROPERTY(BlueprintAssignable, BlueprintCallable, BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
-    FYOnShopTabTypeOpened OnShopTabTypeOpened;
+    FYOnFactionShopOpened OnFactionShopOpened;
     
     UPROPERTY(BlueprintAssignable, BlueprintCallable, BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
-    FYOnFactionShopOpened OnFactionShopOpened;
+    FYOnItemNumberInSellAreaChanged OnItemNumberInSellAreaChanged;
+
+    UPROPERTY(BlueprintAssignable, BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
+    FYOnPlayMenuScreenOpened OnPlayMenuScreenOpened;
+
+    UPROPERTY(BlueprintAssignable, BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
+    FYOnStationTabOpened OnPrimaryTabOpened;
     
     UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
     FName m_currentNPCHandle;
@@ -118,6 +134,12 @@ public:
     UFUNCTION(BlueprintCallable)
     void OnStackChanged(EYInputUIStackType stackType, bool Visible);
     
+    UFUNCTION(BlueprintCallable)
+    void OnSetActivePrimaryTab(FGameplayTag newTab);
+
+    UFUNCTION(BlueprintCallable)
+    void OnSetActivePlayMenuScreen(EYPlayMenuScreenType newScreenType);
+
     UFUNCTION(BlueprintCallable, BlueprintPure)
     void GetRequestedSceneRowHandle(FDataTableRowHandle& requestedScene) const;
     

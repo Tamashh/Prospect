@@ -2,9 +2,9 @@
 #include "CoreMinimal.h"
 #include "Components/ActorComponent.h"
 #include "GameFramework/OnlineReplStructs.h"
-#include "YAICombatAnalyticsData.h"
+#include "YAICompleteCombatInfo.h"
 #include "YDealtDamageData.h"
-#include "YKilledAIAnalyticsEvents.h"
+#include "YPlayerDamagingAIsInfo.h"
 #include "YAIAnalyticsComponent.generated.h"
 
 class AActor;
@@ -17,10 +17,10 @@ class PROSPECT_API UYAIAnalyticsComponent : public UActorComponent {
 public:
 protected:
     UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
-    TMap<FUniqueNetIdRepl, FYKilledAIAnalyticsEvents> m_killedAIEvents;
+    TMap<FUniqueNetIdRepl, FYPlayerDamagingAIsInfo> m_playerDamagingAIsPerPlayer;
     
     UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
-    TMap<AYAICharacter*, FYAICombatAnalyticsData> m_aiAnalyticsDataEnties;
+    TMap<AYAICharacter*, FYAICompleteCombatInfo> m_aiCompleteCombatInfoPerAI;
     
 public:
     UYAIAnalyticsComponent(const FObjectInitializer& ObjectInitializer);
@@ -39,5 +39,8 @@ public:
     UFUNCTION(BlueprintCallable)
     void OnAICharacterSpawned(AYAICharacter* aiCharacter);
     
+    UFUNCTION(BlueprintCallable)
+    void DebugTestSendKilledAIEvents();
+
 };
 

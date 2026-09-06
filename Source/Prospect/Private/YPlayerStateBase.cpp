@@ -3,6 +3,7 @@
 #include "YPlayerBIDataComponent.h"
 #include "YPlayerEOSStatsComponent.h"
 #include "YPlayerStateInventoryComponent.h"
+#include "YStateFreeLoadoutComponent.h"
 #include "YStateQuestComponent.h"
 
 AYPlayerStateBase::AYPlayerStateBase(const FObjectInitializer& ObjectInitializer) : Super(ObjectInitializer) {
@@ -10,6 +11,7 @@ AYPlayerStateBase::AYPlayerStateBase(const FObjectInitializer& ObjectInitializer
     this->m_platformAnalyticsComponent = CreateDefaultSubobject<UYPlatformAnalyticsComponent>(TEXT("YPlatformAnalyticsComponent"));
     this->m_stateInventoryComponent = CreateDefaultSubobject<UYPlayerStateInventoryComponent>(TEXT("PlayerStateInventoryComponent"));
     this->m_stateQuestComponent = CreateDefaultSubobject<UYStateQuestComponent>(TEXT("StateQuestComponent"));
+    this->m_stateFreeLoadoutComponent = CreateDefaultSubobject<UYStateFreeLoadoutComponent>(TEXT("StateFreeLoadoutComponent"));
     this->m_playerEOSStatsComponent = CreateDefaultSubobject<UYPlayerEOSStatsComponent>(TEXT("YPlayerEOSStatsComponent"));
     this->m_seeSeasonRewardPopup = false;
 }

@@ -29,6 +29,9 @@ public:
 	UPROPERTY(EditAnywhere, Category = Inputs, meta = (PinHiddenByDefault))
 	FVector UpAxis;
 
+	UPROPERTY(EditAnywhere, Category = Inputs, meta = (PinHiddenByDefault))
+	FVector SpineUpAxis;
+
 	/** The axis to be used as left for the rig (Hint: May be useful if you use 3D modeling software that has X-axis Left. */
 	UPROPERTY(EditAnywhere, Category = Inputs, meta = (PinHiddenByDefault))
 	FVector ForwardAxis;

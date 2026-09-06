@@ -17,13 +17,14 @@
 #include "OnPlayerLeftDelegate.h"
 #include "OnPlayerSpawnedAtDelegate.h"
 #include "OnPlayerTeleportedDelegate.h"
+#include "YDebugMessage.h"
 #include "YGameState_Base.h"
 #include "YPlayerStateChangeData.h"
 #include "YGameState_Match.generated.h"
 
 class AYPlayerState;
 class UWorld;
-class UYAIManager;
+class UYAICharacterSpawnerComponent;
 class UYActivitiesManager;
 class UYActivityLocationsManager;
 class UYAudioEffectZoneManagerComponent;
@@ -33,7 +34,6 @@ class UYItemActorSpawner;
 class UYKeybindingAnalyticsComponent;
 class UYLatencyAnalyticsComponent;
 class UYMatchChatManagerComponent;
-class UYPlayersStatsComponent;
 class UYRelevancyLookupManager;
 
 UCLASS(Blueprintable)
@@ -42,9 +42,6 @@ class AYGameState_Match : public AYGameState_Base {
 public:
     DECLARE_DYNAMIC_MULTICAST_DELEGATE(FOnGameStateBeginPlayAvailable);
     DECLARE_DYNAMIC_MULTICAST_DELEGATE_OneParam(FOnEvacuationPhaseStart, EYMapMarkerState, changeMarkersToState);
-    
-    UPROPERTY(BlueprintReadWrite, EditAnywhere, Instanced, meta=(AllowPrivateAccess=true))
-    UYAIManager* m_aiManager;
     
     UPROPERTY(BlueprintAssignable, BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
     FOnMatchLevelsLoadedSignature OnLevelsOfTypeLoadedDelegate;
@@ -79,9 +76,6 @@ public:
     UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
     EYMatchmakeGameModeType m_gameModeType;
     
-    UPROPERTY(BlueprintReadWrite, EditAnywhere, Replicated, meta=(AllowPrivateAccess=true))
-    int32 m_aiCharacterCount;
-    
     UPROPERTY(BlueprintAssignable, BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
     FOnMatchTimerElapsed OnMatchTimerElapsed;
     
@@ -110,14 +104,14 @@ public:
     FOnGamePlayerDeath OnGamePlayerDeath;
     
     UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
-    FSoftObjectPath m_diedBonusDataTablePath;
-    
-    UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
     FSoftObjectPath m_matchPlayedBonusDataTablePath;
     
     UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
     FDataTableRowHandle m_gameModeUIHandle;
     
+    UPROPERTY(BlueprintReadWrite, EditAnywhere, Instanced, Transient, meta=(AllowPrivateAccess=true))
+    UYAICharacterSpawnerComponent* m_aiCharacterSpawnerComponent;
+
     UPROPERTY(BlueprintReadWrite, EditAnywhere, Instanced, Transient, meta=(AllowPrivateAccess=true))
     UYLatencyAnalyticsComponent* m_latencyAnalyticsComponent;
     
@@ -184,32 +178,27 @@ protected:
     void OnRep_TimerUpdate();
     
     UFUNCTION(BlueprintCallable)
-    void OnRep_MatchTimerVisibility();
+    void OnRep_MatchTimerVisibility() const;
     
     UFUNCTION(BlueprintCallable)
     void OnRep_MatchState();
     
 private:
     UFUNCTION(BlueprintCallable)
-    void OnRep_MapInfo();
+    void OnRep_MapInfo() const;
     
 public:
     UFUNCTION(BlueprintCallable)
-    void OnPlayerGameDataChanged(FYPlayerStateChangeData stateData);
+    void OnPlayerGameDataChanged(FYPlayerStateChangeData stateData) const;
     
     UFUNCTION(BlueprintCallable)
-    void OnPlayerDeath(AYPlayerState* PlayerState);
+    void OnPlayerDeath(AYPlayerState* PlayerState) const;
     
-    UFUNCTION(BlueprintCallable, NetMulticast, Reliable)
-    void OnEvacuationPhaseStarted(EYMapMarkerState changeMarkersToState);
-    
-private:
-    UFUNCTION(BlueprintCallable)
-    void OnAICharacterCountChangedCallback(int32 NewCount);
-    
-public:
     UFUNCTION(BlueprintCallable, NetMulticast, Reliable)
     void MulticastPlayerLeftMatch(AYPlayerState* PlayerState);
+    
+    UFUNCTION(BlueprintCallable, NetMulticast, Reliable)
+    void MulticastDisplayDebugMessage(const FYDebugMessage& Message);
     
     UFUNCTION(BlueprintCallable, NetMulticast, Unreliable)
     void MulticastDebugNewTimeSet(int32 newTime);
@@ -219,29 +208,23 @@ protected:
     UWorld* GetWorld() const;
     
 public:
-    UFUNCTION(BlueprintCallable)
-    int32 GetTotalElapsedLobbyTime();
+    UFUNCTION(BlueprintCallable, BlueprintPure)
+    int32 GetTotalElapsedLobbyTime() const;
     
-    UFUNCTION(BlueprintCallable)
-    UYPlayersStatsComponent* GetPlayersStatsComponent();
+    UFUNCTION(BlueprintCallable, BlueprintPure)
+    int32 GetMatchTime() const;
     
-    UFUNCTION(BlueprintCallable)
-    int32 GetMatchTime();
-    
-    UFUNCTION(BlueprintCallable)
-    EYMatchState GetMatchState();
+    UFUNCTION(BlueprintCallable, BlueprintPure)
+    EYMatchState GetMatchState() const;
     
     UFUNCTION(BlueprintCallable)
     FString GetMapInfoRowId();
     
-    UFUNCTION(BlueprintCallable)
-    int32 GetCurrentMatchTimer();
+    UFUNCTION(BlueprintCallable, BlueprintPure)
+    int32 GetCurrentMatchTimer() const;
     
     UFUNCTION(BlueprintAuthorityOnly, BlueprintCallable)
     void DebugSetCurrentMatchTime(int32 newTime);
-    
-    UFUNCTION(BlueprintCallable, NetMulticast, Reliable)
-    void BroadcastDebugCheatMessage(const FString& cheatMessage);
     
 };
 

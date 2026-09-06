@@ -15,7 +15,6 @@ class AYBannerActor;
 class AYMeleeActor;
 class AYPodActor;
 class AYSprayActor;
-class AYVehicle;
 class UDataTable;
 class USkeletalMesh;
 class UStaticMesh;
@@ -45,9 +44,6 @@ protected:
     
     UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
     AYSprayActor* m_sprayActor;
-    
-    UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
-    AYVehicle* m_vehicleActor;
     
     UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
     AYPodActor* m_droppodActor;

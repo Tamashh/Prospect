@@ -131,39 +131,30 @@ public:
     bool m_alwaysShowDamageNumbers;
     
     UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
-    TMap<FName, float> m_damageAreas;
+    FDataTableRowHandle m_weakspotsRowHandle;
     
     UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
-    FString m_weakSpotComponentIdentifier;
-    
-    UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
-    float m_weakSpotComponentDefaultDamageMultiplier;
-    
-    UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
-    TArray<FDataTableRowHandle> m_weakSpotHitZones;
+    FDataTableRowHandle m_weakspotsRowHandleOverride;
     
     UYDamageComponent(const FObjectInitializer& ObjectInitializer);
 
     virtual void GetLifetimeReplicatedProps(TArray<FLifetimeProperty>& OutLifetimeProps) const override;
 
     UFUNCTION(BlueprintCallable)
-    void UpdateDamageAreas(TMap<FName, float> newDamageAreas);
+    void SetWeakspotsRowHandle(const FDataTableRowHandle& rowHandle);
     
     UFUNCTION(BlueprintCallable)
-    void SetHitflashComponents(TArray<UMeshComponent*> MeshComponents);
-    
-    UFUNCTION(BlueprintCallable)
-    void ResetDamageAreas();
+    void SetHitflashComponents(const TArray<UMeshComponent*>& MeshComponents);
     
     UFUNCTION(BlueprintCallable)
     static void RemoveActorToIgnoreDamage(AActor* actorToIgnore, AActor* ownerWithComponent);
     
 protected:
     UFUNCTION(BlueprintCallable)
-    void OnRep_DotActive();
+    void OnRep_DotActive() const;
     
     UFUNCTION(BlueprintCallable)
-    void OnRep_ActorToIgnoreDamage();
+    void OnRep_ActorToIgnoreDamage() const;
     
     UFUNCTION(BlueprintCallable, NetMulticast, Unreliable)
     void MulticastTookDamage(FYDealtDamageData Data);

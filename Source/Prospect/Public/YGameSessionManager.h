@@ -18,10 +18,10 @@ public:
     void SessionInitialized();
     
     UFUNCTION(BlueprintCallable)
-    void OnStationShutdownRequest(const FYStationServerCommandResult& Result);
+    void OnStationShutdownRequest(const FYStationServerCommandResult& Result) const;
     
     UFUNCTION(BlueprintCallable)
-    void OnExecutionTimerTimeout();
+    void OnExecutionTimerTimeout() const;
     
 };
 

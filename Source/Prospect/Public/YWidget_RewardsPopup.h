@@ -52,7 +52,7 @@ protected:
     void ShowDailyCratePopup(const FString& generatorId, const TArray<FYInventoryItem>& crateItems);
     
     UFUNCTION(BlueprintCallable)
-    void OnClaimButtonClicked();
+    static void OnClaimButtonClicked();
     
     UFUNCTION(BlueprintCallable, BlueprintImplementableEvent)
     void BP_ShowUnlocksPopup(const FYUnlocksPopupUiData& unlocksPopupUiData);

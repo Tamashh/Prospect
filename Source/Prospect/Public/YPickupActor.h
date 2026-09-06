@@ -22,6 +22,7 @@ class AYPlayerController;
 class AYPlayerController_Match;
 class AYPlayerState;
 class UAnimMontage;
+class UAudioComponent;
 class UMaterialInterface;
 class UMeshComponent;
 class UObject;
@@ -103,6 +104,9 @@ public:
     UPROPERTY(BlueprintReadWrite, EditAnywhere, Instanced, meta=(AllowPrivateAccess=true))
     UYActorUIComponent* m_actorUIComponent;
     
+    UPROPERTY(BlueprintReadWrite, EditAnywhere, Instanced, meta=(AllowPrivateAccess=true))
+    UAudioComponent* m_loopingAudioComponent;
+
     UPROPERTY(BlueprintReadWrite, EditAnywhere, Transient, meta=(AllowPrivateAccess=true))
     ACharacter* m_characterCollectingPickUpActor;
     
@@ -188,7 +192,7 @@ protected:
     
 public:
     UFUNCTION(BlueprintCallable)
-    bool IsBlockedByExclusivity(AYPlayerState* PlayerState) const;
+    bool IsBlockedByExclusivity(const AYPlayerState* PlayerState) const;
     
     UFUNCTION(BlueprintCallable, BlueprintPure)
     bool IsActive() const;

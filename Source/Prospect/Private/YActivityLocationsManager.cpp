@@ -10,6 +10,10 @@ TArray<AYActivityLocation*> UYActivityLocationsManager::FindSpawnLocations(FYFin
     return TArray<AYActivityLocation*>();
 }
 
+AActor* UYActivityLocationsManager::FindClosestActivityLocationTo(AActor* Actor, EYActivityType activityType) {
+    return NULL;
+}
+
 UYActivityLocationsManager* UYActivityLocationsManager::FindActivityLocationsManager(UObject* WorldContextObject) {
     return NULL;
 }

@@ -1,0 +1,4 @@
+#include "YDebugGetSelectedVanityItemWithGenderSuffixRequest.h"
+
+FYDebugGetSelectedVanityItemWithGenderSuffixRequest::FYDebugGetSelectedVanityItemWithGenderSuffixRequest() {
+}

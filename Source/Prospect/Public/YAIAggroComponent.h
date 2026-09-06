@@ -4,7 +4,6 @@
 #include "UObject/NoExportTypes.h"
 #include "Components/ActorComponent.h"
 #include "EYAISenseType.h"
-#include "OnActorAggroChangeRequestedDelegate.h"
 #include "OnActorRemovedFromPerceptionDelegate.h"
 #include "YAITargetInfo.h"
 #include "YDealtDamageData.h"
@@ -18,26 +17,20 @@ UCLASS(Blueprintable, ClassGroup=Custom, meta=(BlueprintSpawnableComponent))
 class UYAIAggroComponent : public UActorComponent {
     GENERATED_BODY()
 public:
+    UPROPERTY(BlueprintAssignable, BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
+    FOnActorRemovedFromPerception OnActorRemovedFromPerception;
+    
     UPROPERTY(BlueprintReadWrite, EditAnywhere, Transient, meta=(AllowPrivateAccess=true))
     AActor* m_aggroTarget;
     
     UPROPERTY(BlueprintReadWrite, EditAnywhere, Transient, meta=(AllowPrivateAccess=true))
-    EYAISenseType m_highestSenseType;
-    
-    UPROPERTY(BlueprintReadWrite, EditAnywhere, Transient, meta=(AllowPrivateAccess=true))
-    FVector m_lastPerceivedSenseLocation;
-    
-    UPROPERTY(BlueprintReadWrite, EditAnywhere, Transient, meta=(AllowPrivateAccess=true))
     TMap<AActor*, FYAITargetInfo> m_targets;
     
-    UPROPERTY(BlueprintAssignable, BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
-    FOnActorRemovedFromPerception OnActorRemovedFromPerception;
+    UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
+    bool m_clearCombatTargetOnAggroLoss;
     
-    UPROPERTY(BlueprintAssignable, BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
-    FOnActorAggroChangeRequested OnActorAggroChangeRequested;
-    
-    UPROPERTY(BlueprintReadWrite, EditAnywhere, Instanced, meta=(AllowPrivateAccess=true))
-    UYAIPerceptionComponent* m_perceptionComponent;
+    UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
+    bool m_keepLastKnowLocationOnCombatTargetLoss;
     
 protected:
     UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
@@ -58,6 +51,13 @@ protected:
     UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
     FName m_blackboardKeyName_IsCombatTargetVisible;
     
+    UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
+    float m_proximitySenseInterval;
+
+private:
+    UPROPERTY(BlueprintReadWrite, EditAnywhere, Instanced, meta=(AllowPrivateAccess=true))
+    UYAIPerceptionComponent* m_perceptionComponent;
+
 public:
     UYAIAggroComponent(const FObjectInitializer& ObjectInitializer);
 
@@ -74,12 +74,15 @@ public:
     void SetCurrentAggroTarget(AActor* Target, const FString& reasonContext);
     
     UFUNCTION(BlueprintCallable)
-    void SendSharedSense(AActor* TargetActor);
+    void SendSharedSense(AActor* Target);
+
+private:
+    UFUNCTION(BlueprintCallable)
+    void RunProximityCheck();
     
     UFUNCTION(BlueprintCallable)
-    void OnTargetPerceptionUpdated(AActor* Actor, FAIStimulus Stimulus);
+    void OnTargetPerceptionUpdated(AActor* Target, FAIStimulus Stimulus);
     
-private:
     UFUNCTION(BlueprintCallable)
     void OnTakeDamage(const FYDealtDamageData& DamageEvent);
     
@@ -88,7 +91,13 @@ private:
     
 public:
     UFUNCTION(BlueprintCallable, BlueprintPure)
-    bool HasSeenTargetSince(float sightSenseTimeout) const;
+    bool HasSeenAnyTargetsRecently(float Duration) const;
+
+    UFUNCTION(BlueprintCallable, BlueprintPure)
+    FVector GetCurrentTargetLastPerceivedSenseLocation();
+
+    UFUNCTION(BlueprintCallable, BlueprintPure)
+    EYAISenseType GetCurrentTargetHighestSense();
     
     UFUNCTION(BlueprintCallable)
     void ClearCurrentAggroTargetInfo();

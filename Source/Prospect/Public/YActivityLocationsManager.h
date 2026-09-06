@@ -7,6 +7,7 @@
 #include "YFindActivityLocationsRequestData.h"
 #include "YActivityLocationsManager.generated.h"
 
+class AActor;
 class AYActivityLocation;
 class AYActivityLocationLinked;
 class UObject;
@@ -33,6 +34,9 @@ public:
     UFUNCTION(BlueprintCallable)
     TArray<AYActivityLocation*> FindSpawnLocations(FYFindActivityLocationsRequestData Request);
     
+    UFUNCTION(BlueprintCallable)
+    static AActor* FindClosestActivityLocationTo(AActor* Actor, EYActivityType activityType);
+
     UFUNCTION(BlueprintCallable, meta=(WorldContext="WorldContextObject"))
     static UYActivityLocationsManager* FindActivityLocationsManager(UObject* WorldContextObject);
     

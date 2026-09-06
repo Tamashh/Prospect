@@ -2,7 +2,6 @@
 
 UYTestConfigClass::UYTestConfigClass() {
     this->m_dataTableFolderPath = TEXT("Content/DataTables");
-    this->m_weaponDataTablePath = TEXT("/Game/DataTables/Items/PRO_Weapons.PRO_Weapons");
     this->m_weaponTransportDataTablePath = TEXT("/Game/DataTables/PRO_Transport.PRO_Transport");
     this->m_weaponImpactDataTablePath = TEXT("/Game/DataTables/PRO_Impact.PRO_Impact");
     this->m_testWeaponRow = TEXT("WP_AUTOMATED_TEST_ROW_01");
@@ -12,6 +11,7 @@ UYTestConfigClass::UYTestConfigClass() {
     this->m_voiceoverDatatablePath = TEXT("/Game/DataTables/Audio/VO_DT.VO_DT");
     this->m_voiceoverSpeakerDatatablePath = TEXT("/Game/DataTables/Audio/VO_Speakers_DT.VO_Speakers_DT");
     this->m_weaponAudioDataTablePath = TEXT("/Game/DataTables/Audio/WeaponAudio_DT.WeaponAudio_DT");
+    this->m_meleeWeaponAudioDataTablePath = TEXT("/Game/DataTables/Audio/MeleeWeaponAudio_DT.MeleeWeaponAudio_DT");
     this->m_healthDataTablePath = TEXT("'/Game/DataTables/PRO_Health.PRO_Health'");
     this->m_abilityDataTablePath = TEXT("/Game/DataTables/Items/PRO_Abilities.PRO_Abilities");
     this->m_abilityDataTableRowOne = TEXT("AB_AUTOMATED_TEST_ROW_01");

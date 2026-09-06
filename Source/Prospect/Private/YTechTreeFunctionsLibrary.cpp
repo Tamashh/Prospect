@@ -171,10 +171,6 @@ bool UYTechTreeFunctionsLibrary::CanAffordTechTreeCostsSet(UObject* WorldContext
     return false;
 }
 
-bool UYTechTreeFunctionsLibrary::CanAffordPlayerQuartersNextLevelPurchase(UObject* WorldContext, const FString& contextString) {
-    return false;
-}
-
 bool UYTechTreeFunctionsLibrary::AreUnlockDependenciesSatisfiedForTechTreeNode(UObject* WorldContext, const FName& nodeId, const FString& contextString) {
     return false;
 }

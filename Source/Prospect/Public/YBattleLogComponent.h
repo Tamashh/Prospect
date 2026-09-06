@@ -3,24 +3,25 @@
 #include "Components/ActorComponent.h"
 #include "Engine/EngineTypes.h"
 #include "EYPlayerMatchFinishedResult.h"
+#include "EYEnemyType.h"
 #include "OnEncounterDataReceivedDelegate.h"
 #include "YDealtDamageData.h"
+#include "YEncounter.h"
 #include "YEncountersPerType.h"
-#include "YPlayerEncounter.h"
 #include "YBattleLogComponent.generated.h"
 
 UCLASS(Blueprintable, ClassGroup=Custom, meta=(BlueprintSpawnableComponent))
 class PROSPECT_API UYBattleLogComponent : public UActorComponent {
     GENERATED_BODY()
 public:
-    UPROPERTY(BlueprintReadWrite, EditAnywhere, Transient, meta=(AllowPrivateAccess=true))
-    FYPlayerEncounter m_deathByAIEncounter;
+    UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
+    TArray<EYEnemyType> m_enemiesToStoreDamageTo;
     
     UPROPERTY(BlueprintReadWrite, EditAnywhere, Transient, meta=(AllowPrivateAccess=true))
-    TArray<FYPlayerEncounter> m_allEncountersOrdered;
+    FYEncounter m_deathByAIEncounter;
     
-    UPROPERTY(BlueprintAssignable, BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
-    FOnEncounterDataReceived BP_OnEncounterDataReceived;
+    UPROPERTY(BlueprintReadWrite, EditAnywhere, Transient, meta=(AllowPrivateAccess=true))
+    TArray<FYEncounter> m_allEncountersOrdered;
     
 private:
     UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
@@ -33,20 +34,17 @@ private:
     TMap<FName, FYEncountersPerType> m_encountersPerPlayer;
     
     UPROPERTY(BlueprintReadWrite, EditAnywhere, Transient, meta=(AllowPrivateAccess=true))
-    TMap<FString, FName> m_userIdToNameMapping;
+    TMap<FString, FName> m_userIdToUserNameMapping;
     
 public:
+    UPROPERTY(BlueprintAssignable, BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
+    FOnEncounterDataReceived BP_OnEncounterDataReceived;
+
     UYBattleLogComponent(const FObjectInitializer& ObjectInitializer);
 
 private:
     UFUNCTION(BlueprintCallable)
-    void SetupEncountersOrdered();
-    
-    UFUNCTION(BlueprintCallable)
     void OnTakeDamage(const FYDealtDamageData& Data);
-    
-    UFUNCTION(BlueprintCallable)
-    void OnRep_AllEncountersOrdered();
     
     UFUNCTION(BlueprintCallable)
     void OnPlayerFinishedMatch(EYPlayerMatchFinishedResult Result);
@@ -58,11 +56,13 @@ private:
     void OnDealDamage(const FYDealtDamageData& Data);
     
     UFUNCTION(BlueprintCallable)
+    void FinalizeEncounters();
+
+    UFUNCTION(BlueprintCallable)
     void DistanceCheck();
     
-public:
     UFUNCTION(BlueprintCallable, Client, Reliable)
-    void ClientSetData(const TArray<FYPlayerEncounter>& allEncounters);
+    void ClientSetData(const TArray<FYEncounter>& allEncounters);
     
 };
 

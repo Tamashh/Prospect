@@ -1,7 +1,7 @@
 #include "YWidget_Inventory_Base.h"
 
 UYWidget_Inventory_Base::UYWidget_Inventory_Base() {
-    this->m_isCustomInitialized = false;
+    this->m_uiInventoryInitializionType = EYUIInventoryInitializationType::NormalInitialization;
     this->m_refreshingEnabled = true;
 }
 
@@ -29,12 +29,20 @@ void UYWidget_Inventory_Base::OnContainerInventorySetDataUpdatedCallback(UYState
 void UYWidget_Inventory_Base::OnContainerInventoryDataUpdatedCallback(UYStateInventoryComponent* inventoryComponent) {
 }
 
+bool UYWidget_Inventory_Base::IsInventoryCustomInitialized() const {
+    return false;
+}
+
 UYStateInventoryComponent* UYWidget_Inventory_Base::GetRelevantStateInventoryComponent() const {
     return NULL;
 }
 
 int32 UYWidget_Inventory_Base::GetInventoryId() const {
     return 0;
+}
+
+bool UYWidget_Inventory_Base::DoesInventoryShowWeight() const {
+    return false;
 }
 
 EYPlayerSetType UYWidget_Inventory_Base::BP_GetTargetSetType_Implementation(UUserWidget* InWidget) const {

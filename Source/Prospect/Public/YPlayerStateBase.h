@@ -7,6 +7,7 @@
 class UYPlatformAnalyticsComponent;
 class UYPlayerBIDataComponent;
 class UYPlayerEOSStatsComponent;
+class UYStateFreeLoadoutComponent;
 class UYStateInventoryComponent;
 class UYStateQuestComponent;
 
@@ -29,6 +30,9 @@ public:
     UPROPERTY(BlueprintReadWrite, EditAnywhere, Instanced, meta=(AllowPrivateAccess=true))
     UYStateQuestComponent* m_stateQuestComponent;
     
+    UPROPERTY(BlueprintReadWrite, EditAnywhere, Instanced, meta=(AllowPrivateAccess=true))
+    UYStateFreeLoadoutComponent* m_stateFreeLoadoutComponent;
+
 protected:
     UPROPERTY(BlueprintReadWrite, EditAnywhere, Instanced, Transient, meta=(AllowPrivateAccess=true))
     UYPlayerEOSStatsComponent* m_playerEOSStatsComponent;

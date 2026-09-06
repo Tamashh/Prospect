@@ -28,6 +28,9 @@ public:
     UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
     int32 bracketIdx;
     
+    UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
+    int32 gearStrengthBracketIdx;
+
     UPROPERTY(EditAnywhere, meta=(AllowPrivateAccess=true))
     int64 transitionTime;
     

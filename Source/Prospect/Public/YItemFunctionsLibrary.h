@@ -8,6 +8,8 @@
 #include "EYMiscellaneousType.h"
 #include "EYModificationSlotType.h"
 #include "EYVanityType.h"
+#include "EYClaimGenericClaimableDataResponseType.h"
+#include "EYGenericClaimableOrigin.h"
 #include "Kismet/BlueprintFunctionLibrary.h"
 #include "Engine/DataTable.h"
 #include "GameplayTagContainer.h"
@@ -55,6 +57,9 @@ public:
     UFUNCTION(BlueprintCallable, BlueprintPure)
     static bool IsItemTool(const FDataTableRowHandle& rowHandle);
     
+    UFUNCTION(BlueprintCallable, BlueprintPure)
+    static bool IsItemStackable(const FDataTableRowHandle& itemRowHandle);
+
     UFUNCTION(BlueprintCallable, BlueprintPure)
     static bool IsItemRowHandle(const FDataTableRowHandle& rowHandle);
     
@@ -154,14 +159,20 @@ public:
     UFUNCTION(BlueprintCallable, meta=(WorldContext="WorldContext"))
     static int32 GetCraftingMaterialsAmountByName(UObject* WorldContext, const FString& materialName);
     
+    UFUNCTION(BlueprintCallable, BlueprintPure)
+    static FText GenericClaimableOriginToText(EYGenericClaimableOrigin Origin);
+
+    UFUNCTION(BlueprintCallable, BlueprintPure)
+    static FText GenericClaimableDataResponseTypeToText(EYClaimGenericClaimableDataResponseType responseType);
+
     UFUNCTION(BlueprintCallable, BlueprintPure, meta=(WorldContext="WorldContext"))
     static bool FindVisualAcquisitionDataFromItem(const UObject* WorldContext, FName ID, FYItemVisualAcquisitionData& outData);
     
     UFUNCTION(BlueprintCallable, meta=(WorldContext="WorldContext"))
-    static EYVanityType FindVanityTypeByID(const UObject* WorldContext, const FName& inMatchID);
+    static EYVanityType FindVanityTypeByID(const UObject* WorldContext, const FName& inMatchID, bool noLogError);
     
     UFUNCTION(BlueprintCallable, meta=(WorldContext="WorldContext"))
-    static EYItemType FindItemTypeByRow(const UObject* WorldContext, FDataTableRowHandle rowHandle, const FString& contextString);
+    static EYItemType FindItemTypeByRow(const UObject* WorldContext, const FDataTableRowHandle& rowHandle, const FString& contextString);
     
     UFUNCTION(BlueprintCallable, meta=(WorldContext="WorldContext"))
     static EYItemType FindItemTypeByID(const UObject* WorldContext, const FName& inMatchID, const FString& contextString);
@@ -181,6 +192,12 @@ public:
     UFUNCTION(BlueprintCallable, meta=(WorldContext="WorldContext"))
     static bool DoesItemRequireOwnership(const UObject* WorldContext, const FName& ItemId, const FString& contextString);
     
+    UFUNCTION(BlueprintCallable, BlueprintPure)
+    static bool DoesItemHaveTag(const FYInventoryItem& inventoryItem, const FGameplayTag& Tag);
+
+    UFUNCTION(BlueprintCallable, BlueprintPure)
+    static bool DoesItemHaveNotDroppableTag(const FYInventoryItem& inventoryItem);
+
     UFUNCTION(BlueprintCallable)
     static FText DeviceClassToText(EYDeviceClass deviceClass, bool getSingular);
     

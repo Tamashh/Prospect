@@ -11,15 +11,15 @@ bool UYPlayerInputStackComponent::RemoveHighestInputStack(UObject* objectContext
     return false;
 }
 
-bool UYPlayerInputStackComponent::RegisterNewStackContext(UObject* objectContext, EYInputUIStackType stackType, FYInputStackRuntimeContext StackContext) {
+bool UYPlayerInputStackComponent::RegisterNewStackContext(UObject* objectContext, EYInputUIStackType stackType, const FYInputStackRuntimeContext& StackContext) {
     return false;
 }
 
-bool UYPlayerInputStackComponent::IsStackRowHighestActive(UObject* objectContext, FDataTableRowHandle rowHandle) {
+bool UYPlayerInputStackComponent::IsStackRowHighestActive(UObject* objectContext, const FDataTableRowHandle& rowHandle) {
     return false;
 }
 
-bool UYPlayerInputStackComponent::IsStackRowActive(UObject* objectContext, FDataTableRowHandle rowHandle) {
+bool UYPlayerInputStackComponent::IsStackRowActive(UObject* objectContext, const FDataTableRowHandle& rowHandle) {
     return false;
 }
 

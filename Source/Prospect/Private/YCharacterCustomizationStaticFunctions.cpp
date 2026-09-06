@@ -15,6 +15,9 @@ TSoftObjectPtr<UTexture2D> UYCharacterCustomizationStaticFunctions::FindCustomiz
     return NULL;
 }
 
+void UYCharacterCustomizationStaticFunctions::FindCompatibleSkeletalMeshesForBodytype(EYCustomizationBodyType bodyType, const FDataTableRowHandle& baseRowHandle, TSoftObjectPtr<USkeletalMesh>& firstPersonMeshOut, TSoftObjectPtr<USkeletalMesh>& thirdPersonMeshOut) {
+}
+
 bool UYCharacterCustomizationStaticFunctions::FindCompatibleItemsForCategory(const UObject* objCtx, const TArray<EYCustomizationCategory>& Categories, FName archetypeId, TArray<FYVanityItemData>& outRowHandles, EYCustomizationBodyType bodyType) {
     return false;
 }

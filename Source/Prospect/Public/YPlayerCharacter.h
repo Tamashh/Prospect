@@ -3,6 +3,7 @@
 #include "Perception/AISightTargetInterface.h"
 #include "GenericTeamAgentInterface.h"
 #include "UObject/NoExportTypes.h"
+#include "Math/Rotator.h"
 #include "Engine/DataTable.h"
 #include "EYMeshViewState.h"
 #include "EYStateChangeType.h"
@@ -78,6 +79,24 @@ public:
     UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
     FVector m_baseCollisionCrouchedRelativeLocation;
     
+    UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
+    float m_leftFoot_ZOffset;
+
+    UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
+    float m_rightFoot_ZOffset;
+
+    UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
+    FRotator m_leftFoot_RotOffset;
+
+    UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
+    FRotator m_rightFoot_RotOffset;
+
+    UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
+    float m_hip_ZOffset;
+
+    UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
+    bool m_enableIkFeetPlacementStation;
+
     UPROPERTY(BlueprintReadWrite, EditAnywhere, ReplicatedUsing=OnRep_IsPendingReconnect, meta=(AllowPrivateAccess=true))
     bool m_isPendingReconnect;
     
@@ -187,8 +206,8 @@ public:
     UFUNCTION(BlueprintCallable)
     void YSetPlayerState(APlayerState* State);
     
-    UFUNCTION(BlueprintCallable)
-    void UpdatePhysicalMaterial();
+    UFUNCTION(BlueprintCallable, BlueprintPure=false)
+    void UpdatePhysicalMaterial() const;
     
     UFUNCTION(BlueprintCallable)
     void StopJumpInput();
@@ -198,7 +217,7 @@ public:
     
 private:
     UFUNCTION(BlueprintCallable, BlueprintPure)
-    bool ShouldUseBoxCollision();
+    bool ShouldUseBoxCollision() const;
     
 public:
     UFUNCTION(BlueprintCallable)
@@ -234,25 +253,25 @@ public:
     void Jumped(int32 jumpCount);
     
     UFUNCTION(BlueprintCallable, BlueprintPure)
-    bool IsTargeting();
+    bool IsTargeting() const;
     
     UFUNCTION(BlueprintCallable, BlueprintPure)
-    bool IsSliding();
+    bool IsSliding() const;
     
     UFUNCTION(BlueprintCallable, BlueprintPure)
-    bool IsRunning();
+    bool IsRunning() const;
     
     UFUNCTION(BlueprintCallable, BlueprintPure)
-    bool IsPendingTargeting();
+    static bool IsPendingTargeting();
     
     UFUNCTION(BlueprintCallable, BlueprintPure)
-    bool IsFiring();
+    bool IsFiring() const;
     
     UFUNCTION(BlueprintCallable, BlueprintPure)
-    bool IsDBNO();
+    bool IsDBNO() const;
     
     UFUNCTION(BlueprintCallable, BlueprintPure)
-    bool IsCrouching();
+    bool IsCrouching() const;
     
 private:
     UFUNCTION(BlueprintCallable)
@@ -260,10 +279,10 @@ private:
     
 public:
     UFUNCTION(BlueprintCallable, BlueprintPure)
-    AYPlayerState* GetYPlayerState();
+    AYPlayerState* GetYPlayerState() const;
     
     UFUNCTION(BlueprintCallable, BlueprintPure)
-    AYPlayerController* GetYPlayerController();
+    AYPlayerController* GetYPlayerController() const;
     
     UFUNCTION(BlueprintCallable, BlueprintPure)
     UYCharacterLocationComponent* GetLocationComponent() const;

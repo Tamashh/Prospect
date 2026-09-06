@@ -6,10 +6,10 @@ UYGameSessionManager::UYGameSessionManager() {
 void UYGameSessionManager::SessionInitialized() {
 }
 
-void UYGameSessionManager::OnStationShutdownRequest(const FYStationServerCommandResult& Result) {
+void UYGameSessionManager::OnStationShutdownRequest(const FYStationServerCommandResult& Result) const {
 }
 
-void UYGameSessionManager::OnExecutionTimerTimeout() {
+void UYGameSessionManager::OnExecutionTimerTimeout() const {
 }
 
 

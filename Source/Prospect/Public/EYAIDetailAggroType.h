@@ -5,9 +5,7 @@
 UENUM(BlueprintType)
 enum class EYAIDetailAggroType : uint8 {
     Distance,
-    Token,
     Visibility,
-    DBNO,
     TargetType,
     DamageReceived,
     Shared,

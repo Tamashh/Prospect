@@ -2,6 +2,7 @@
 #include "CoreMinimal.h"
 #include "EYRepairItemResult.h"
 #include "YCustomItemInfo.h"
+#include "YCurrencyItem.h"
 #include "YInstanceUpdateAmount.h"
 #include "YInventory.h"
 #include "YPlayerInventoryLimitResultData.h"
@@ -11,7 +12,6 @@
 #include "UObject/Object.h"
 #include "YClaimableVictimCompensation.h"
 #include "YInsurancePayoutPackage.h"
-#include "YOnCouponItemsReceivedDelegate.h"
 #include "YOnCurrenciesAddedDelegate.h"
 #include "YOnCurrenciesUpdatedSignatureDelegate.h"
 #include "YOnItemRepairedDelegate.h"
@@ -24,14 +24,6 @@ class UYBackendInventoryModel;
 UCLASS(Blueprintable)
 class UYInventoryManager : public UObject {
     GENERATED_BODY()
-public:
-private:
-    UPROPERTY(BlueprintReadWrite, EditAnywhere, Transient, meta=(AllowPrivateAccess=true))
-    TMap<FString, UYBackendInventoryModel*> m_playerModels;
-    
-    UPROPERTY(BlueprintReadWrite, EditAnywhere, Transient, meta=(AllowPrivateAccess=true))
-    TMap<FString, int32> m_pendingCompleteInventoryUpdates;
-    
 public:
     UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
     FYOnUpdatedFactionProgression updatedFactionProgression;
@@ -48,16 +40,21 @@ public:
     UPROPERTY(BlueprintAssignable, BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
     FYOnItemRepaired OnItemRepaired;
     
-    UPROPERTY(BlueprintAssignable, BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
-    FYOnCouponItemsReceived OnCouponItemsReceived;
+private:
+    UPROPERTY(BlueprintReadWrite, EditAnywhere, Transient, meta=(AllowPrivateAccess=true))
+    TMap<FString, UYBackendInventoryModel*> m_playerModels;
     
+    UPROPERTY(BlueprintReadWrite, EditAnywhere, Transient, meta=(AllowPrivateAccess=true))
+    TMap<FString, int32> m_pendingCompleteInventoryUpdates;
+
+public:
     UYInventoryManager();
 
     UFUNCTION(BlueprintCallable)
     static void RepairItem(UObject* objCtx, const FString& customItemID);
     
     UFUNCTION(BlueprintCallable)
-    void ProcessPlayerSet(const FString& UserId, const FString& contextString);
+    void ProcessPlayerSet(const UObject* objectContext, const FString& UserId, const FString& callerContext);
     
 private:
     UFUNCTION(BlueprintCallable)
@@ -70,7 +67,7 @@ private:
     void OnSellItemsClientResult(const FYSellItemsClientResult& scrapItems);
     
     UFUNCTION(BlueprintCallable)
-    void OnPlayerSetsProcessed(const FString& UserId, const TArray<FYPlayerSetItemsEntry>& Sets);
+    void OnPlayerSetsProcessed(const FString& UserId, const FYPlayerSetItemsEntry& Sets);
     
     UFUNCTION(BlueprintCallable)
     void OnPlayerInventoriesLimitsAvailable(const TArray<FYPlayerInventoryLimitResultData>& playerInventoriesLimits);
@@ -99,5 +96,8 @@ private:
     UFUNCTION(BlueprintCallable)
     void OnClaimInsurancePayoutPackage(const FYInsurancePayoutPackage& Package, int32 Index);
     
+    UFUNCTION(BlueprintCallable)
+    void OnClaimGenericClaimableDataResponse(const TArray<FYCustomItemInfo>& Items, const TArray<FYCurrencyItem>& currencyBalances, const FString& callerContext);
+
 };
 

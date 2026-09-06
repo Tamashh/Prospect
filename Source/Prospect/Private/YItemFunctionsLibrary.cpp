@@ -31,6 +31,10 @@ bool UYItemFunctionsLibrary::IsItemTool(const FDataTableRowHandle& rowHandle) {
     return false;
 }
 
+bool UYItemFunctionsLibrary::IsItemStackable(const FDataTableRowHandle& itemRowHandle) {
+    return false;
+}
+
 bool UYItemFunctionsLibrary::IsItemRowHandle(const FDataTableRowHandle& rowHandle) {
     return false;
 }
@@ -162,15 +166,23 @@ int32 UYItemFunctionsLibrary::GetCraftingMaterialsAmountByName(UObject* WorldCon
     return 0;
 }
 
+FText UYItemFunctionsLibrary::GenericClaimableOriginToText(EYGenericClaimableOrigin Origin) {
+    return FText::GetEmpty();
+}
+
+FText UYItemFunctionsLibrary::GenericClaimableDataResponseTypeToText(EYClaimGenericClaimableDataResponseType responseType) {
+    return FText::GetEmpty();
+}
+
 bool UYItemFunctionsLibrary::FindVisualAcquisitionDataFromItem(const UObject* WorldContext, FName ID, FYItemVisualAcquisitionData& outData) {
     return false;
 }
 
-EYVanityType UYItemFunctionsLibrary::FindVanityTypeByID(const UObject* WorldContext, const FName& inMatchID) {
+EYVanityType UYItemFunctionsLibrary::FindVanityTypeByID(const UObject* WorldContext, const FName& inMatchID, bool noLogError) {
     return EYVanityType::None;
 }
 
-EYItemType UYItemFunctionsLibrary::FindItemTypeByRow(const UObject* WorldContext, FDataTableRowHandle rowHandle, const FString& contextString) {
+EYItemType UYItemFunctionsLibrary::FindItemTypeByRow(const UObject* WorldContext, const FDataTableRowHandle& rowHandle, const FString& contextString) {
     return EYItemType::None;
 }
 
@@ -195,6 +207,14 @@ bool UYItemFunctionsLibrary::FindCraftingBlueprintRowHandleByBaseID(const UObjec
 }
 
 bool UYItemFunctionsLibrary::DoesItemRequireOwnership(const UObject* WorldContext, const FName& ItemId, const FString& contextString) {
+    return false;
+}
+
+bool UYItemFunctionsLibrary::DoesItemHaveTag(const FYInventoryItem& inventoryItem, const FGameplayTag& Tag) {
+    return false;
+}
+
+bool UYItemFunctionsLibrary::DoesItemHaveNotDroppableTag(const FYInventoryItem& inventoryItem) {
     return false;
 }
 

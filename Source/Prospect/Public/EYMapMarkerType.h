@@ -64,6 +64,7 @@ enum class EYMapMarkerType : uint8 {
     OB_DEPOSIT_STATION_EASTER,
     MA_RecallRecharge,
     MA_VPExtraction,
+    HOWLER_LOOT,
     MAX,
 };
 

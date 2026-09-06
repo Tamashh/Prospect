@@ -7,17 +7,17 @@ UCLASS(Blueprintable, ClassGroup=Custom, meta=(BlueprintSpawnableComponent))
 class PROSPECT_API UYAITurnComponent : public UActorComponent {
     GENERATED_BODY()
 public:
+    UPROPERTY(BlueprintReadWrite, EditAnywhere, Transient, meta=(AllowPrivateAccess=true))
+    bool m_turnAnimationEnabled;
+
 private:
     UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
     float m_turnYawThreshold;
     
     UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
-    float m_turnAnimatBlockTime;
+    float m_turnAnimBlockTime;
     
 public:
-    UPROPERTY(BlueprintReadWrite, EditAnywhere, Transient, meta=(AllowPrivateAccess=true))
-    bool m_turnEnabled;
-    
     UYAITurnComponent(const FObjectInitializer& ObjectInitializer);
 
 };

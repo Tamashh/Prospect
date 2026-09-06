@@ -69,7 +69,7 @@ public:
     FDataTableRowHandle m_footstepRowSprint;
     
     UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
-    FDataTableRowHandle m_footstepRowSoftLanding;
+    FDataTableRowHandle m_footstepRowJumpLanding;
     
     UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
     FDataTableRowHandle m_footstepRowMediumLanding;
@@ -115,7 +115,7 @@ public:
     void PlayFootstepFXFromAnimNotifier(UMeshComponent* MeshComponent, TEnumAsByte<EYFeet> Feet);
     
     UFUNCTION(BlueprintCallable)
-    void PlayFootstepFX(UMeshComponent* MeshComponent, TEnumAsByte<EYFeet> Feet);
+    void PlayFootstepFX(TEnumAsByte<EYFeet> Feet);
     
     UFUNCTION(BlueprintCallable)
     void OnLanding(const FYLandingEventInfo& landingInfo);

@@ -3,11 +3,18 @@
 UYAIRangedAttackFunctions::UYAIRangedAttackFunctions() {
 }
 
-bool UYAIRangedAttackFunctions::DetermineProjectileTransportDataFromRangedAttackData(const FYAiRangedAttackData& rangedAttackData, FYAiProjectileTransportData& outProjectileData, bool useMovementPrediction, bool shouldRefreshBoneTransforms) {
+void UYAIRangedAttackFunctions::SpawnProjectileActorAttachedToSocket(AActor* Owner, FName SocketName, FDataTableRowHandle rangedAttackDefinitionRowHandle) {
+}
+
+bool UYAIRangedAttackFunctions::IsProjectileDataValid(const FYAIProjectileTransportData& projectileData) {
     return false;
 }
 
-bool UYAIRangedAttackFunctions::CanHitTargetWithProjectileFromRangedAttackData(const FYAiRangedAttackData& rangedAttackData, bool shouldRefreshBoneTransforms) {
+FYAIProjectileTransportData UYAIRangedAttackFunctions::DetermineProjectileAttackData(const FYAIRangedAttackData& attackData) {
+    return FYAIProjectileTransportData{};
+}
+
+bool UYAIRangedAttackFunctions::CanUseRangedAttack(const FYAIRangedAttackData& attackData) {
     return false;
 }
 

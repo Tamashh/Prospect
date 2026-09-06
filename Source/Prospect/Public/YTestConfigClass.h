@@ -23,7 +23,7 @@ public:
     FSoftObjectPath m_interactiveActorAssetPath;
     
     UPROPERTY(BlueprintReadWrite, EditAnywhere, GlobalConfig, meta=(AllowPrivateAccess=true))
-    FString m_weaponDataTablePath;
+    TSoftObjectPtr<UDataTable> m_weaponDataTablePath;
     
     UPROPERTY(BlueprintReadWrite, EditAnywhere, GlobalConfig, meta=(AllowPrivateAccess=true))
     FString m_weaponTransportDataTablePath;
@@ -52,6 +52,9 @@ public:
     UPROPERTY(BlueprintReadWrite, EditAnywhere, GlobalConfig, meta=(AllowPrivateAccess=true))
     FString m_weaponAudioDataTablePath;
     
+    UPROPERTY(BlueprintReadWrite, EditAnywhere, GlobalConfig, meta=(AllowPrivateAccess=true))
+    FString m_meleeWeaponAudioDataTablePath;
+
     UPROPERTY(BlueprintReadWrite, EditAnywhere, GlobalConfig, meta=(AllowPrivateAccess=true))
     FString m_healthDataTablePath;
     
@@ -85,6 +88,24 @@ public:
     UPROPERTY(BlueprintReadWrite, EditAnywhere, GlobalConfig, meta=(AllowPrivateAccess=true))
     FSoftObjectPath m_gameStateAssetPath;
     
+    UPROPERTY(BlueprintReadWrite, Config, EditAnywhere, meta=(AllowPrivateAccess=true))
+    TSoftObjectPtr<UDataTable> m_characterCustomizationArchetypePath;
+
+    UPROPERTY(BlueprintReadWrite, Config, EditAnywhere, meta=(AllowPrivateAccess=true))
+    TSoftObjectPtr<UDataTable> m_characterCustomizationArchetypeSetPath;
+
+    UPROPERTY(BlueprintReadWrite, Config, EditAnywhere, meta=(AllowPrivateAccess=true))
+    TSoftObjectPtr<UDataTable> m_characterCustomizationCategoryDataTablePath;
+
+    UPROPERTY(BlueprintReadWrite, Config, EditAnywhere, meta=(AllowPrivateAccess=true))
+    TSoftObjectPtr<UDataTable> m_characterCustomizationItemsDataTablePath;
+
+    UPROPERTY(BlueprintReadWrite, Config, EditAnywhere, meta=(AllowPrivateAccess=true))
+    TSoftObjectPtr<UDataTable> m_characterVanityHeadBaseSuitConstructionPiecesDataTablePath;
+
+    UPROPERTY(BlueprintReadWrite, Config, EditAnywhere, meta=(AllowPrivateAccess=true))
+    TSoftObjectPtr<UDataTable> m_characterCustomizationDefaultSettingsPath;
+
     UPROPERTY(BlueprintReadWrite, EditAnywhere, GlobalConfig, meta=(AllowPrivateAccess=true))
     TSoftObjectPtr<UDataTable> m_factionsDataTablePath;
     
@@ -97,6 +118,12 @@ public:
     UPROPERTY(BlueprintReadWrite, EditAnywhere, GlobalConfig, meta=(AllowPrivateAccess=true))
     TSoftObjectPtr<UDataTable> m_lootDataTablePathPools;
     
+    UPROPERTY(BlueprintReadWrite, EditAnywhere, GlobalConfig, meta=(AllowPrivateAccess=true))
+    TSoftObjectPtr<UDataTable> m_freeLoadoutLootDataTablePath;
+
+    UPROPERTY(BlueprintReadWrite, EditAnywhere, GlobalConfig, meta=(AllowPrivateAccess=true))
+    TSoftObjectPtr<UDataTable> m_freeLoadoutTuningDataTablePath;
+
     UPROPERTY(BlueprintReadWrite, EditAnywhere, GlobalConfig, meta=(AllowPrivateAccess=true))
     TSoftObjectPtr<UDataTable> m_missionLinesDataTablePath;
     
@@ -182,12 +209,6 @@ public:
     TSoftObjectPtr<UDataTable> m_matchmakingSetupDataTablePath;
     
     UPROPERTY(BlueprintReadWrite, EditAnywhere, GlobalConfig, meta=(AllowPrivateAccess=true))
-    TSoftObjectPtr<UDataTable> m_shopOffersDataTablePath;
-    
-    UPROPERTY(BlueprintReadWrite, EditAnywhere, GlobalConfig, meta=(AllowPrivateAccess=true))
-    TSoftObjectPtr<UDataTable> m_shopPromotionsDataTablePath;
-    
-    UPROPERTY(BlueprintReadWrite, EditAnywhere, GlobalConfig, meta=(AllowPrivateAccess=true))
     TSoftObjectPtr<UDataTable> m_playFabStoresDataTablePath;
     
     UPROPERTY(BlueprintReadWrite, EditAnywhere, GlobalConfig, meta=(AllowPrivateAccess=true))
@@ -195,6 +216,12 @@ public:
     
     UPROPERTY(BlueprintReadWrite, EditAnywhere, GlobalConfig, meta=(AllowPrivateAccess=true))
     TSoftObjectPtr<UDataTable> m_bundlesPlatformDataTablePath;
+    
+    UPROPERTY(BlueprintReadWrite, EditAnywhere, GlobalConfig, meta=(AllowPrivateAccess=true))
+    TSoftObjectPtr<UDataTable> m_bundlesPublishingDataTablePath;
+    
+    UPROPERTY(BlueprintReadWrite, EditAnywhere, GlobalConfig, meta=(AllowPrivateAccess=true))
+    TSoftObjectPtr<UDataTable> m_bundlesSeasonPassDataTablePath;
     
     UPROPERTY(BlueprintReadWrite, EditAnywhere, GlobalConfig, meta=(AllowPrivateAccess=true))
     TSoftObjectPtr<UDataTable> m_seasonsDataTablePath;
@@ -238,6 +265,21 @@ public:
     UPROPERTY(BlueprintReadWrite, EditAnywhere, GlobalConfig, meta=(AllowPrivateAccess=true))
     TSoftObjectPtr<UDataTable> m_worldMarkerTypesDataTablePath;
     
+    UPROPERTY(BlueprintReadWrite, EditAnywhere, GlobalConfig, meta=(AllowPrivateAccess=true))
+    TSoftObjectPtr<UDataTable> m_frontendCheatDetectionSettingsDataTablePath;
+
+    UPROPERTY(BlueprintReadWrite, EditAnywhere, GlobalConfig, meta=(AllowPrivateAccess=true))
+    TSoftObjectPtr<UDataTable> m_backendCheatDetectionSettingsDataTablePath;
+
+    UPROPERTY(BlueprintReadWrite, EditAnywhere, GlobalConfig, meta=(AllowPrivateAccess=true))
+    TSoftObjectPtr<UDataTable> m_keycardsDataTablePath;
+
+    UPROPERTY(BlueprintReadWrite, EditAnywhere, GlobalConfig, meta=(AllowPrivateAccess=true))
+    TSoftObjectPtr<UDataTable> m_ammoDataTablePath;
+
+    UPROPERTY(BlueprintReadWrite, EditAnywhere, GlobalConfig, meta=(AllowPrivateAccess=true))
+    TSoftObjectPtr<UDataTable> m_newsDataTablePath;
+
     UYTestConfigClass();
 
 };

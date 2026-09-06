@@ -27,7 +27,7 @@ public:
     bool m_isAIUsingStormLoot;
     
     UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
-    bool m_useAIStormSquads;
+    bool m_canAIsRest;
     
     UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
     bool m_isStormMineralsActivityActive;

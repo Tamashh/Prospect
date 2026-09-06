@@ -64,10 +64,7 @@ private:
     void InitializeInventory();
     
     UFUNCTION(BlueprintCallable)
-    void HandleOnInventoryInitialized();
-    
-    UFUNCTION(BlueprintCallable)
-    void HandleOnInventoryDataUpdated(TArray<EYInventoryPlayerTypes> changed);
+    void HandleOnInventoryDataUpdated(const TArray<EYInventoryPlayerTypes>& typesChanged);
     
     UFUNCTION(BlueprintCallable)
     void HandleOnEndOfMatchDataChanged();
@@ -75,5 +72,8 @@ private:
     UFUNCTION(BlueprintCallable)
     void HandleOnBackendInventoryChanged() const;
     
+    UFUNCTION(BlueprintCallable)
+    void HandleBackendInventoryModelInitialized();
+
 };
 

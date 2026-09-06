@@ -18,7 +18,11 @@ bool UYInventoryFunctions::IsSplittable(const FYInventoryItem& inInventoryItem) 
     return false;
 }
 
-bool UYInventoryFunctions::IsItemTypeInInventory(AActor* actorContext, FDataTableRowHandle itemRowHandle) {
+bool UYInventoryFunctions::IsItemTypeInInventory(AActor* actorContext, const FDataTableRowHandle& itemRowHandle, FYInventoryItem& outInventoryItem) {
+    return false;
+}
+
+bool UYInventoryFunctions::IsItemStackableByItemId(const UObject* wrldCtx, const FString& baseItemId, const FString& contextStr, bool noLogError) {
     return false;
 }
 
@@ -108,19 +112,11 @@ bool UYInventoryFunctions::FindInventoryItemSlotFromActor(AActor* actorContext, 
     return false;
 }
 
-bool UYInventoryFunctions::FindInventoryItemsFromSlots(AActor* actorContext, TArray<EYPlayerSetType> Slots, TArray<FYInventoryItem>& outItems) {
-    return false;
-}
-
 bool UYInventoryFunctions::FindInventoryItemsByItemType(AActor* actorContext, EYItemType desiredItemType, TArray<FYInventoryItem>& outItems) {
     return false;
 }
 
 bool UYInventoryFunctions::FindInventoryItemFromComponentWithId(AActor* actorContext, int32 componentId, const FString& ItemId, const FString& callerContext, FYInventoryItem& outInventoryItem) {
-    return false;
-}
-
-bool UYInventoryFunctions::FindFirstStashItemByRowId(AActor* actorCtx, const FName& rowId, FYInventoryItem& outInventoryItem) {
     return false;
 }
 
@@ -155,19 +151,7 @@ bool UYInventoryFunctions::DestroyItemInMatchInventory(UYStateInventoryComponent
     return false;
 }
 
-void UYInventoryFunctions::ConsumeItemOfTypeInInventory(AActor* actorContext, const FDataTableRowHandle& itemRowHandle) {
-}
-
-float UYInventoryFunctions::CalculateWeightForItems(const TArray<FYInventoryItem>& inInventoryItems, const bool isInBag, AActor* contextObject) {
-    return 0.0f;
-}
-
-float UYInventoryFunctions::CalculateWeightForInventory(const FYPlayerInventory& Inventory, const bool isInBag, AActor* contextObject) {
-    return 0.0f;
-}
-
-float UYInventoryFunctions::CalculateStackWeight(const FYInventoryItem& StackedItem, bool isInBag, AActor* contextObject) {
-    return 0.0f;
+void UYInventoryFunctions::ConsumeItemSpecificInInventory(AActor* actorContext, const FYInventoryItem& itemToConsume) {
 }
 
 bool UYInventoryFunctions::CalculateInventoryDiff(const FYPlayerInventory& oldInventory, const FYPlayerInventory& newInventory, TArray<FYInventoryItem>& outItemsAdded, TArray<FYInventoryItem>& outItemsUpdated, TArray<FYInventoryItem>& outItemsRemoved) {

@@ -3,7 +3,7 @@
 UYGameSquadsComponent::UYGameSquadsComponent(const FObjectInitializer& ObjectInitializer) : Super(ObjectInitializer) {
 }
 
-bool UYGameSquadsComponent::HasSquadWithPlayer(AYPlayerState* PlayerState) const {
+bool UYGameSquadsComponent::HasSquadWithPlayer(const AYPlayerState* PlayerState) const {
     return false;
 }
 

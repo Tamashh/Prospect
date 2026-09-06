@@ -16,9 +16,6 @@ public:
     FDataTableRowHandle m_variation;
     
     UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
-    TArray<FDataTableRowHandle> m_perks;
-    
-    UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
     FGameplayTagContainer m_gameplayTags;
     
     PROSPECT_API FYAICharacterDefinition();

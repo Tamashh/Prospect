@@ -2,6 +2,7 @@
 
 FYMapInfoRow::FYMapInfoRow() {
     this->m_isVisible = false;
+    this->m_isStationMap = false;
     this->m_difficulty = EYMatchMapDifficulty::Invalid;
     this->m_hasVoid = false;
     this->m_containsAlienForge = false;

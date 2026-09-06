@@ -15,4 +15,7 @@ void UYAIAnalyticsComponent::OnAIDealDamage(const FYDealtDamageData& damageDealt
 void UYAIAnalyticsComponent::OnAICharacterSpawned(AYAICharacter* aiCharacter) {
 }
 
+void UYAIAnalyticsComponent::DebugTestSendKilledAIEvents() {
+}
+
 

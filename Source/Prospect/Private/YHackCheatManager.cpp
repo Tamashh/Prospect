@@ -9,10 +9,22 @@ void UYHackCheatManager::YDebugTestInvalidRPC() const {
 void UYHackCheatManager::YDebugSpeedHackTest() const {
 }
 
+void UYHackCheatManager::YDebugResetCheatStats() const {
+}
+
 void UYHackCheatManager::YDebugPrintOffsets() {
 }
 
 void UYHackCheatManager::YDebugPrintEngineVersion() {
+}
+
+void UYHackCheatManager::YDebugPrintCurrentCheatStats() const {
+}
+
+void UYHackCheatManager::YDebugPrintCheatDetectionSettings() const {
+}
+
+void UYHackCheatManager::YDebugIncrementCheatStat(const FName& cheatId, const int32 Amount) const {
 }
 
 void UYHackCheatManager::YDebugFireShot() {

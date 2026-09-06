@@ -43,9 +43,6 @@ private:
     UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
     FDataTableRowHandle m_staminaData;
     
-    UPROPERTY(BlueprintReadWrite, EditAnywhere, ReplicatedUsing=OnRep_CurrentStamina, meta=(AllowPrivateAccess=true))
-    float m_currentStamina;
-    
     UPROPERTY(BlueprintReadWrite, EditAnywhere, Instanced, Transient, meta=(AllowPrivateAccess=true))
     UYPlayerCharacterStateComponent* m_characterStateComponent;
     
@@ -61,6 +58,9 @@ private:
     UPROPERTY(BlueprintReadWrite, EditAnywhere, Instanced, Transient, meta=(AllowPrivateAccess=true))
     UYHelmetGoggleComponent* m_characterHelmetGoggleComponent;
     
+    UPROPERTY(BlueprintReadWrite, EditAnywhere, ReplicatedUsing=OnRep_CurrentStamina, meta=(AllowPrivateAccess=true))
+    float m_currentStamina;
+
 public:
     UYStaminaComponent(const FObjectInitializer& ObjectInitializer);
 
@@ -75,7 +75,7 @@ public:
     UFUNCTION(BlueprintAuthorityOnly, BlueprintCallable)
     void RemoveFromResourceCurrentValue(float deltaValue);
     
-protected:
+private:
     UFUNCTION(BlueprintCallable)
     void OnWeaponFired(UYWeaponPlayerControllerRuntimeComponent* Component);
     
@@ -104,7 +104,7 @@ public:
     UFUNCTION(BlueprintCallable, BlueprintPure)
     float IsResourceDegenerating() const;
     
-protected:
+private:
     UFUNCTION(BlueprintCallable)
     void HandleOnPlayerStateSet(APlayerState* PlayerState);
     

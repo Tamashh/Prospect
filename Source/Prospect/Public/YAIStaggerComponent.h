@@ -12,11 +12,18 @@ class AYAICharacter;
 class UAnimInstance;
 class UAnimMontage;
 class UYAIAnimationComponent;
+class UYHealthComponent;
 
 UCLASS(Blueprintable, ClassGroup=Custom, meta=(BlueprintSpawnableComponent))
 class PROSPECT_API UYAIStaggerComponent : public UActorComponent {
     GENERATED_BODY()
 public:
+    UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
+    bool m_staggerEnabled;
+
+    UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
+    bool m_updateStaggeredBBKey;
+
     UPROPERTY(BlueprintReadWrite, EditAnywhere, Transient, meta=(AllowPrivateAccess=true))
     TMap<FName, FYAIStaggerDefinition> m_staggers;
     
@@ -24,16 +31,19 @@ public:
     TArray<FYAIStaggerTriggerHealthPercentage> m_percentageTriggers;
     
     UPROPERTY(BlueprintReadWrite, EditAnywhere, Transient, meta=(AllowPrivateAccess=true))
+    bool m_reuseLastHealthPercentageTrigger;
+
+    UPROPERTY(BlueprintReadWrite, EditAnywhere, Transient, meta=(AllowPrivateAccess=true))
     TArray<FYAIStaggerTriggerWeakspotHealth> m_weakspotTriggers;
     
+    UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
+    UAnimMontage* m_currentPlayingMontage;
+
     UPROPERTY(BlueprintReadWrite, EditAnywhere, Transient, meta=(AllowPrivateAccess=true))
     TMap<FName, int32> m_currentStaggerIndexMap;
     
     UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
     UAnimMontage* m_forcedStaggerAnimation;
-    
-    UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
-    bool m_isStaggering;
     
     UPROPERTY(BlueprintAssignable, BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
     FOnStagger BP_OnStaggerTriggered;
@@ -42,6 +52,9 @@ private:
     UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
     AYAICharacter* m_character;
     
+    UPROPERTY(BlueprintReadWrite, EditAnywhere, Instanced, meta=(AllowPrivateAccess=true))
+    UYHealthComponent* m_healthComponent;
+
     UPROPERTY(BlueprintReadWrite, EditAnywhere, Instanced, meta=(AllowPrivateAccess=true))
     UYAIAnimationComponent* m_animationComponent;
     
@@ -54,11 +67,17 @@ public:
     UFUNCTION(BlueprintCallable)
     void OnTakeDamage(const FYDealtDamageData& damageData);
     
+    UFUNCTION(BlueprintCallable)
+    void OnResetRequestedCallback();
+
 private:
     UFUNCTION(BlueprintCallable)
     void OnMontageEnded(UAnimMontage* montageEnded, bool interrupted);
     
 public:
+    UFUNCTION(BlueprintCallable, BlueprintPure)
+    bool IsPlayingStaggerAnimation() const;
+
     UFUNCTION(BlueprintCallable)
     void AddScalarParameterUpdate(FName ParameterName, float TargetValue, float originalValue, float InterpolationTime);
     

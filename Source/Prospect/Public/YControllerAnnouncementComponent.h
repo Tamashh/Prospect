@@ -21,7 +21,7 @@ protected:
     TMap<FString, FTimerHandle> m_announcementPlayingTimeoutHandles;
     
     UPROPERTY(BlueprintReadWrite, EditAnywhere, Instanced, Transient, meta=(AllowPrivateAccess=true))
-    UAudioComponent* m_audioAnnouncementComponent;
+    TMap<FString, UAudioComponent*> m_audioAnnouncementComponents;
     
     UPROPERTY(BlueprintReadWrite, EditAnywhere, Instanced, Transient, meta=(AllowPrivateAccess=true))
     UAudioComponent* m_soundBusAnnouncementComponent;
@@ -42,6 +42,9 @@ public:
     UYControllerAnnouncementComponent(const FObjectInitializer& ObjectInitializer);
 
     UFUNCTION(BlueprintCallable)
+    static int32 RetrieveCategoryPriority(const FDataTableRowHandle& categoryRowHandle);
+
+    UFUNCTION(BlueprintCallable)
     static int32 RetrieveAnnouncementPriority(const FDataTableRowHandle& rowHandle);
     
 protected:
@@ -52,6 +55,12 @@ protected:
     void OnAnnouncementFinishedRegularly(const FString& speakerId);
     
 public:
+    UFUNCTION(BlueprintCallable, BlueprintPure)
+    bool IsAnyAnnouncementPlaying();
+
+    UFUNCTION(BlueprintCallable, BlueprintPure)
+    int32 GetCurrentHighestPriority();
+
     UFUNCTION(BlueprintCallable, BlueprintPure)
     FYAnnouncementPlayEntryData GetCurrentAnnouncementPlayingForSpeaker(const FString& speakerId);
     

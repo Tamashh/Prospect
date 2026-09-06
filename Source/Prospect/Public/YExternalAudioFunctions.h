@@ -10,7 +10,6 @@ class AActor;
 class UAudioComponent;
 class USceneComponent;
 class USoundBase;
-class USoundClass;
 class USoundConcurrency;
 class USoundMix;
 
@@ -25,9 +24,6 @@ public:
     
     UFUNCTION(BlueprintCallable, BlueprintCosmetic)
     static UAudioComponent* SpawnSoundAttachedFromDatatable(USceneComponent* Component, const FDataTableRowHandle& rowHandle, bool keepComponentAliveAfterSoundFinished, const FString& Context, FName AttachPointName);
-    
-    UFUNCTION(BlueprintCallable)
-    static void SetSoundMixClassOverrideYager(const UObject* contextHelperObject, USoundMix* InSoundMixModifier, USoundClass* InSoundClass, float Volume, float Pitch, float FadeInTime, bool bApplyToChildren);
     
     UFUNCTION(BlueprintCallable, meta=(WorldContext="WorldContextObject"))
     static void PushSoundMixModifier(UObject* WorldContextObject, USoundMix* soundMixModifier, const FString& Context);

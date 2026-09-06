@@ -25,26 +25,21 @@ UYDamageComponent::UYDamageComponent(const FObjectInitializer& ObjectInitializer
     this->m_isDotActive = false;
     this->m_hitFlashActive = false;
     this->m_alwaysShowDamageNumbers = false;
-    this->m_weakSpotComponentIdentifier = TEXT("Weak");
-    this->m_weakSpotComponentDefaultDamageMultiplier = 3.0f;
 }
 
-void UYDamageComponent::UpdateDamageAreas(TMap<FName, float> newDamageAreas) {
+void UYDamageComponent::SetWeakspotsRowHandle(const FDataTableRowHandle& rowHandle) {
 }
 
-void UYDamageComponent::SetHitflashComponents(TArray<UMeshComponent*> MeshComponents) {
-}
-
-void UYDamageComponent::ResetDamageAreas() {
+void UYDamageComponent::SetHitflashComponents(const TArray<UMeshComponent*>& MeshComponents) {
 }
 
 void UYDamageComponent::RemoveActorToIgnoreDamage(AActor* actorToIgnore, AActor* ownerWithComponent) {
 }
 
-void UYDamageComponent::OnRep_DotActive() {
+void UYDamageComponent::OnRep_DotActive() const {
 }
 
-void UYDamageComponent::OnRep_ActorToIgnoreDamage() {
+void UYDamageComponent::OnRep_ActorToIgnoreDamage() const {
 }
 
 void UYDamageComponent::MulticastTookDamage_Implementation(FYDealtDamageData Data) {

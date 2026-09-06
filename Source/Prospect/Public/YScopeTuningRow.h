@@ -2,7 +2,7 @@
 #include "CoreMinimal.h"
 #include "EYScopeType.h"
 #include "YDataTableRowBase.h"
-#include "YGameplayAttributeModifier.h"
+#include "YModInstanceGameplayAttributeModifierData.h"
 #include "YScopeTuningRow.generated.h"
 
 USTRUCT(BlueprintType)
@@ -12,6 +12,12 @@ public:
     UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
     EYScopeType m_scopeType;
     
+    UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
+    FText m_scopeMagnificationAmountName;
+
+    UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
+    FText m_scopeDisplayName;
+
     UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
     bool ShouldCreateGlint;
     
@@ -25,7 +31,7 @@ public:
     bool m_shootAtCenterWhenADS;
     
     UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
-    TArray<FYGameplayAttributeModifier> m_attributeMods;
+    TArray<FYModInstanceGameplayAttributeModifierData> m_instanceAttributeMods;
     
     PROSPECT_API FYScopeTuningRow();
 };

@@ -38,6 +38,9 @@ public:
     bool removeSessionsNotInPlayfab;
     
     UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
+    int32 sessionIntegrityCheckCooldownSeconds;
+
+    UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
     TArray<FString> playFabErrorCodesCausingSessionRemoval;
     
     UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))

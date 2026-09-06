@@ -1,7 +1,7 @@
 #pragma once
 #include "CoreMinimal.h"
 #include "YPassiveGenerator.h"
-#include "UObject/Object.h"
+#include "Kismet/BlueprintFunctionLibrary.h"
 #include "UObject/NoExportTypes.h"
 #include "EYPassiveGeneratorRewardType.h"
 #include "YGeneratorInfo.h"
@@ -10,8 +10,10 @@
 #include "YUIDailyCrateTimerInfo.h"
 #include "YGeneratorsUtils.generated.h"
 
+class UObject;
+
 UCLASS(Blueprintable)
-class PROSPECT_API UYGeneratorsUtils : public UObject {
+class PROSPECT_API UYGeneratorsUtils : public UBlueprintFunctionLibrary {
     GENERATED_BODY()
 public:
     UYGeneratorsUtils();

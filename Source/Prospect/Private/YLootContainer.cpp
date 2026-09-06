@@ -6,6 +6,7 @@ AYLootContainer::AYLootContainer(const FObjectInitializer& ObjectInitializer) : 
     this->m_inventoryComponent = CreateDefaultSubobject<UYStateInventoryComponent>(TEXT("inventoryComponent"));
     this->m_lootContainerWidgetType = EYLootContainerWidgetType::Undefined;
     this->m_maxItemInstancesInContainer = -1;
+    this->m_containerLootRollCount = 1;
 }
 
 FString AYLootContainer::ToDebugString() const {

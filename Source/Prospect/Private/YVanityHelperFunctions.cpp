@@ -45,6 +45,10 @@ bool UYVanityHelperFunctions::IsOwnedVanity(UObject* WorldContextObject, FName I
     return false;
 }
 
+bool UYVanityHelperFunctions::IsCharacterVanityItemArchetypeStartingItem(const UObject* WorldContext, FName& ItemId, TArray<FName>& archetypeIdsOut) {
+    return false;
+}
+
 void UYVanityHelperFunctions::GetSeperatedVanityEntries(const TArray<FDataTableRowHandle>& vanityRowHandles, FDataTableRowHandle& primaryVanityId, FDataTableRowHandle& secondaryVanityId) {
 }
 

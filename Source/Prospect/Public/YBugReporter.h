@@ -79,6 +79,9 @@ public:
     static FString GetCurrentMap(UWorld* World);
     
     UFUNCTION(BlueprintCallable)
+    static FString GetCurrentHowlerLocationAndRotation(UWorld* World);
+
+    UFUNCTION(BlueprintCallable)
     static FString GetCurrentGamemode(UWorld* World);
     
     UFUNCTION(BlueprintCallable)

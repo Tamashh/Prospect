@@ -2,32 +2,32 @@
 #include "CoreMinimal.h"
 #include "UObject/NoExportTypes.h"
 #include "GameFramework/Actor.h"
-#include "YSpawnableInterface.h"
-#include "YSquadAIType.h"
+#include "YAICharacterDefinition.h"
+#include "YPersistentActorInterface.h"
 #include "YAISquad.generated.h"
 
 class AYAICharacter;
 class UYHealthComponent;
-class UYPersistentData;
-class UYPersistentDataAISquad;
+class UYPersistentActorInfo;
+class UYPersistentActorInfoAISquad;
 
 UCLASS(Blueprintable)
-class PROSPECT_API AYAISquad : public AActor, public IYSpawnableInterface {
+class PROSPECT_API AYAISquad : public AActor, public IYPersistentActorInterface {
     GENERATED_BODY()
 public:
     UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
     TArray<AYAICharacter*> m_squadCharacters;
     
     UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
-    UYPersistentDataAISquad* m_persistentSquadData;
+    UYPersistentActorInfoAISquad* m_persistentSquadData;
     
     AYAISquad(const FObjectInitializer& ObjectInitializer);
 
     UFUNCTION(BlueprintCallable, BlueprintPure)
-    FString ToDebugString();
+    FString ToDebugString() const;
     
     UFUNCTION(BlueprintCallable, BlueprintNativeEvent)
-    void OnSpawned(UYPersistentData* persistentData);
+    void OnSpawned(UYPersistentActorInfo* persistentData);
     
     UFUNCTION(BlueprintCallable)
     void OnCharacterDied(UYHealthComponent* healthComponent, AActor* instigatorDeath);
@@ -36,14 +36,14 @@ public:
     void OnAICharacterSpawned(AYAICharacter* spawnedAICharacter);
     
     UFUNCTION(BlueprintCallable, BlueprintPure)
-    float GetRoamingRadiusOverride();
+    float GetRoamingRadiusOverride() const;
     
     UFUNCTION(BlueprintCallable, BlueprintPure)
-    FVector GetRoamingHomeLocation();
+    FVector GetRoamingHomeLocation() const;
     
 protected:
     UFUNCTION(BlueprintCallable)
-    FVector DetermineSpawnLocationForAICharacter(const FYSquadAIType& aiType, const FVector& spawnLocationBase, FString& outErrorCode);
+    FVector DetermineSpawnLocationForAICharacter(const FYAICharacterDefinition& aiType, const FVector& spawnLocationBase, FString& outErrorCode);
     
 
     // Fix for true pure virtual functions not being implemented

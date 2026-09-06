@@ -20,5 +20,9 @@ protected:
     UFUNCTION(BlueprintCallable)
     void OnMissionDataUpdated(const FYMissionProgressionUpdated& Data);
     
+private:
+    UFUNCTION(BlueprintCallable)
+    void CompletedMissionIdsUpdated(const TArray<FString>& completedMissionIds);
+
 };
 

@@ -3,6 +3,8 @@
 #include "UObject/NoExportTypes.h"
 #include "Animation/AnimInstance.h"
 #include "EYAIState.h"
+#include "EYFourWayDirection.h"
+#include "YDealtDamageData.h"
 #include "YAICharacterAnimInstance.generated.h"
 
 class AYAICharacter;
@@ -13,7 +15,7 @@ class PROSPECT_API UYAICharacterAnimInstance : public UAnimInstance {
     GENERATED_BODY()
 public:
     UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
-    AYAICharacter* m_aiCharacter;
+    AYAICharacter* m_AICharacter;
     
     UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
     EYAIState m_characterState;
@@ -28,14 +30,14 @@ public:
     bool m_isDedicatedServer;
     
     UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
-    float m_screenSize;
-    
-    UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
     float m_powerIKScreenSizeTurnOn;
     
     UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
     float m_powerIKScreenSizeTurnOff;
     
+    UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
+    float m_screenSize;
+
     UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
     float m_powerIKAlpha;
     
@@ -46,7 +48,7 @@ public:
     bool m_hasPowerIKToken;
     
     UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
-    float m_lookAtDistance;
+    float m_maxLookAtDistance;
     
     UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
     bool m_lookAtEnabled;
@@ -61,6 +63,9 @@ public:
     TArray<UAnimMontage*> m_blockLookAtAnimations;
     
     UYAICharacterAnimInstance();
+
+    UFUNCTION(BlueprintCallable)
+    EYFourWayDirection DetermineDamageDirection(FYDealtDamageData damageData);
 
 };
 

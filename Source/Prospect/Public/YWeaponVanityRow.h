@@ -14,6 +14,9 @@ public:
     TMap<FName, TSoftObjectPtr<UMaterialInterface>> m_defaultAttachmentMaterials;
     
     UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
+    FName m_vanityWeaponCharmSocket;
+
+    UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
     TArray<FYWeaponVanityMeshAttachment> m_overrideVanityMeshAttachments;
     
     PROSPECT_API FYWeaponVanityRow();

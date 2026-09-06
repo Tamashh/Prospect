@@ -75,13 +75,13 @@ private:
     void OnTakeDamage(const FYDealtDamageData& Data);
     
     UFUNCTION(BlueprintCallable)
-    void OnRep_LastDamageDealtEvent();
+    void OnRep_LastDamageDealtEvent() const;
     
     UFUNCTION(BlueprintCallable)
-    void OnRep_DebugUncondensedDamageInfo();
+    void OnRep_DebugUncondensedDamageInfo() const;
     
     UFUNCTION(BlueprintCallable)
-    void OnRep_CondensedDamageInfo();
+    void OnRep_CondensedDamageInfo() const;
     
     UFUNCTION(BlueprintCallable)
     void OnPawnSet(APawn* oldPawn, APawn* newPawn);

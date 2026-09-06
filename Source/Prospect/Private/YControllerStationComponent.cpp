@@ -1,6 +1,7 @@
 #include "YControllerStationComponent.h"
 
 UYControllerStationComponent::UYControllerStationComponent(const FObjectInitializer& ObjectInitializer) : Super(ObjectInitializer) {
+    this->m_activePlayMenuScreen = EYPlayMenuScreenType::None;
     this->m_onLeftSubMenuFromQuickMenuFadeOutDuration = 0.200000003f;
     this->m_onLeftSubMenuFromQuickMenuFadeInDelay = 1.0f;
     this->m_onLeftSubMenuFromQuickMenuFadeInDuration = 0.400000006f;
@@ -29,6 +30,12 @@ void UYControllerStationComponent::SetRequestedSceneRowHandle(const FDataTableRo
 }
 
 void UYControllerStationComponent::OnStackChanged(EYInputUIStackType stackType, bool Visible) {
+}
+
+void UYControllerStationComponent::OnSetActivePrimaryTab(FGameplayTag newTab) {
+}
+
+void UYControllerStationComponent::OnSetActivePlayMenuScreen(EYPlayMenuScreenType newScreenType) {
 }
 
 void UYControllerStationComponent::GetRequestedSceneRowHandle(FDataTableRowHandle& requestedScene) const {

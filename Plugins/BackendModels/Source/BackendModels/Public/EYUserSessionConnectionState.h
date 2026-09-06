@@ -4,7 +4,7 @@
 
 UENUM(BlueprintType)
 enum class EYUserSessionConnectionState : uint8 {
-    None,
+    Pending,
     Registered,
     Left,
     MAX,

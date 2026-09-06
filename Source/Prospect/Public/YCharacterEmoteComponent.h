@@ -2,6 +2,7 @@
 #include "CoreMinimal.h"
 #include "Components/ActorComponent.h"
 #include "Engine/DataTable.h"
+#include "OnEmoteInterruptedDelegate.h"
 #include "OnEmotedDelegate.h"
 #include "YSelectedEmote.h"
 #include "YCharacterEmoteComponent.generated.h"
@@ -15,6 +16,9 @@ public:
     UPROPERTY(BlueprintAssignable, BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
     FOnEmoted BP_OnEmoted;
     
+    UPROPERTY(BlueprintAssignable, BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
+    FOnEmoteInterrupted BP_OnEmoteInterrupted;
+
     UPROPERTY(BlueprintReadWrite, EditAnywhere, ReplicatedUsing=OnRep_SelectedEmoteChanged, meta=(AllowPrivateAccess=true))
     FYSelectedEmote m_selectedEmote;
     

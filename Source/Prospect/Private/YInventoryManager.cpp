@@ -6,7 +6,7 @@ UYInventoryManager::UYInventoryManager() {
 void UYInventoryManager::RepairItem(UObject* objCtx, const FString& customItemID) {
 }
 
-void UYInventoryManager::ProcessPlayerSet(const FString& UserId, const FString& contextString) {
+void UYInventoryManager::ProcessPlayerSet(const UObject* objectContext, const FString& UserId, const FString& callerContext) {
 }
 
 void UYInventoryManager::OnVictimCompensationPayoutPackage(bool success, const FString& Guid, const FYClaimableVictimCompensation& claimedPackage) {
@@ -18,7 +18,7 @@ void UYInventoryManager::OnTechTreeNodesAvailable(const FString& UserId, const T
 void UYInventoryManager::OnSellItemsClientResult(const FYSellItemsClientResult& scrapItems) {
 }
 
-void UYInventoryManager::OnPlayerSetsProcessed(const FString& UserId, const TArray<FYPlayerSetItemsEntry>& Sets) {
+void UYInventoryManager::OnPlayerSetsProcessed(const FString& UserId, const FYPlayerSetItemsEntry& Sets) {
 }
 
 void UYInventoryManager::OnPlayerInventoriesLimitsAvailable(const TArray<FYPlayerInventoryLimitResultData>& playerInventoriesLimits) {
@@ -46,6 +46,9 @@ void UYInventoryManager::OnCraftedItemReceived(const FString& UserId, const TArr
 }
 
 void UYInventoryManager::OnClaimInsurancePayoutPackage(const FYInsurancePayoutPackage& Package, int32 Index) {
+}
+
+void UYInventoryManager::OnClaimGenericClaimableDataResponse(const TArray<FYCustomItemInfo>& Items, const TArray<FYCurrencyItem>& currencyBalances, const FString& callerContext) {
 }
 
 

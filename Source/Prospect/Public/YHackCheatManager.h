@@ -16,16 +16,28 @@ public:
     void YDebugSpeedHackTest() const;
     
     UFUNCTION(BlueprintCallable, Exec)
+    void YDebugResetCheatStats() const;
+
+    UFUNCTION(BlueprintCallable, Exec)
     void YDebugPrintOffsets();
     
     UFUNCTION(BlueprintCallable, Exec)
-    void YDebugPrintEngineVersion();
+    static void YDebugPrintEngineVersion();
+
+    UFUNCTION(BlueprintCallable, Exec)
+    void YDebugPrintCurrentCheatStats() const;
+
+    UFUNCTION(BlueprintCallable, Exec)
+    void YDebugPrintCheatDetectionSettings() const;
+
+    UFUNCTION(BlueprintCallable, Exec)
+    void YDebugIncrementCheatStat(const FName& cheatId, const int32 Amount) const;
     
     UFUNCTION(BlueprintCallable, Exec)
-    void YDebugFireShot();
+    static void YDebugFireShot();
     
     UFUNCTION(BlueprintCallable, Exec)
-    void YDebugCrash();
+    static void YDebugCrash();
     
     UFUNCTION(BlueprintCallable, Exec, BlueprintPure=false)
     void YDebugClearState(int64 newState) const;
@@ -43,10 +55,10 @@ public:
     void YDebugCheatSetDefaultGravityZ(float newDefaultGravityZ) const;
     
     UFUNCTION(BlueprintCallable, Exec)
-    void YDebugCheatHitScanMagicBullet2();
+    static void YDebugCheatHitScanMagicBullet2();
     
     UFUNCTION(BlueprintCallable, Exec)
-    void YDebugCheatHitScanMagicBullet1();
+    static void YDebugCheatHitScanMagicBullet1();
     
     UFUNCTION(BlueprintCallable, Exec, BlueprintPure=false)
     void YDebugActivateNewState(int64 newState) const;

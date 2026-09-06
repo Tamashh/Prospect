@@ -22,17 +22,10 @@ bool UYProspectExternalFunctions::ShouldShowSubtitles() {
     return false;
 }
 
-bool UYProspectExternalFunctions::ShouldIgnoreDeathForPlacement(UObject* WorldContextObject) {
-    return false;
-}
-
 void UYProspectExternalFunctions::SetNetAddressable(UActorComponent* ActorComponent) {
 }
 
 void UYProspectExternalFunctions::SetCurrentReplayTimeToSeconds(APlayerController* PlayerController, int32 Seconds) {
-}
-
-void UYProspectExternalFunctions::SetCurrentReplayPlayRate(APlayerController* PlayerController, float PlayRate) {
 }
 
 void UYProspectExternalFunctions::SetComponentCanEverAffectNavigation(UActorComponent* relevantComponent, bool newState) {
@@ -41,10 +34,16 @@ void UYProspectExternalFunctions::SetComponentCanEverAffectNavigation(UActorComp
 void UYProspectExternalFunctions::RemoveDebugStringViewport(UObject* WorldContextObject, int32 Handle) {
 }
 
+void UYProspectExternalFunctions::RemoveAllDebugStringsFromViewport(UObject* WorldContextObject) {
+}
+
 void UYProspectExternalFunctions::PrintLogError(const FString& LogString) {
 }
 
-void UYProspectExternalFunctions::LogMessageWithBPAndNativeStackVerySlow(const FString& logMessageString, int32 stackLength) {
+void UYProspectExternalFunctions::LogCylinder(UObject* WorldContextObject, const FVector& startPoint, const FVector& endpoint, float Radius, const FString& Text, FLinearColor objectColor, FName logCategory, bool bAddToMessageLog) {
+}
+
+void UYProspectExternalFunctions::LogCone(UObject* WorldContextObject, const FVector& originPoint, const FVector& coneDirection, float coneLength, float ConeAngle, const FString& Text, FLinearColor objectColor, FName logCategory, bool bAddToMessageLog) {
 }
 
 void UYProspectExternalFunctions::LoadAssetsSync(const TArray<FSoftObjectPath>& assetPathsToLoad, TArray<UObject*>& outObjectsLoaded) {
@@ -54,6 +53,10 @@ void UYProspectExternalFunctions::LeaveGame(UObject* objectContext, const FStrin
 }
 
 bool UYProspectExternalFunctions::IsWorldServer(const UObject* objectContext) {
+    return false;
+}
+
+bool UYProspectExternalFunctions::IsValidEMailAddress(const FString& Email) {
     return false;
 }
 
@@ -97,6 +100,14 @@ bool UYProspectExternalFunctions::IsRankedMode(UObject* WorldContextObject) {
     return false;
 }
 
+bool UYProspectExternalFunctions::IsPointInCylinder(const FVector& pointToTest, const FVector& StartPosition, const FVector& EndPosition, const float& Radius) {
+    return false;
+}
+
+bool UYProspectExternalFunctions::IsPointInCone(const FVector& pointToTest, const FVector& conePosition, const FVector& coneDirection, const float& coneRadius, const float& ConeAngle) {
+    return false;
+}
+
 bool UYProspectExternalFunctions::IsPlayerInAir(AActor* actorContext) {
     return false;
 }
@@ -106,10 +117,6 @@ bool UYProspectExternalFunctions::IsModsEnabled() {
 }
 
 bool UYProspectExternalFunctions::IsInCinematicMode(UObject* objectContext) {
-    return false;
-}
-
-bool UYProspectExternalFunctions::IsGameModeType(UObject* WorldContextObject, EYMatchmakeGameModeType gameModeType) {
     return false;
 }
 
@@ -157,20 +164,15 @@ bool UYProspectExternalFunctions::HasTrophy(AActor* actorContext) {
     return false;
 }
 
-bool UYProspectExternalFunctions::HasRedTrophy(AActor* actorContext) {
-    return false;
-}
-
-bool UYProspectExternalFunctions::HasGreenTrophy(AActor* actorContext) {
-    return false;
-}
-
 bool UYProspectExternalFunctions::HasEscaped(AActor* actorContext) {
     return false;
 }
 
-int32 UYProspectExternalFunctions::GetSlateLayoutCachingValue() {
-    return 0;
+TArray<AYPlayerCharacter*> UYProspectExternalFunctions::GetPlayersWithinDistance(UObject* WorldContext, FVector Location, float Min, float Max) {
+    return TArray<AYPlayerCharacter*>();
+}
+
+void UYProspectExternalFunctions::GetPlayerCharactersInRadius(UObject* WorldContext, FVector Location, float Radius, TArray<AYPlayerCharacter*>& outPlayerCharacters) {
 }
 
 float UYProspectExternalFunctions::GetPawnHalfHeight(const APawn* relevantPawn) {
@@ -197,16 +199,12 @@ float UYProspectExternalFunctions::GetGCBudget(UObject* WorldContext) {
     return 0.0f;
 }
 
-bool UYProspectExternalFunctions::GetGameModeName(UObject* WorldContextObject, const FString& Context, FString& outGameModeName) {
-    return false;
-}
-
 FString UYProspectExternalFunctions::GetFocusedWidget(UObject* WorldContextObject, int32 UserIndex) {
     return TEXT("");
 }
 
-int32 UYProspectExternalFunctions::GetCurrentReplayTotalTimeInSeconds(APlayerController* PlayerController) {
-    return 0;
+float UYProspectExternalFunctions::GetDistanceToForLocalPlayer(UObject* WorldContext, FVector Location) {
+    return 0.0f;
 }
 
 int32 UYProspectExternalFunctions::GetCurrentReplayCurrentTimeInSeconds(APlayerController* PlayerController) {
@@ -214,6 +212,10 @@ int32 UYProspectExternalFunctions::GetCurrentReplayCurrentTimeInSeconds(APlayerC
 }
 
 int32 UYProspectExternalFunctions::GetCurrentPlayerCount(const UObject* WorldContext) {
+    return 0;
+}
+
+int32 UYProspectExternalFunctions::GetCurrentActivePlayerCount(const UObject* WorldContext) {
     return 0;
 }
 
@@ -229,8 +231,14 @@ bool UYProspectExternalFunctions::GetCauseOfDeathData(AActor* actorContext, FYDe
     return false;
 }
 
+void UYProspectExternalFunctions::GetAllPlayerCharacters(UObject* WorldContext, TArray<AYPlayerCharacter*>& outPlayerCharacters) {
+}
+
 int32 UYProspectExternalFunctions::GetAICharacterCount(const UObject* WorldContext) {
     return 0;
+}
+
+void UYProspectExternalFunctions::ForceNullptrCrashBlueprintCallable() {
 }
 
 AYWorldSettings* UYProspectExternalFunctions::FindYWorldSettings(UObject* contextObject, const FString& contextString) {
@@ -286,10 +294,6 @@ FUniqueNetIdRepl UYProspectExternalFunctions::FindPlayerUniqueId(AActor* Player)
 }
 
 AYPlayerState* UYProspectExternalFunctions::FindPlayerStateFromActorAndOwner(AActor* actorContext) {
-    return NULL;
-}
-
-APlayerState* UYProspectExternalFunctions::FindPlayerStateByPlayerName(AActor* actorContext, const FString& playerName) {
     return NULL;
 }
 
@@ -366,9 +370,6 @@ void UYProspectExternalFunctions::FindAllRelevantPlayerControllersNetRelevant(AA
 void UYProspectExternalFunctions::FindAllRelevantPlayerControllers(UObject* WorldContext, TArray<APlayerController*>& outControllers) {
 }
 
-void UYProspectExternalFunctions::FindAllModsForModType(UObject* objectContext, EYModificationSlotType modType, TArray<FName>& OutNames) {
-}
-
 FGameplayTagContainer UYProspectExternalFunctions::FindAllGameplayTagChildren(const FGameplayTag& parentTag) {
     return FGameplayTagContainer{};
 }
@@ -382,10 +383,6 @@ int32 UYProspectExternalFunctions::DrawDebugStringViewport(UObject* WorldContext
 
 bool UYProspectExternalFunctions::ConvertStringToFDateTime(const FString& inDateTime, FDateTime& outDateTime, const FString& contextString) {
     return false;
-}
-
-FText UYProspectExternalFunctions::ConvertGamemodeTypeEnumToFText(UObject* worldCtxObj, EYMatchmakeGameModeType gameModeType) {
-    return FText::GetEmpty();
 }
 
 void UYProspectExternalFunctions::ClearFade(UObject* WorldContextObject) {

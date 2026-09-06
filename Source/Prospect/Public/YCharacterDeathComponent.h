@@ -19,15 +19,24 @@ public:
     UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
     bool m_isExplodingOnDeath;
     
+    UPROPERTY(BlueprintAssignable, BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
+    FOnDeathPreUnpossessDelegate BP_OnDeathPreUnpossess;
+
+    UPROPERTY(BlueprintAssignable, BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
+    FOnDeathDelegate BP_OnDeath;
+
+    UPROPERTY(BlueprintAssignable, BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
+    FOnDeathRagdollDelegate BP_OnBlendToRagdollOnDeathWithoutDeathAnim;
+
+    UPROPERTY(BlueprintAssignable, BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
+    FOnBlendToRagdoll BP_OnBlendToRagdoll;
+
 protected:
     UPROPERTY(BlueprintReadWrite, EditAnywhere, ReplicatedUsing=OnRep_Death, meta=(AllowPrivateAccess=true))
     FYDeathAnimMontageInfo m_deathInfo;
     
     UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
     float m_minRagdollDuration;
-    
-    UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
-    float m_maxRagdollDuration;
     
     UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
     float m_minDotRagdollCleanUp;
@@ -47,19 +56,10 @@ protected:
     UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
     FGameplayTag m_gameplayTagKeepCollisionPostDeath;
     
+    UPROPERTY(BlueprintReadWrite, EditAnywhere, Transient, meta=(AllowPrivateAccess=true))
+    bool m_isInActiveRagdoll;
+    
 public:
-    UPROPERTY(BlueprintAssignable, BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
-    FOnDeathPreUnpossessDelegate BP_OnDeathPreUnpossess;
-    
-    UPROPERTY(BlueprintAssignable, BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
-    FOnDeathDelegate BP_OnDeath;
-    
-    UPROPERTY(BlueprintAssignable, BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
-    FOnDeathRagdollDelegate BP_OnBlendToRagdollOnDeathWithoutDeathAnim;
-    
-    UPROPERTY(BlueprintAssignable, BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
-    FOnBlendToRagdoll BP_OnBlendToRagdoll;
-    
     UYCharacterDeathComponent(const FObjectInitializer& ObjectInitializer);
 
     virtual void GetLifetimeReplicatedProps(TArray<FLifetimeProperty>& OutLifetimeProps) const override;
@@ -81,7 +81,7 @@ protected:
     void FreezeRagdoll();
     
     UFUNCTION(BlueprintCallable)
-    void DestroyOwner();
+    void DestroyOwner() const;
     
 public:
     UFUNCTION(BlueprintCallable)

@@ -7,7 +7,13 @@ UYDataTableManager::UYDataTableManager() {
 void UYDataTableManager::RequestUpdatedSeasonsData() {
 }
 
+void UYDataTableManager::RequestUpdatedNewsData() {
+}
+
 void UYDataTableManager::RequestUpdatedFeatureToggles() {
+}
+
+void UYDataTableManager::OnStationLoaded(const int32 loadCounter) {
 }
 
 FYFeatureToggles UYDataTableManager::GetFeatureToggles(const UObject* objectContext) {

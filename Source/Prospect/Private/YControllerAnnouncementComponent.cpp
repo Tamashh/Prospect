@@ -1,8 +1,11 @@
 #include "YControllerAnnouncementComponent.h"
 
 UYControllerAnnouncementComponent::UYControllerAnnouncementComponent(const FObjectInitializer& ObjectInitializer) : Super(ObjectInitializer) {
-    this->m_audioAnnouncementComponent = NULL;
     this->m_soundBusAnnouncementComponent = NULL;
+}
+
+int32 UYControllerAnnouncementComponent::RetrieveCategoryPriority(const FDataTableRowHandle& categoryRowHandle) {
+    return 0;
 }
 
 int32 UYControllerAnnouncementComponent::RetrieveAnnouncementPriority(const FDataTableRowHandle& rowHandle) {
@@ -13,6 +16,14 @@ void UYControllerAnnouncementComponent::OnLoadedAudio(const TArray<FSoftObjectPa
 }
 
 void UYControllerAnnouncementComponent::OnAnnouncementFinishedRegularly(const FString& speakerId) {
+}
+
+bool UYControllerAnnouncementComponent::IsAnyAnnouncementPlaying() {
+    return false;
+}
+
+int32 UYControllerAnnouncementComponent::GetCurrentHighestPriority() {
+    return 0;
 }
 
 FYAnnouncementPlayEntryData UYControllerAnnouncementComponent::GetCurrentAnnouncementPlayingForSpeaker(const FString& speakerId) {

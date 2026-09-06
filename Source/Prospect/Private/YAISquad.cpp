@@ -6,11 +6,11 @@ AYAISquad::AYAISquad(const FObjectInitializer& ObjectInitializer) : Super(Object
     this->m_persistentSquadData = NULL;
 }
 
-FString AYAISquad::ToDebugString() {
+FString AYAISquad::ToDebugString() const {
     return TEXT("");
 }
 
-void AYAISquad::OnSpawned_Implementation(UYPersistentData* persistentData) {
+void AYAISquad::OnSpawned_Implementation(UYPersistentActorInfo* persistentData) {
 }
 
 void AYAISquad::OnCharacterDied(UYHealthComponent* healthComponent, AActor* instigatorDeath) {
@@ -19,15 +19,15 @@ void AYAISquad::OnCharacterDied(UYHealthComponent* healthComponent, AActor* inst
 void AYAISquad::OnAICharacterSpawned(AYAICharacter* spawnedAICharacter) {
 }
 
-float AYAISquad::GetRoamingRadiusOverride() {
+float AYAISquad::GetRoamingRadiusOverride() const {
     return 0.0f;
 }
 
-FVector AYAISquad::GetRoamingHomeLocation() {
+FVector AYAISquad::GetRoamingHomeLocation() const {
     return FVector{};
 }
 
-FVector AYAISquad::DetermineSpawnLocationForAICharacter(const FYSquadAIType& aiType, const FVector& spawnLocationBase, FString& outErrorCode) {
+FVector AYAISquad::DetermineSpawnLocationForAICharacter(const FYAICharacterDefinition& aiType, const FVector& spawnLocationBase, FString& outErrorCode) {
     return FVector{};
 }
 

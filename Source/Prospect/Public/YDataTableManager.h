@@ -162,11 +162,17 @@ public:
     TSoftObjectPtr<UDataTable> m_characterCustomizationItemsDataTablePath;
     
     UPROPERTY(BlueprintReadWrite, Config, EditAnywhere, meta=(AllowPrivateAccess=true))
+    TSoftObjectPtr<UDataTable> m_characterVanityHeadBaseSuitConstructionPiecesDataTablePath;
+
+    UPROPERTY(BlueprintReadWrite, Config, EditAnywhere, meta=(AllowPrivateAccess=true))
     TSoftObjectPtr<UDataTable> m_characterCustomizationExplicitDataTablePath;
     
     UPROPERTY(BlueprintReadWrite, Config, EditAnywhere, meta=(AllowPrivateAccess=true))
     TSoftObjectPtr<UDataTable> m_characterCustomizationDefaultSettingsPath;
     
+    UPROPERTY(BlueprintReadWrite, Config, EditAnywhere, meta=(AllowPrivateAccess=true))
+    TSoftObjectPtr<UDataTable> m_newsDataTablePath;
+
     UPROPERTY(BlueprintReadWrite, Config, EditAnywhere, meta=(AllowPrivateAccess=true))
     TSoftObjectPtr<UDataTable> m_factionsDataTablePath;
     
@@ -175,9 +181,6 @@ public:
     
     UPROPERTY(BlueprintReadWrite, Config, EditAnywhere, meta=(AllowPrivateAccess=true))
     TSoftObjectPtr<UDataTable> m_contractsDataTablePath;
-    
-    UPROPERTY(BlueprintReadWrite, Config, EditAnywhere, meta=(AllowPrivateAccess=true))
-    TSoftObjectPtr<UDataTable> m_shopOffersDataTablePath;
     
     UPROPERTY(BlueprintReadWrite, Config, EditAnywhere, meta=(AllowPrivateAccess=true))
     TSoftObjectPtr<UDataTable> m_playFabStoresDataTableAssetPath;
@@ -286,9 +289,6 @@ public:
     
     UPROPERTY(BlueprintReadWrite, Config, EditAnywhere, meta=(AllowPrivateAccess=true))
     TSoftObjectPtr<UDataTable> m_modSettingsDataTablePath;
-    
-    UPROPERTY(BlueprintReadWrite, Config, EditAnywhere, meta=(AllowPrivateAccess=true))
-    TSoftObjectPtr<UDataTable> m_promotionDataTablePath;
     
     UPROPERTY(BlueprintReadWrite, Config, EditAnywhere, meta=(AllowPrivateAccess=true))
     TSoftObjectPtr<UDataTable> m_globalVanityDefaultsPath;
@@ -405,8 +405,17 @@ public:
     TSoftObjectPtr<UDataTable> m_bundlesPlatformDataTableAssetPath;
     
     UPROPERTY(BlueprintReadWrite, Config, EditAnywhere, meta=(AllowPrivateAccess=true))
+    TSoftObjectPtr<UDataTable> m_bundlesPublishingDataTableAssetPath;
+
+    UPROPERTY(BlueprintReadWrite, Config, EditAnywhere, meta=(AllowPrivateAccess=true))
+    TSoftObjectPtr<UDataTable> m_bundlesSeasonPassDataTableAssetPath;
+
+    UPROPERTY(BlueprintReadWrite, Config, EditAnywhere, meta=(AllowPrivateAccess=true))
     TSoftObjectPtr<UDataTable> m_veteranPacksDataTableAssetPath;
     
+    UPROPERTY(BlueprintReadWrite, Config, EditAnywhere, meta=(AllowPrivateAccess=true))
+    TSoftObjectPtr<UDataTable> m_uiAudioDataTableAssetPath;
+
     UPROPERTY(BlueprintReadWrite, Config, EditAnywhere, meta=(AllowPrivateAccess=true))
     TSoftObjectPtr<UDataTable> m_characterCustomizationExplicitPath;
     
@@ -446,14 +455,17 @@ public:
     UPROPERTY(BlueprintReadWrite, Config, EditAnywhere, meta=(AllowPrivateAccess=true))
     TSoftObjectPtr<UDataTable> m_playerReportOptionsDataTablePath;
     
+    UPROPERTY(BlueprintReadWrite, Config, EditAnywhere, meta=(AllowPrivateAccess=true))
+    TSoftObjectPtr<UDataTable> m_freeLoadoutTuningDataTablePath;
+
+    UPROPERTY(BlueprintReadWrite, Config, EditAnywhere, meta=(AllowPrivateAccess=true))
+    TSoftObjectPtr<UDataTable> m_freeLoadoutsDataTablePath;
+
     UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
     FYDataTablePropertyData m_propertyData;
     
     UPROPERTY(BlueprintAssignable, BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
     FYOnFeatureTogglesReceived OnFeatureTogglesReceived;
-    
-    UPROPERTY(BlueprintAssignable, BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
-    FYOnNewsUpdated OnNewsUpdated;
     
     UYDataTableManager();
 
@@ -461,8 +473,16 @@ public:
     void RequestUpdatedSeasonsData();
     
     UFUNCTION(BlueprintCallable)
+    void RequestUpdatedNewsData();
+
+    UFUNCTION(BlueprintCallable)
     void RequestUpdatedFeatureToggles();
     
+private:
+    UFUNCTION(BlueprintCallable)
+    void OnStationLoaded(const int32 loadCounter);
+
+public:
     UFUNCTION(BlueprintCallable, BlueprintPure)
     static FYFeatureToggles GetFeatureToggles(const UObject* objectContext);
     

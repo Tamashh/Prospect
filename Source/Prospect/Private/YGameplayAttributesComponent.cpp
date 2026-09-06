@@ -13,22 +13,22 @@ void UYGameplayAttributesComponent::RemoveAttributeModifier(FGuid Guid, EYGPAMod
 void UYGameplayAttributesComponent::RemoveAllModifiersByAttribute(EYGameplayAttribute Attribute) {
 }
 
-void UYGameplayAttributesComponent::OnRep_ActivePreAddModifiers() {
+void UYGameplayAttributesComponent::OnRep_ActivePreAddModifiers() const {
 }
 
-void UYGameplayAttributesComponent::OnRep_ActivePostAddModifiers() {
+void UYGameplayAttributesComponent::OnRep_ActivePostAddModifiers() const {
 }
 
-void UYGameplayAttributesComponent::OnRep_ActiveOverrideModifiers() {
+void UYGameplayAttributesComponent::OnRep_ActiveOverrideModifiers() const {
 }
 
-void UYGameplayAttributesComponent::OnRep_ActiveAddModifiers() {
+void UYGameplayAttributesComponent::OnRep_ActiveAddModifiers() const {
 }
 
 void UYGameplayAttributesComponent::LogGameplayAttrbutes(AActor* Actor) {
 }
 
-void UYGameplayAttributesComponent::LogAllGameplayAttrbutes() {
+void UYGameplayAttributesComponent::LogAllGameplayAttrbutes() const {
 }
 
 bool UYGameplayAttributesComponent::IsAnyModifierOfAttributeTypeActiveStatic(AActor* actorContext, EYGameplayAttribute Attribute, EYGameplayContextType contextType) {

@@ -44,10 +44,6 @@ int32 UYControllerFortunaPassComponent::GetPlayerPremiumXpBoost() const {
     return 0;
 }
 
-FYFortunaPassPlayerData UYControllerFortunaPassComponent::GetInitialData() const {
-    return FYFortunaPassPlayerData{};
-}
-
 bool UYControllerFortunaPassComponent::GetIfOneDayPassedSinceLastReset(const FDateTime& UtcNow, const FYFortunaPassPlayerData& passPlayerData) {
     return false;
 }

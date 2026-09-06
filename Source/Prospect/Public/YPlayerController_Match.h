@@ -1,7 +1,5 @@
 #pragma once
 #include "CoreMinimal.h"
-#include "EYMetaMissionType.h"
-#include "YCompleteQuestState.h"
 #include "UObject/NoExportTypes.h"
 #include "UObject/NoExportTypes.h"
 #include "Engine/DataTable.h"
@@ -141,10 +139,6 @@ public:
 
     virtual void GetLifetimeReplicatedProps(TArray<FLifetimeProperty>& OutLifetimeProps) const override;
 
-private:
-    UFUNCTION(BlueprintCallable, Exec)
-    void YDebugGiveRerollTokens(int32 Count) const;
-    
 protected:
     UFUNCTION(BlueprintCallable)
     void ToggleZoom();
@@ -164,9 +158,6 @@ public:
     UFUNCTION(BlueprintCallable)
     void StartToLeaveMap();
     
-    UFUNCTION(BlueprintAuthorityOnly, BlueprintCallable)
-    void ShowNotificationReplicatedForPlayer(const FText& Message, FVector colorOverride, float Duration, EYNotificationType notificationType, EYNotificationPlacement notificationImportance);
-    
     UFUNCTION(BlueprintCallable)
     void ShowNotification(const FText& Message, FVector colorOverride, float Duration, EYNotificationType notificationType, EYNotificationPlacement notificationImportance);
     
@@ -182,11 +173,6 @@ protected:
     UFUNCTION(BlueprintCallable, Reliable, Server)
     void Server_ToggleZoom();
     
-private:
-    UFUNCTION(BlueprintCallable)
-    static void PrintChallengesOfType(const TArray<FYCompleteQuestState>& quests, EYMetaMissionType metaMissionType);
-    
-protected:
     UFUNCTION(BlueprintCallable)
     void OnReconnectTimeout();
     
@@ -223,29 +209,12 @@ public:
     UFUNCTION(BlueprintCallable, BlueprintPure)
     AYPlayerState* GetYPlayerState() const;
     
-protected:
-    UFUNCTION(BlueprintCallable, BlueprintPure)
-    int32 GetTeamId();
-    
-public:
     UFUNCTION(BlueprintCallable, BlueprintPure)
     UYSpectateComponent* GetSpectateComponent() const;
     
 private:
     UFUNCTION(BlueprintCallable)
     void DoDamageOverTimeEndOfMatch(int32 ElapsedTime);
-    
-    UFUNCTION(BlueprintCallable, Exec)
-    void DebugSetQuestCount(const FString& questId, int32 Count);
-    
-    UFUNCTION(BlueprintCallable, Exec)
-    void DebugSetQuestCompleted(const FString& questId, int32 Count);
-    
-    UFUNCTION(BlueprintCallable, Exec)
-    void DebugGetQuests();
-    
-    UFUNCTION(BlueprintCallable, Exec)
-    void DebugGetDailyChallenges();
     
 public:
     UFUNCTION(BlueprintCallable)
@@ -254,10 +223,6 @@ public:
 private:
     UFUNCTION(BlueprintCallable, Client, Reliable)
     void ClientLeaveMatch();
-    
-protected:
-    UFUNCTION(BlueprintCallable, BlueprintPure=false)
-    void ClearSocialInput() const;
     
 public:
     UFUNCTION(BlueprintCallable)
@@ -286,11 +251,6 @@ public:
     UFUNCTION(BlueprintCallable, BlueprintImplementableEvent)
     float BP_AimAssistAdjustPitchInput(float InValue);
     
-protected:
-    UFUNCTION(BlueprintCallable, BlueprintPure=false)
-    void BlockSocialInput() const;
-    
-public:
     UFUNCTION(BlueprintCallable)
     void BlockAllMatchInput();
     

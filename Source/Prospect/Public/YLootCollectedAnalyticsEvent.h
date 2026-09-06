@@ -63,6 +63,9 @@ public:
     bool in_loot_container;
     
     UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
+    TArray<FString> mods;
+
+    UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
     TArray<FYRolledPerkBI> perks;
     
     PROSPECT_API FYLootCollectedAnalyticsEvent();

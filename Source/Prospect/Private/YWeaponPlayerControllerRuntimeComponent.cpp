@@ -2,10 +2,10 @@
 #include "Net/UnrealNetwork.h"
 
 UYWeaponPlayerControllerRuntimeComponent::UYWeaponPlayerControllerRuntimeComponent(const FObjectInitializer& ObjectInitializer) : Super(ObjectInitializer) {
+    this->m_weaponTransportHandle = -1;
     this->m_ammoInClip = 0;
     this->m_ammoConsumptionPendingInPercent = 0.0f;
     this->m_activeWeaponIndex = -1;
-    this->m_weaponTransportHandle = -1;
     this->m_characterStateComponent = NULL;
     this->m_characterWeaponComponent = NULL;
     this->m_characterMovementComponent = NULL;
@@ -13,14 +13,14 @@ UYWeaponPlayerControllerRuntimeComponent::UYWeaponPlayerControllerRuntimeCompone
     this->m_characterStaminaComponent = NULL;
     this->m_characterMeleeComponent = NULL;
     this->m_controllerAbilityComponent = NULL;
-    this->m_characterGPAComponent = NULL;
-    this->m_characterPerkComponent = NULL;
-    this->m_ScriptableComponent = NULL;
-    this->m_locallyWeaponTransportHandleUsed = false;
     this->m_maxFovConsideredAsScoped = 25.0f;
     this->m_adsSensitivityMultiplierScaling = 1.0f;
     this->m_scopedSensitivityMultiplierScaling = 1.64999998f;
     this->m_minTimeIntervalAllowedBetweenFireRPCS = 0.00100000005f;
+    this->m_characterGPAComponent = NULL;
+    this->m_characterPerkComponent = NULL;
+    this->m_ScriptableComponent = NULL;
+    this->m_locallyWeaponTransportHandleUsed = false;
 }
 
 void UYWeaponPlayerControllerRuntimeComponent::TryFireNewBurstShot() {
@@ -39,15 +39,15 @@ bool UYWeaponPlayerControllerRuntimeComponent::ShouldCrosshairTrackSocketRotatio
 void UYWeaponPlayerControllerRuntimeComponent::SetReticleDisabled(bool newState) {
 }
 
-void UYWeaponPlayerControllerRuntimeComponent::ServerFireWeaponWithSeed_Implementation(const TArray<FYFireTransportEntry>& fireWeaponTransportEntry, int32 RandomSeed, float timestampClient, const TArray<FVector_NetQuantize>& Vectors) {
+void UYWeaponPlayerControllerRuntimeComponent::ServerFireWeaponWithSeed_Implementation(const TArray<FYFireTransportEntry>& fireWeaponTransportEntry, int32 randomSeed, float timestampClient, float timestampServer, const TArray<FVector_NetQuantize>& Vectors) {
 }
-bool UYWeaponPlayerControllerRuntimeComponent::ServerFireWeaponWithSeed_Validate(const TArray<FYFireTransportEntry>& fireWeaponTransportEntry, int32 RandomSeed, float timestampClient, const TArray<FVector_NetQuantize>& Vectors) {
+bool UYWeaponPlayerControllerRuntimeComponent::ServerFireWeaponWithSeed_Validate(const TArray<FYFireTransportEntry>& fireWeaponTransportEntry, int32 randomSeed, float timestampClient, float timestampServer, const TArray<FVector_NetQuantize>& Vectors) {
     return true;
 }
 
-void UYWeaponPlayerControllerRuntimeComponent::ServerFireHitscanResults_Implementation(const TArray<FYHitscanTraceEntry>& traceEntries, float timestampClient) {
+void UYWeaponPlayerControllerRuntimeComponent::ServerFireHitscanResults_Implementation(const TArray<FYHitscanTraceEntry>& traceEntries, float timestampClient, float timestampServer) {
 }
-bool UYWeaponPlayerControllerRuntimeComponent::ServerFireHitscanResults_Validate(const TArray<FYHitscanTraceEntry>& traceEntries, float timestampClient) {
+bool UYWeaponPlayerControllerRuntimeComponent::ServerFireHitscanResults_Validate(const TArray<FYHitscanTraceEntry>& traceEntries, float timestampClient, float timestampServer) {
     return true;
 }
 
@@ -58,6 +58,9 @@ void UYWeaponPlayerControllerRuntimeComponent::ReloadInput() {
 }
 
 void UYWeaponPlayerControllerRuntimeComponent::OnTransportComponentDestroyed(int32 transportHandle) {
+}
+
+void UYWeaponPlayerControllerRuntimeComponent::OnTakeDamageCallback(const FYDealtDamageData& dealtDamageData) {
 }
 
 void UYWeaponPlayerControllerRuntimeComponent::OnStopTargeting(bool wasInterupted) {
@@ -102,6 +105,9 @@ void UYWeaponPlayerControllerRuntimeComponent::OnStartReloading() {
 void UYWeaponPlayerControllerRuntimeComponent::OnStartFiring() {
 }
 
+void UYWeaponPlayerControllerRuntimeComponent::OnSprintingStateActivated() {
+}
+
 void UYWeaponPlayerControllerRuntimeComponent::OnRep_WeaponTransportHandle() {
 }
 
@@ -111,7 +117,7 @@ void UYWeaponPlayerControllerRuntimeComponent::OnRep_StoredMods() {
 void UYWeaponPlayerControllerRuntimeComponent::OnRep_AdditionalRemainingAmmo() {
 }
 
-void UYWeaponPlayerControllerRuntimeComponent::OnRep_ActiveDataTableRow() {
+void UYWeaponPlayerControllerRuntimeComponent::OnRep_ActiveWeaponStoredInformation() {
 }
 
 void UYWeaponPlayerControllerRuntimeComponent::OnPlayerStateChanged() {
@@ -123,7 +129,7 @@ void UYWeaponPlayerControllerRuntimeComponent::OnPerksChanged() {
 void UYWeaponPlayerControllerRuntimeComponent::OnPawnAssigned(APawn* oldPawn, APawn* newPawn) {
 }
 
-void UYWeaponPlayerControllerRuntimeComponent::OnMeleeAttackFinished() {
+void UYWeaponPlayerControllerRuntimeComponent::OnMeleeAttackFinished() const {
 }
 
 void UYWeaponPlayerControllerRuntimeComponent::OnItemUpdatedCallback(UYStateInventoryComponent* stateInventoryComponent, const FYInventoryItem& Item, EYPlayerSetType equippedSetType) {
@@ -156,8 +162,14 @@ void UYWeaponPlayerControllerRuntimeComponent::OnAnyStateChanged(EYStateChangeTy
 void UYWeaponPlayerControllerRuntimeComponent::MeleeReFire() {
 }
 
-bool UYWeaponPlayerControllerRuntimeComponent::IsFullscreenCrosshairEnabled(AActor* actorContext) {
+bool UYWeaponPlayerControllerRuntimeComponent::IsTargeting() const {
     return false;
+}
+
+void UYWeaponPlayerControllerRuntimeComponent::InspectReleaseInput() {
+}
+
+void UYWeaponPlayerControllerRuntimeComponent::InspectInput() {
 }
 
 bool UYWeaponPlayerControllerRuntimeComponent::HideGunWhileFinishedTargeting() const {
@@ -172,31 +184,31 @@ float UYWeaponPlayerControllerRuntimeComponent::GetCurrentWeaponUseCooldown() co
     return 0.0f;
 }
 
-FTransform UYWeaponPlayerControllerRuntimeComponent::GetCurrentShootAtSocketLocationAndRotationPreTransform() {
+FTransform UYWeaponPlayerControllerRuntimeComponent::GetCurrentShootAtSocketLocationAndRotationPreTransform() const {
     return FTransform{};
 }
 
-FTransform UYWeaponPlayerControllerRuntimeComponent::GetCurrentShootAtSocketLocationAndRotation() {
+FTransform UYWeaponPlayerControllerRuntimeComponent::GetCurrentShootAtSocketLocationAndRotation() const {
     return FTransform{};
 }
 
-FVector UYWeaponPlayerControllerRuntimeComponent::GetCurrentPawnCameraLocation() {
+FVector UYWeaponPlayerControllerRuntimeComponent::GetCurrentPawnCameraLocation() const {
     return FVector{};
 }
 
-FVector UYWeaponPlayerControllerRuntimeComponent::GetCurrentPawnCameraForwardVector() {
+FVector UYWeaponPlayerControllerRuntimeComponent::GetCurrentPawnCameraForwardVector() const {
     return FVector{};
 }
 
-FDataTableRowHandle UYWeaponPlayerControllerRuntimeComponent::GetCurrentActiveWeaponRowHandle() {
+FDataTableRowHandle UYWeaponPlayerControllerRuntimeComponent::GetCurrentActiveWeaponRowHandle() const {
     return FDataTableRowHandle{};
 }
 
-FVector UYWeaponPlayerControllerRuntimeComponent::GetCameraLocationPreTransform() {
+FVector UYWeaponPlayerControllerRuntimeComponent::GetCameraLocationPreTransform() const {
     return FVector{};
 }
 
-FVector UYWeaponPlayerControllerRuntimeComponent::GetCameraLocation() {
+FVector UYWeaponPlayerControllerRuntimeComponent::GetCameraLocation() const {
     return FVector{};
 }
 
@@ -208,7 +220,7 @@ FVector2D UYWeaponPlayerControllerRuntimeComponent::GetAppliedRecoilForUI() cons
     return FVector2D{};
 }
 
-FDataTableRowHandle UYWeaponPlayerControllerRuntimeComponent::GetAISenseOnFired() {
+FDataTableRowHandle UYWeaponPlayerControllerRuntimeComponent::GetAISenseOnFired() const {
     return FDataTableRowHandle{};
 }
 
@@ -235,7 +247,7 @@ FDataTableRowHandle UYWeaponPlayerControllerRuntimeComponent::FindActiveWeaponHa
 void UYWeaponPlayerControllerRuntimeComponent::FillUpSingleBullet() {
 }
 
-void UYWeaponPlayerControllerRuntimeComponent::FillUpAmmo() {
+void UYWeaponPlayerControllerRuntimeComponent::FillUpAmmo(const FString& callerContext) {
 }
 
 TArray<FDataTableRowHandle> UYWeaponPlayerControllerRuntimeComponent::DetermineScannableRowHandles() const {

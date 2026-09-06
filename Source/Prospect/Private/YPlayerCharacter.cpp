@@ -27,6 +27,10 @@ AYPlayerCharacter::AYPlayerCharacter(const FObjectInitializer& ObjectInitializer
     this->m_maxDistanceDBNOReviveInteraction = 150.0f;
     this->m_maxDistanceSocialInteraction = 300.0f;
     this->m_overridenViewState = EYMeshViewState::NoneAssigned;
+    this->m_leftFoot_ZOffset = 0.0f;
+    this->m_rightFoot_ZOffset = 0.0f;
+    this->m_hip_ZOffset = 0.0f;
+    this->m_enableIkFeetPlacementStation = false;
     this->m_isPendingReconnect = false;
     this->m_firstPersonMesh = CreateDefaultSubobject<UYSkeletalMeshComponentFOV>(TEXT("FirstPersonMesh"));
     this->m_characterWeaponComponent = CreateDefaultSubobject<UYPlayerCharacterWeaponComponent>(TEXT("weaponComponent"));
@@ -62,7 +66,7 @@ AYPlayerCharacter::AYPlayerCharacter(const FObjectInitializer& ObjectInitializer
 void AYPlayerCharacter::YSetPlayerState(APlayerState* State) {
 }
 
-void AYPlayerCharacter::UpdatePhysicalMaterial() {
+void AYPlayerCharacter::UpdatePhysicalMaterial() const {
 }
 
 void AYPlayerCharacter::StopJumpInput() {
@@ -71,7 +75,7 @@ void AYPlayerCharacter::StopJumpInput() {
 void AYPlayerCharacter::StartJumpInput() {
 }
 
-bool AYPlayerCharacter::ShouldUseBoxCollision() {
+bool AYPlayerCharacter::ShouldUseBoxCollision() const {
     return false;
 }
 
@@ -103,15 +107,15 @@ void AYPlayerCharacter::OnAnyStateChanged(EYStateChangeType stateChange) {
 void AYPlayerCharacter::Jumped_Implementation(int32 jumpCount) {
 }
 
-bool AYPlayerCharacter::IsTargeting() {
+bool AYPlayerCharacter::IsTargeting() const {
     return false;
 }
 
-bool AYPlayerCharacter::IsSliding() {
+bool AYPlayerCharacter::IsSliding() const {
     return false;
 }
 
-bool AYPlayerCharacter::IsRunning() {
+bool AYPlayerCharacter::IsRunning() const {
     return false;
 }
 
@@ -119,26 +123,26 @@ bool AYPlayerCharacter::IsPendingTargeting() {
     return false;
 }
 
-bool AYPlayerCharacter::IsFiring() {
+bool AYPlayerCharacter::IsFiring() const {
     return false;
 }
 
-bool AYPlayerCharacter::IsDBNO() {
+bool AYPlayerCharacter::IsDBNO() const {
     return false;
 }
 
-bool AYPlayerCharacter::IsCrouching() {
+bool AYPlayerCharacter::IsCrouching() const {
     return false;
 }
 
 void AYPlayerCharacter::HandleCharacterMovementUpdated(float DeltaSeconds, FVector OldLocation, FVector OldVelocity) {
 }
 
-AYPlayerState* AYPlayerCharacter::GetYPlayerState() {
+AYPlayerState* AYPlayerCharacter::GetYPlayerState() const {
     return NULL;
 }
 
-AYPlayerController* AYPlayerCharacter::GetYPlayerController() {
+AYPlayerController* AYPlayerCharacter::GetYPlayerController() const {
     return NULL;
 }
 

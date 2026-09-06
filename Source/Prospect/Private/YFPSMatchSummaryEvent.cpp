@@ -22,7 +22,9 @@ FYFPSMatchSummaryEvent::FYFPSMatchSummaryEvent() {
     this->hitchframecount_game = 0;
     this->hitchframecount_draw = 0;
     this->hitchframecount_gpu = 0;
+    this->physical_memory_avg = 0;
     this->physical_memory_max = 0;
+    this->virtual_memory_avg = 0;
     this->virtual_memory_max = 0;
     this->gc_time_avg = 0.0f;
     this->gc_time_max = 0.0f;

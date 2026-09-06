@@ -2,8 +2,6 @@
 #include "CoreMinimal.h"
 #include "Components/ActorComponent.h"
 #include "EYAIState.h"
-#include "OnAIStartDodgeSignatureDelegate.h"
-#include "OnAIStartHitReactionSignatureDelegate.h"
 #include "OnAIStateChangedSignatureDelegate.h"
 #include "OnCombatTargetActorChangedDelegate.h"
 #include "OnProjectileSpawnedDelegateDelegate.h"
@@ -20,10 +18,6 @@ public:
     UPROPERTY(BlueprintReadWrite, EditAnywhere, Transient, meta=(AllowPrivateAccess=true))
     AYAISquad* m_squad;
     
-    UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
-    bool m_peacefull;
-    
-protected:
     UPROPERTY(BlueprintReadWrite, EditAnywhere, Replicated, Transient, meta=(AllowPrivateAccess=true))
     AActor* m_combatTargetReplicated;
     
@@ -33,40 +27,37 @@ protected:
     UPROPERTY(BlueprintReadWrite, EditAnywhere, Replicated, Transient, meta=(AllowPrivateAccess=true))
     bool m_isAngry;
     
-public:
     UPROPERTY(BlueprintAssignable, BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
     FOnAIStateChangedSignature AIStateChanged;
-    
-    UPROPERTY(BlueprintAssignable, BlueprintCallable, BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
-    FOnAIStartHitReactionSignature BP_OnHitReactionStartedDelegate;
     
     UPROPERTY(BlueprintAssignable, BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
     FOnCombatTargetActorChanged BP_OnCombatTargetActorChanged;
     
     UPROPERTY(BlueprintAssignable, BlueprintCallable, BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
-    FOnAIStartDodgeSignature BP_OnDodgeStartedDelegate;
-    
-    UPROPERTY(BlueprintAssignable, BlueprintCallable, BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
     FOnProjectileSpawnedDelegate BP_OnProjectileSpawnedDelegate;
     
+    UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
+    bool m_notifyPlayerOnCombatStarted;
+
     UYAIDataComponent(const FObjectInitializer& ObjectInitializer);
 
     virtual void GetLifetimeReplicatedProps(TArray<FLifetimeProperty>& OutLifetimeProps) const override;
 
     UFUNCTION(BlueprintCallable)
-    void SetStateToDead(UYHealthComponent* healthComponent, AActor* Instigator);
+    void SetReplicatedCombatTarget(AActor* Actor);
     
     UFUNCTION(BlueprintCallable)
-    void SetReplicatedCombatTarget(AActor* Actor);
+    void SetIsAngry(bool isAngry);
     
     UFUNCTION(BlueprintCallable)
     void SetAIState(EYAIState aiState);
     
-protected:
     UFUNCTION(BlueprintCallable)
-    void OnRep_AIState(EYAIState previouseState);
+    void OnRep_AIState(EYAIState PreviousState);
+
+    UFUNCTION(BlueprintCallable)
+    void OnAIDied(UYHealthComponent* healthComponent, AActor* Instigator);
     
-public:
     UFUNCTION(BlueprintCallable, BlueprintPure)
     bool GetIsAngry();
     

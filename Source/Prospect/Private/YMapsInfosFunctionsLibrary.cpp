@@ -3,6 +3,10 @@
 UYMapsInfosFunctionsLibrary::UYMapsInfosFunctionsLibrary() {
 }
 
+bool UYMapsInfosFunctionsLibrary::IsStationMap(UObject* objectContext, const FString& mapName) {
+    return false;
+}
+
 FText UYMapsInfosFunctionsLibrary::GetName(UObject* objectContext, const FString& mapInfoRowId, const FString& contextString) {
     return FText::GetEmpty();
 }

@@ -52,6 +52,10 @@ FName UYMatchmakingFunctionsLibrary::GetSelectedMapId(const UObject* objectConte
     return NAME_None;
 }
 
+bool UYMatchmakingFunctionsLibrary::GetMapUnlockInfoForRow(UObject* playerContextObject, FDataTableRowHandle mapRowHandle, FYMapUnlockInfo& mapUnlockInfoOut) {
+    return false;
+}
+
 FText UYMatchmakingFunctionsLibrary::GetGameModeTextFromGameModeType(const UObject* objectContext, EYMatchmakeGameModeType gameModeType) {
     return FText::GetEmpty();
 }

@@ -91,6 +91,9 @@ void UYControllerReplicationComponent::Client_SendMeleeHitScanHitNotification_Im
 void UYControllerReplicationComponent::ApplyImpulseOnPlayer(AActor* actorContext, const FVector& Impulse, const FString& Context) {
 }
 
+void UYControllerReplicationComponent::AISpottedPlayer_Implementation(AActor* aiActor) {
+}
+
 void UYControllerReplicationComponent::GetLifetimeReplicatedProps(TArray<FLifetimeProperty>& OutLifetimeProps) const {
     Super::GetLifetimeReplicatedProps(OutLifetimeProps);
     

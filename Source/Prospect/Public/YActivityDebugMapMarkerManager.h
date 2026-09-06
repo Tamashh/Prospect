@@ -6,6 +6,7 @@
 #include "YDebugActivityLocationSimple.h"
 #include "YActivityDebugMapMarkerManager.generated.h"
 
+class AActor;
 class UYDebugActivityLocationMapMarkerData;
 class UYMapMarkerData;
 
@@ -27,5 +28,8 @@ public:
     UFUNCTION(BlueprintCallable, Client, Reliable)
     void ClientShowSimpleDebug(const TArray<FYDebugActivityLocationSimple>& lootPointsInfo, EYActivityType Type);
     
+    UFUNCTION(BlueprintCallable)
+    void AddGenericDebugMapMarkerForActors(TArray<AActor*> actors, TSubclassOf<UYMapMarkerData> markerDataClass);
+
 };
 

@@ -19,7 +19,13 @@ void UYPlayerCharacterAnimCalculationComponent::SetInterpDeltaPitch(float NewVal
 void UYPlayerCharacterAnimCalculationComponent::SetDoRotationReset(bool newState) {
 }
 
+void UYPlayerCharacterAnimCalculationComponent::OnNewWeaponAdded() {
+}
+
 void UYPlayerCharacterAnimCalculationComponent::OnJumpedCallback(int32 jumpCount) {
+}
+
+void UYPlayerCharacterAnimCalculationComponent::OnFeatureToggleReceivedCallback(const FYFeatureToggles& featureToggles) {
 }
 
 

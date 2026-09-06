@@ -10,16 +10,16 @@ void UYControllerContractsBoardsDataComponent::UpdateCachedBoardDataLockedState(
 void UYControllerContractsBoardsDataComponent::TryRequestActiveObjectivesAndBoardsData(bool forceRequest) const {
 }
 
-void UYControllerContractsBoardsDataComponent::RequestClaimCompletedActiveContract(const FString& contractId) {
+void UYControllerContractsBoardsDataComponent::RequestClaimCompletedActiveContract(const FString& contractId) const {
 }
 
-void UYControllerContractsBoardsDataComponent::RequestActivateContract(const FString& contractId) {
+void UYControllerContractsBoardsDataComponent::RequestActivateContract(const FString& contractId) const {
 }
 
 void UYControllerContractsBoardsDataComponent::RefreshTimerDisplay() {
 }
 
-void UYControllerContractsBoardsDataComponent::OnBoardRefreshTimerElapsed() {
+void UYControllerContractsBoardsDataComponent::OnBoardRefreshTimerElapsed() const {
 }
 
 bool UYControllerContractsBoardsDataComponent::HasContractPendingBackendReply(const FString& contractId) const {
@@ -47,7 +47,7 @@ UYControllerContractsBoardsDataComponent* UYControllerContractsBoardsDataCompone
     return NULL;
 }
 
-void UYControllerContractsBoardsDataComponent::EnableContractInteractionAgain(const FString& callerUserId, bool isFail, bool anActiveContractHasBeenCancelled, FYContractStatusChangeInfo Info) {
+void UYControllerContractsBoardsDataComponent::EnableContractInteractionAgain(const FString& callerUserId, bool isFail, bool anActiveContractHasBeenCancelled, const FYContractStatusChangeInfo& Info) {
 }
 
 

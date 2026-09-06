@@ -21,6 +21,7 @@ enum class EYActivityType : uint8 {
     Flora_IvyPlant,
     Flora_DesertPlant,
     Flora_BonePlant,
+    HowlerNest,
     Hunt,
     Mineral_AlienCrystals,
     Mineral_BasicOres,

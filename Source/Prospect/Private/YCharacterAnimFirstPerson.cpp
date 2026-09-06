@@ -29,5 +29,6 @@ FYCharacterAnimFirstPerson::FYCharacterAnimFirstPerson() {
     this->m_toAimCrouchFirstPerson = NULL;
     this->m_aimSettleCrouchFirstPerson = NULL;
     this->m_toDefaultCrouchFirstPerson = NULL;
+    this->m_defaultAimOffsetFirstPerson = NULL;
 }
 

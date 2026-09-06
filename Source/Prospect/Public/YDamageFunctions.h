@@ -10,7 +10,6 @@
 #include "YDamageFunctions.generated.h"
 
 class AActor;
-class APawn;
 
 UCLASS(Blueprintable)
 class UYDamageFunctions : public UObject {
@@ -37,25 +36,13 @@ public:
     static bool IsDamageDealtFromPlayer(const FYDealtDamageData& damageDealt);
     
     UFUNCTION(BlueprintCallable)
-    static bool IsActorTheMostRecentDamageCauserFor(AActor* damageTaker, AActor* DamageCauser);
-    
-    UFUNCTION(BlueprintCallable)
-    static bool IsAbleToPropagetChainMod(AActor* damageTaker);
-    
-    UFUNCTION(BlueprintCallable)
     static bool IsAbleToHeal(AActor* DamageCauser, AActor* damageTaker);
     
     UFUNCTION(BlueprintCallable)
     static bool IsAbleToDamage(AActor* damageTaker, AActor* DamageCauser, bool canDamageSelf);
     
     UFUNCTION(BlueprintCallable)
-    static APawn* GetTurretOwnerPawn(AActor* Actor);
-    
-    UFUNCTION(BlueprintCallable)
     static TArray<AActor*> GetHostilePawns(AActor* queryActor, float Radius, AActor* teamActor);
-    
-    UFUNCTION(BlueprintCallable)
-    static FText GetDamageOriginNameLocalized(const FYDamageOriginInfo& originInfo);
     
     UFUNCTION(BlueprintCallable)
     static FText GetDamageCauserNameLocalized(AActor* Actor);

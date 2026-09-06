@@ -34,11 +34,14 @@ class UYCraftingManager;
 class UYDataTableManager;
 class UYFactionsProgressionManager;
 class UYFortunaPassManager;
+class UYFreeLoadoutManager;
 class UYFriendsImportManager;
 class UYGameInventoryManager;
 class UYGamePingManager;
 class UYGameSessionManager;
+class UYGamesightManager;
 class UYGeneratorsManager;
+class UYGenericClaimableDataManager;
 class UYGenericNotificationsManager;
 class UYGlobalAudio;
 class UYGlobalVanityManager;
@@ -51,9 +54,11 @@ class UYInventoryManager;
 class UYItemSortingManager;
 class UYKeybindingsManager;
 class UYLegalAgreementsManager;
+class UYLoadoutPresetManager;
 class UYManagerSessionResource;
 class UYMarketingManager;
 class UYMatchmakingManager;
+class UYMeshMergingManager;
 class UYMessageManager;
 class UYMissionManager;
 class UYNewsManager;
@@ -86,6 +91,10 @@ class UYGameInstance : public UGameInstance, public IYInterfaceBackendInstanceRe
     GENERATED_BODY()
 public:
     DECLARE_DYNAMIC_MULTICAST_DELEGATE(FYOnNewLoadtimesData);
+    DECLARE_DYNAMIC_MULTICAST_DELEGATE_OneParam(FOnStationLoaded, const int32, loadCounter);
+
+    UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
+    FOnStationLoaded OnStationLoaded;
     
     UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
     UYGlobalAudio* m_globalAudio;
@@ -139,7 +148,7 @@ public:
     UYMissionManager* m_missionManager;
     
     UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
-    UYGeneratorsManager* m_passiveGeneratorsManager;
+    UYGeneratorsManager* m_generatorsManager;
     
     UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
     UYUserDataManager* m_userDataManager;
@@ -199,17 +208,26 @@ public:
     UYFortunaPassManager* m_fortunaPassManager;
     
     UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
+    UYFreeLoadoutManager* m_freeLoadoutManager;
+
+    UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
     UYNewsManager* m_newsManager;
     
     UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
     UYTwitchDropsManager* m_twitchDropsManager;
     
     UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
+    UYLoadoutPresetManager* m_loadoutPresetManager;
+
+    UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
     UYTOCVeteranManager* m_TOCVeteranManager;
     
     UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
     UYVictimCompensationManager* m_victimCompensationManager;
     
+    UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
+    UYGamesightManager* m_gamesightManager;
+
     UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
     FString m_prevMapName;
     
@@ -252,6 +270,9 @@ public:
     UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
     UYInterruptionManager* m_interruptionManager;
     
+    UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
+    UYMeshMergingManager* m_meshMergingManager;
+
     UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
     UMaterialParameterCollection* m_globalMaterialParameterCollection;
     
@@ -302,6 +323,9 @@ protected:
     UYFriendsImportManager* m_friendsImportManager;
     
     UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
+    UYGenericClaimableDataManager* m_genericClaimableDataManager;
+
+    UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
     UYLegalAgreementsManager* m_legalAgreementsManager;
     
 private:
@@ -329,6 +353,11 @@ public:
     UFUNCTION(BlueprintCallable)
     void PlayReplayFromBP(const FString& ReplayName);
     
+private:
+    UFUNCTION(BlueprintCallable)
+    void OnWindowFocusChanged(bool isFocused);
+
+public:
     UFUNCTION(BlueprintCallable)
     void OnSettingsApplied();
     

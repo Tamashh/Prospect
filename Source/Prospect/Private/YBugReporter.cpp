@@ -54,6 +54,10 @@ FString UYBugReporter::GetCurrentMap(UWorld* World) {
     return TEXT("");
 }
 
+FString UYBugReporter::GetCurrentHowlerLocationAndRotation(UWorld* World) {
+    return TEXT("");
+}
+
 FString UYBugReporter::GetCurrentGamemode(UWorld* World) {
     return TEXT("");
 }

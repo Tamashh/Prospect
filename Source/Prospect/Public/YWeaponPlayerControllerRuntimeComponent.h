@@ -23,6 +23,7 @@
 #include "OnWeaponFiredDelegate.h"
 #include "OnWeaponRefireCooldownTimeChangedDelegate.h"
 #include "OnWeaponRefireCooldownTimeFinishedDelegate.h"
+#include "YDealtDamageData.h"
 #include "YFireTransportEntry.h"
 #include "YHitscanTraceEntry.h"
 #include "YInventoryItem.h"
@@ -30,7 +31,6 @@
 #include "YStoredRuntimeWeaponInformation.h"
 #include "YWeaponPlayerControllerRuntimeComponent.generated.h"
 
-class AActor;
 class APawn;
 class USoundBase;
 class UYControllerInventoryAbilityComponent;
@@ -50,6 +50,15 @@ UCLASS(Blueprintable, ClassGroup=Custom, Config=Game, meta=(BlueprintSpawnableCo
 class UYWeaponPlayerControllerRuntimeComponent : public UActorComponent {
     GENERATED_BODY()
 public:
+    UPROPERTY(BlueprintReadWrite, EditAnywhere, ReplicatedUsing=OnRep_ActiveWeaponStoredInformation, meta=(AllowPrivateAccess=true))
+    FYStoredRuntimeWeaponInformation m_activeWeaponStoredInformation;
+
+    UPROPERTY(BlueprintReadWrite, EditAnywhere, ReplicatedUsing=OnRep_StoredMods, meta=(AllowPrivateAccess=true))
+    FYStoredModData m_weaponModsData;
+
+    UPROPERTY(BlueprintReadWrite, EditAnywhere, ReplicatedUsing=OnRep_WeaponTransportHandle, meta=(AllowPrivateAccess=true))
+    int32 m_weaponTransportHandle;
+
     UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
     int32 m_ammoInClip;
     
@@ -62,11 +71,14 @@ public:
     UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
     int32 m_activeWeaponIndex;
     
-    UPROPERTY(BlueprintReadWrite, EditAnywhere, ReplicatedUsing=OnRep_ActiveDataTableRow, meta=(AllowPrivateAccess=true))
-    FYStoredRuntimeWeaponInformation m_activeWeaponStoredInformation;
+    UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
+    FYInventoryItem m_selectedToolItem;
     
-    UPROPERTY(BlueprintReadWrite, EditAnywhere, ReplicatedUsing=OnRep_StoredMods, meta=(AllowPrivateAccess=true))
-    FYStoredModData m_weaponModsData;
+    UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
+    FYInventoryItem m_selectedConsumableItem;
+
+    UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
+    FVector m_shootingDirection;
     
     UPROPERTY(BlueprintAssignable, BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
     FOnActiveWeaponChanged OnActiveWeaponChanged;
@@ -98,14 +110,17 @@ public:
     UPROPERTY(BlueprintAssignable, BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
     FOnDeviceSelected BP_OnSelectedConsumableChanged;
     
-    UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
-    FYInventoryItem m_selectedToolItem;
+    UPROPERTY(BlueprintAssignable, BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
+    FOnFinishedTargeting OnFinishedTargetingDelegate;
     
-    UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
-    FYInventoryItem m_selectedConsumableItem;
+    UPROPERTY(BlueprintAssignable, BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
+    FOnSwitchWeaponMode BP_OnSwitchWeaponMode;
     
-    UPROPERTY(BlueprintReadWrite, EditAnywhere, ReplicatedUsing=OnRep_WeaponTransportHandle, meta=(AllowPrivateAccess=true))
-    int32 m_weaponTransportHandle;
+    UPROPERTY(BlueprintAssignable, BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
+    FOnReticleToggleChangedSignature OnReticleToggleChangedEvent;
+
+    UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
+    FHitResult m_aimingAtHitResult;
     
     UPROPERTY(BlueprintReadWrite, EditAnywhere, Instanced, meta=(AllowPrivateAccess=true))
     UYPlayerCharacterStateComponent* m_characterStateComponent;
@@ -128,34 +143,7 @@ public:
     UPROPERTY(BlueprintReadWrite, EditAnywhere, Instanced, meta=(AllowPrivateAccess=true))
     UYControllerInventoryAbilityComponent* m_controllerAbilityComponent;
     
-    UPROPERTY(BlueprintAssignable, BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
-    FOnFinishedTargeting OnFinishedTargetingDelegate;
-    
-    UPROPERTY(BlueprintAssignable, BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
-    FOnSwitchWeaponMode BP_OnSwitchWeaponMode;
-    
-    UPROPERTY(BlueprintAssignable, BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
-    FOnReticleToggleChangedSignature OnReticleToggleChangedEvent;
-    
-    UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
-    FVector m_shootingDirection;
-    
-    UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
-    FHitResult m_aimingAtHitResult;
-    
 private:
-    UPROPERTY(BlueprintReadWrite, EditAnywhere, Instanced, meta=(AllowPrivateAccess=true))
-    UYGameplayAttributesComponent* m_characterGPAComponent;
-    
-    UPROPERTY(BlueprintReadWrite, EditAnywhere, Instanced, meta=(AllowPrivateAccess=true))
-    UYPerkComponent* m_characterPerkComponent;
-    
-    UPROPERTY(BlueprintReadWrite, EditAnywhere, Instanced, meta=(AllowPrivateAccess=true))
-    UYScriptableWeaponComponent* m_ScriptableComponent;
-    
-    UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
-    bool m_locallyWeaponTransportHandleUsed;
-    
     UPROPERTY(BlueprintReadWrite, Config, EditAnywhere, meta=(AllowPrivateAccess=true))
     float m_maxFovConsideredAsScoped;
     
@@ -167,6 +155,18 @@ private:
     
     UPROPERTY(BlueprintReadWrite, Config, EditAnywhere, meta=(AllowPrivateAccess=true))
     float m_minTimeIntervalAllowedBetweenFireRPCS;
+    
+    UPROPERTY(BlueprintReadWrite, EditAnywhere, Instanced, meta=(AllowPrivateAccess=true))
+    UYGameplayAttributesComponent* m_characterGPAComponent;
+    
+    UPROPERTY(BlueprintReadWrite, EditAnywhere, Instanced, meta=(AllowPrivateAccess=true))
+    UYPerkComponent* m_characterPerkComponent;
+    
+    UPROPERTY(BlueprintReadWrite, EditAnywhere, Instanced, meta=(AllowPrivateAccess=true))
+    UYScriptableWeaponComponent* m_ScriptableComponent;
+    
+    UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
+    bool m_locallyWeaponTransportHandleUsed;
     
 public:
     UYWeaponPlayerControllerRuntimeComponent(const FObjectInitializer& ObjectInitializer);
@@ -194,10 +194,10 @@ public:
     
 protected:
     UFUNCTION(BlueprintCallable, Reliable, Server, WithValidation)
-    void ServerFireWeaponWithSeed(const TArray<FYFireTransportEntry>& fireWeaponTransportEntry, int32 RandomSeed, float timestampClient, const TArray<FVector_NetQuantize>& Vectors);
+    void ServerFireWeaponWithSeed(const TArray<FYFireTransportEntry>& fireWeaponTransportEntry, int32 randomSeed, float timestampClient, float timestampServer, const TArray<FVector_NetQuantize>& Vectors);
     
     UFUNCTION(BlueprintCallable, Reliable, Server, WithValidation)
-    void ServerFireHitscanResults(const TArray<FYHitscanTraceEntry>& traceEntries, float timestampClient);
+    void ServerFireHitscanResults(const TArray<FYHitscanTraceEntry>& traceEntries, float timestampClient, float timestampServer);
     
 public:
     UFUNCTION(BlueprintCallable)
@@ -210,6 +210,11 @@ protected:
     UFUNCTION(BlueprintCallable)
     void OnTransportComponentDestroyed(int32 transportHandle);
     
+private:
+    UFUNCTION(BlueprintCallable)
+    void OnTakeDamageCallback(const FYDealtDamageData& dealtDamageData);
+
+protected:
     UFUNCTION(BlueprintCallable)
     void OnStopTargeting(bool wasInterupted);
     
@@ -253,6 +258,9 @@ protected:
     void OnStartFiring();
     
     UFUNCTION(BlueprintCallable)
+    void OnSprintingStateActivated();
+
+    UFUNCTION(BlueprintCallable)
     void OnRep_WeaponTransportHandle();
     
     UFUNCTION(BlueprintCallable)
@@ -264,7 +272,7 @@ public:
     
 protected:
     UFUNCTION(BlueprintCallable)
-    void OnRep_ActiveDataTableRow();
+    void OnRep_ActiveWeaponStoredInformation();
     
 public:
     UFUNCTION(BlueprintCallable)
@@ -278,7 +286,7 @@ protected:
     void OnPawnAssigned(APawn* oldPawn, APawn* newPawn);
     
     UFUNCTION(BlueprintCallable)
-    void OnMeleeAttackFinished();
+    void OnMeleeAttackFinished() const;
     
 public:
     UFUNCTION(BlueprintCallable)
@@ -313,8 +321,14 @@ protected:
     void MeleeReFire();
     
 public:
+    UFUNCTION(BlueprintCallable, BlueprintPure)
+    bool IsTargeting() const;
+
     UFUNCTION(BlueprintCallable)
-    static bool IsFullscreenCrosshairEnabled(AActor* actorContext);
+    void InspectReleaseInput();
+
+    UFUNCTION(BlueprintCallable)
+    void InspectInput();
     
     UFUNCTION(BlueprintCallable, BlueprintPure)
     bool HideGunWhileFinishedTargeting() const;
@@ -326,25 +340,25 @@ public:
     float GetCurrentWeaponUseCooldown() const;
     
     UFUNCTION(BlueprintCallable, BlueprintPure)
-    FTransform GetCurrentShootAtSocketLocationAndRotationPreTransform();
+    FTransform GetCurrentShootAtSocketLocationAndRotationPreTransform() const;
     
     UFUNCTION(BlueprintCallable, BlueprintPure)
-    FTransform GetCurrentShootAtSocketLocationAndRotation();
+    FTransform GetCurrentShootAtSocketLocationAndRotation() const;
     
     UFUNCTION(BlueprintCallable, BlueprintPure)
-    FVector GetCurrentPawnCameraLocation();
+    FVector GetCurrentPawnCameraLocation() const;
     
     UFUNCTION(BlueprintCallable, BlueprintPure)
-    FVector GetCurrentPawnCameraForwardVector();
+    FVector GetCurrentPawnCameraForwardVector() const;
     
     UFUNCTION(BlueprintCallable, BlueprintPure)
-    FDataTableRowHandle GetCurrentActiveWeaponRowHandle();
+    FDataTableRowHandle GetCurrentActiveWeaponRowHandle() const;
     
     UFUNCTION(BlueprintCallable, BlueprintPure)
-    FVector GetCameraLocationPreTransform();
+    FVector GetCameraLocationPreTransform() const;
     
     UFUNCTION(BlueprintCallable, BlueprintPure)
-    FVector GetCameraLocation();
+    FVector GetCameraLocation() const;
     
     UFUNCTION(BlueprintCallable, BlueprintPure)
     FVector2D GetAppliedRecoilForWeaponAnimation() const;
@@ -353,7 +367,7 @@ public:
     FVector2D GetAppliedRecoilForUI() const;
     
     UFUNCTION(BlueprintCallable, BlueprintPure)
-    FDataTableRowHandle GetAISenseOnFired();
+    FDataTableRowHandle GetAISenseOnFired() const;
     
     UFUNCTION(BlueprintCallable)
     void FireWeaponReleaseInput();
@@ -382,7 +396,7 @@ protected:
     void FillUpSingleBullet();
     
     UFUNCTION(BlueprintCallable)
-    void FillUpAmmo();
+    void FillUpAmmo(const FString& callerContext);
     
 public:
     UFUNCTION(BlueprintCallable, BlueprintPure)

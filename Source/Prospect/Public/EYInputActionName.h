@@ -60,6 +60,7 @@ enum class EYInputActionName : uint8 {
     TurnController,
     UiNextSortingMethod,
     MuteIncomingVOIP,
+    WeaponInspect,
     None,
 };
 

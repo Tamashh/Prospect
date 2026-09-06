@@ -12,7 +12,6 @@ FYRadialDamageDealingData::FYRadialDamageDealingData() {
     this->m_healthDamage = 0.0f;
     this->m_damageCauser = NULL;
     this->m_damageInstigator = NULL;
-    this->m_stabilityDamage = 0.0f;
     this->m_radialDamageImpulse = 0.0f;
     this->m_stabilityDamageForDeathRagdoll = 0.0f;
     this->m_ignorePawnsForDamagePreventionChecks = false;

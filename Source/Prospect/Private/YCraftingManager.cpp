@@ -6,9 +6,6 @@ UYCraftingManager::UYCraftingManager() {
 void UYCraftingManager::OnWeaponShopItemPurchasedResponse(const EYPurchaseWeaponShopItemStatus Status) const {
 }
 
-void UYCraftingManager::OnRemoved(const FString& UserId, const TArray<FString>& ids) const {
-}
-
 void UYCraftingManager::OnItemsUpdated(const FString& UserId, const TArray<FYCustomItemInfo>& infos) const {
 }
 

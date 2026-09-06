@@ -9,6 +9,7 @@ UYHelmetGoggleComponent::UYHelmetGoggleComponent(const FObjectInitializer& Objec
     this->m_isVisionModificationEnabled = false;
     this->m_totalVisionTransitionTime = 2.0f;
     this->m_visionTransitionStaminaDrainPoint = 1.0f;
+    this->m_hunterVisionReactivationCooldown = 0.5f;
     this->m_visionModificationTransitionTime = 0.0f;
 }
 

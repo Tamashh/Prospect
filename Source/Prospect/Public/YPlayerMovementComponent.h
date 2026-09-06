@@ -3,6 +3,7 @@
 #include "GameFramework/CharacterMovementComponent.h"
 #include "Engine/DataTable.h"
 #include "EYStateChangeType.h"
+#include "EYPlayerStateBlueprint.h"
 #include "OnClientMovementCorrectionOccuredDelegate.h"
 #include "OnJumpOffDelegate.h"
 #include "OnMovementImpactDelegate.h"
@@ -15,7 +16,6 @@
 #include "YPlayerMovementComponent.generated.h"
 
 class AYVehicle;
-class UPrimitiveComponent;
 class UYEncumbranceEffects_DataAsset;
 class UYGameplayAttributesComponent;
 class UYLeaningComponent;
@@ -27,12 +27,6 @@ class UYPlayerMovementComponent : public UCharacterMovementComponent {
     GENERATED_BODY()
 public:
     UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
-    FYMovementStateData m_slideData;
-    
-    UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
-    FYMovementStateData m_vehicleBoostData;
-    
-    UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
     uint8 bWantsToProne: 1;
     
     UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
@@ -40,6 +34,24 @@ public:
     
     UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
     float MaxWalkSpeedProne;
+    
+    UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
+    bool m_isJumping;
+    
+    UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
+    bool m_disregardStateChanges;
+
+    UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
+    float JumpZVelocityInAirJump;
+
+    UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
+    float JumpXYMaxInAirJump;
+
+    UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
+    float JumpToADSDelay;
+
+    UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
+    bool m_fastMovementDebug;
     
     UPROPERTY(BlueprintAssignable, BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
     FOnMovementImpact OnMovementImpact;
@@ -62,8 +74,11 @@ public:
     UPROPERTY(BlueprintAssignable, BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
     FOnTeleportDetected OnTeleportDetectedEvent;
     
-    UPROPERTY(BlueprintReadWrite, EditAnywhere, Instanced, Transient, meta=(AllowPrivateAccess=true))
-    UYPlayerCharacterStateComponent* m_ownerStateComponent;
+    UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
+    FYMovementStateData m_slideData;
+
+    UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
+    FYMovementStateData m_vehicleBoostData;
     
     UPROPERTY(BlueprintReadWrite, EditAnywhere, Instanced, Transient, meta=(AllowPrivateAccess=true))
     UYLedgeClimbingComponent* m_ledgeClimbingComponent;
@@ -71,25 +86,13 @@ public:
     UPROPERTY(BlueprintReadWrite, EditAnywhere, Instanced, Transient, meta=(AllowPrivateAccess=true))
     UYLeaningComponent* m_leaningComponent;
     
+private:
+    UPROPERTY(BlueprintReadWrite, EditAnywhere, Instanced, Transient, meta=(AllowPrivateAccess=true))
+    UYPlayerCharacterStateComponent* m_ownerStateComponent;
+    
     UPROPERTY(BlueprintReadWrite, EditAnywhere, Instanced, Transient, meta=(AllowPrivateAccess=true))
     UYGameplayAttributesComponent* m_ownerGameplayAttributeComponent;
     
-    UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
-    bool m_disregardStateChanges;
-    
-    UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
-    float JumpZVelocityInAirJump;
-    
-    UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
-    float JumpXYMaxInAirJump;
-    
-    UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
-    float JumpToADSDelay;
-    
-    UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
-    bool m_fastMovementDebug;
-    
-private:
     UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
     UYEncumbranceEffects_DataAsset* m_encumbranceEffectDataAsset;
     
@@ -99,6 +102,7 @@ public:
     UFUNCTION(BlueprintCallable)
     void ResetCheatTeleportDetection();
     
+private:
     UFUNCTION(BlueprintCallable)
     void OnVehicleDataChanged(FDataTableRowHandle newRowHandle);
     
@@ -127,13 +131,17 @@ public:
     void OnBoostStateChanged(bool newState);
     
     UFUNCTION(BlueprintCallable)
+    void OnAnyStatesDeactivated(const TArray<EYPlayerStateBlueprint>& states);
+
+    UFUNCTION(BlueprintCallable)
     void OnAnyStateChanged(EYStateChangeType stateChange);
     
+    UFUNCTION(BlueprintCallable)
+    void OnAnyStateActivated(EYPlayerStateBlueprint State);
+
+public:
     UFUNCTION(BlueprintCallable, BlueprintPure)
     bool IsSprinting() const;
-    
-    UFUNCTION(BlueprintCallable)
-    void BP_SetBase(UPrimitiveComponent* NewBase);
     
 };
 

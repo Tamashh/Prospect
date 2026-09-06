@@ -36,7 +36,7 @@ public:
     UYItemActorSpawner(const FObjectInitializer& ObjectInitializer);
 
     UFUNCTION(BlueprintCallable)
-    static AYPickupActor* SpawnSpecificLootItem(UObject* contextObject, const FDataTableRowHandle& pickupItem, const FTransform& SpawnTransform, int32 Amount, bool adjustSpawnLocationToGround, FVector spawnVelocity, EYLootSourceType lootType, UObject* instigatorObject, float spawnNavmeshRadiusMin, float spawnNavmeshRadiusMax);
+    static AYPickupActor* SpawnSpecificLootItem(UObject* contextObject, const FDataTableRowHandle& pickupItem, const FTransform& SpawnTransform, const TArray<FDataTableRowHandle>& modsToAdd, int32 Amount, bool adjustSpawnLocationToGround, FVector spawnVelocity, bool forceProjectileMovement, bool forceDisableInitialScaling, EYLootSourceType lootType, UObject* instigatorObject, float spawnNavmeshRadiusMin, float spawnNavmeshRadiusMax);
     
     UFUNCTION(BlueprintCallable)
     bool SpawnMoneyDrop(const FDataTableRowHandle& pickupItem, ACharacter* Instigator, const FTransform& SpawnTransform, int32 Amount, EYLootSourceType Type, FVector Velocity);

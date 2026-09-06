@@ -11,12 +11,12 @@
 #include "YKilledEventAnalyticsComponent.h"
 #include "YMatchDifficultyComponent.h"
 #include "YMissionGameManagerComponent.h"
+#include "YPersistentActorSpawnerComponent.h"
 #include "YPlayerController_Match.h"
 #include "YPlayerKillsTrackingComponent.h"
 #include "YPlayerState.h"
 #include "YPlayerStatsDeathsComponent.h"
 #include "YServerResourceManagerComponent.h"
-#include "YSpawnManagerComponent.h"
 #include "YSpectatorPawn.h"
 #include "YWeaponAnalyticsComponent.h"
 
@@ -37,7 +37,7 @@ AYGameMode_Match::AYGameMode_Match(const FObjectInitializer& ObjectInitializer) 
     this->m_playerKillsTrackingComponent = CreateDefaultSubobject<UYPlayerKillsTrackingComponent>(TEXT("KillsTrackingComponent"));
     this->m_serverResourceManager = CreateDefaultSubobject<UYServerResourceManagerComponent>(TEXT("ServerResourceManagerComponent"));
     this->m_missionManagerComponent = CreateDefaultSubobject<UYMissionGameManagerComponent>(TEXT("MissionGameManagerComponent"));
-    this->m_spawnManager = CreateDefaultSubobject<UYSpawnManagerComponent>(TEXT("YSpawnManager"));
+    this->m_persistentActorSpawner = CreateDefaultSubobject<UYPersistentActorSpawnerComponent>(TEXT("YPersistentActorSpawner"));
     this->m_hideableBushManager = CreateDefaultSubobject<UYHideableBushManagerComponent>(TEXT("YHideableBushManagerComponent"));
     this->m_gameSquadsComponent = CreateDefaultSubobject<UYGameSquadsComponent>(TEXT("YGameSquadsComponent"));
     this->m_gamePlayerStartComponent = CreateDefaultSubobject<UYGamePlayerStartComponent>(TEXT("YGamePlayerStartComponent"));

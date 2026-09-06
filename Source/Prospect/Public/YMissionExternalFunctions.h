@@ -2,6 +2,7 @@
 #include "CoreMinimal.h"
 #include "UObject/Object.h"
 #include "Engine/DataTable.h"
+#include "GameplayTagContainer.h"
 #include "OnGenericEventDelegateFinishedDelegate.h"
 #include "YInventoryItem.h"
 #include "YMissionDataTableRow.h"
@@ -21,6 +22,9 @@ public:
     UYMissionExternalFunctions();
 
     UFUNCTION(BlueprintCallable)
+    static void RequestSetActiveOnboardingMission(UObject* objectContext, const FDataTableRowHandle& missionRow, const int32 progress);
+
+    UFUNCTION(BlueprintCallable)
     static bool IsOnOnboardingByMissionRowAndStepIndex(AActor* actorContext, const FDataTableRowHandle& missionRow, int32 stepIndex);
     
     UFUNCTION(BlueprintCallable)
@@ -38,6 +42,12 @@ public:
     UFUNCTION(BlueprintCallable, BlueprintPure)
     static bool GetPlayerActiveMissionBaseRowHandles(AActor* actorContext, TArray<FDataTableRowHandle>& outData);
     
+    UFUNCTION(BlueprintCallable)
+    static bool GetCurrentOnboardingStepData(AActor* actorContext, FYMissionRuntimeData& outStepData);
+
+    UFUNCTION(BlueprintCallable)
+    static FGameplayTagContainer GetCurrentOnboardingStepCustomRules(AActor* actorContext);
+
     UFUNCTION(BlueprintCallable)
     static bool GetBlockedFeatureDataTableRowByScene(AActor* actorContext, FName sceneId, FYOnboardingBlockedFeaturesDataTableRow& Data);
     

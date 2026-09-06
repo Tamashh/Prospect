@@ -2,6 +2,7 @@
 #include "CoreMinimal.h"
 #include "Components/ActorComponent.h"
 #include "YCameraTransitionData.h"
+#include "EYPlayerStateBlueprint.h"
 #include "YCharacterCameraTransitionComponent.generated.h"
 
 class AActor;
@@ -17,8 +18,14 @@ public:
     
 protected:
     UFUNCTION(BlueprintCallable)
+    void OnAnyStatesDeactivated(const TArray<EYPlayerStateBlueprint>& states);
+
+    UFUNCTION(BlueprintCallable)
     void OnAnyStateChanged();
     
+    UFUNCTION(BlueprintCallable)
+    void OnAnyStateActivated(EYPlayerStateBlueprint State);
+
 public:
     UFUNCTION(BlueprintCallable)
     static bool IsTransitionActive(AActor* Owner);

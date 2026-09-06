@@ -1,6 +1,7 @@
 #pragma once
 #include "CoreMinimal.h"
 #include "UObject/Object.h"
+#include "Math/RandomStream.h"
 #include "Engine/DataTable.h"
 #include "YInventoryItem.h"
 #include "YLootItemAmount.h"
@@ -19,10 +20,19 @@ public:
     static FString ToCompactDebugString(const FYInventoryItem& inventoryItem);
     
     UFUNCTION(BlueprintCallable)
-    static TArray<FYLootItemAmount> RollForLootItemsFromListRoll(UObject* contextObject, FDataTableRowHandle rowHandle);
+    static void SetDefaultLootItemMembers(FYInventoryItem& inventoryItem, const TArray<FDataTableRowHandle>& modsToAdd);
     
     UFUNCTION(BlueprintCallable)
-    static TArray<FYLootItemAmount> RollForLootItems(UObject* contextObject, FDataTableRowHandle rowHandle, int32 numRolls);
+    static FYLootItemAmount RollOnLootRow(const UObject* contextObject, FDataTableRowHandle rowHandle, const FRandomStream& RandomStream);
+
+    UFUNCTION(BlueprintCallable)
+    static TArray<FYLootItemAmount> RollForLootItemsFromListRoll(const UObject* contextObject, FDataTableRowHandle rowHandle);
+
+    UFUNCTION(BlueprintCallable)
+    static TArray<FYLootItemAmount> RollForLootItems(const UObject* contextObject, FDataTableRowHandle rowHandle, int32 numRolls, int32 randomSeed);
+
+    UFUNCTION(BlueprintCallable)
+    static FYLootItemAmount GetHighestValueItem(TArray<FYLootItemAmount> itemsToCompare);
     
 };
 

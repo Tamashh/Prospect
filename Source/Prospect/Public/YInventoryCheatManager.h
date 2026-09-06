@@ -14,6 +14,9 @@ public:
     void YDebugUpdatePlayerSet() const;
     
     UFUNCTION(BlueprintCallable, Exec)
+    void YDebugSaveLoadoutPreset(int32 loadoutPresetId);
+
+    UFUNCTION(BlueprintCallable, Exec)
     void YDebugRequestPlayerSet() const;
     
     UFUNCTION(BlueprintCallable, Exec)

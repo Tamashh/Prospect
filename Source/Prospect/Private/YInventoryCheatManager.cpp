@@ -6,6 +6,9 @@ UYInventoryCheatManager::UYInventoryCheatManager() {
 void UYInventoryCheatManager::YDebugUpdatePlayerSet() const {
 }
 
+void UYInventoryCheatManager::YDebugSaveLoadoutPreset(int32 loadoutPresetId) {
+}
+
 void UYInventoryCheatManager::YDebugRequestPlayerSet() const {
 }
 

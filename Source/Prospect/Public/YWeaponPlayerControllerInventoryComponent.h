@@ -80,9 +80,6 @@ public:
     void SwitchWeapon(int32 Index);
     
     UFUNCTION(BlueprintCallable)
-    void SwitchToMeleeWeapon();
-    
-    UFUNCTION(BlueprintCallable)
     void SwitchPreviousWeapon();
     
     UFUNCTION(BlueprintCallable)
@@ -124,11 +121,11 @@ protected:
     
 public:
     UFUNCTION(BlueprintCallable)
-    bool IsWeaponOwned(FDataTableRowHandle rowHandle, const FString& CustomId);
+    bool IsWeaponOwned(const FDataTableRowHandle& rowHandle, const FString& CustomId);
     
 protected:
     UFUNCTION(BlueprintCallable, BlueprintPure)
-    bool IsWeaponActive(FDataTableRowHandle rowHandle) const;
+    bool IsWeaponActive(const FDataTableRowHandle& rowHandle) const;
     
 public:
     UFUNCTION(BlueprintCallable)
@@ -138,7 +135,7 @@ public:
     FName GetActiveWeapon() const;
     
     UFUNCTION(BlueprintCallable)
-    void DebugAddMod(FDataTableRowHandle newMod);
+    void DebugAddMod(const FDataTableRowHandle& newMod);
     
 };
 

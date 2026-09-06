@@ -1,8 +1,10 @@
 #include "YPlayerController.h"
 #include "YCheatManager.h"
+#include "YControllerGeneratorsComponent.h"
 #include "YControllerInventoryBackendComponent.h"
 #include "YControllerInventoryInsuranceComponent.h"
 #include "YControllerInventoryRuntimeComponent.h"
+#include "YControllerLoadoutPresetComponent.h"
 #include "YControllerNewsComponent.h"
 #include "YControllerPlayerMapMarkerComponent.h"
 #include "YControllerPlayerQuarterComponent.h"
@@ -13,7 +15,6 @@
 #include "YControllerVictimCompensationComponent.h"
 #include "YPlayerFactionsProgressionComponent.h"
 #include "YPlayerInitializationComponent.h"
-#include "YPlayerPassiveGeneratorsComponent.h"
 #include "YVivoxComponent.h"
 
 AYPlayerController::AYPlayerController(const FObjectInitializer& ObjectInitializer) : Super(ObjectInitializer) {
@@ -29,7 +30,7 @@ AYPlayerController::AYPlayerController(const FObjectInitializer& ObjectInitializ
     this->m_inputControllerComponent = CreateDefaultSubobject<UYControllerStateInputComponent>(TEXT("PlayerInputStateComponent"));
     this->m_questComponent = CreateDefaultSubobject<UYControllerQuestComponent>(TEXT("ControllerQuestComponent"));
     this->m_playerQuarterComponent = CreateDefaultSubobject<UYControllerPlayerQuarterComponent>(TEXT("playerQuarterComponent"));
-    this->m_playerPassiveGeneratorsComponent = CreateDefaultSubobject<UYPlayerPassiveGeneratorsComponent>(TEXT("PlayerPassiveGeneratorsComponent"));
+    this->m_controllerGeneratorsComponent = CreateDefaultSubobject<UYControllerGeneratorsComponent>(TEXT("ControllerGeneratorsComponent"));
     this->m_controllerInventoryRuntimeComponent = CreateDefaultSubobject<UYControllerInventoryRuntimeComponent>(TEXT("ControllerInventoryRuntimeComponent"));
     this->m_controllerInventoryInsuranceComponent = CreateDefaultSubobject<UYControllerInventoryInsuranceComponent>(TEXT("ControllerInventoryInsuranceComponent"));
     this->m_controllerVictimCompensationComponent = CreateDefaultSubobject<UYControllerVictimCompensationComponent>(TEXT("ControllerVictimCompensationComponent"));
@@ -45,6 +46,7 @@ AYPlayerController::AYPlayerController(const FObjectInitializer& ObjectInitializ
     this->m_bugreporterOpen = false;
     this->m_travelComponent = CreateDefaultSubobject<UYControllerTravelComponent>(TEXT("TravlelComponent"));
     this->m_newsComponent = CreateDefaultSubobject<UYControllerNewsComponent>(TEXT("NewsComponent"));
+    this->m_loadoutPresetComponent = CreateDefaultSubobject<UYControllerLoadoutPresetComponent>(TEXT("loadoutPresetComponent"));
     this->m_cheatSimComponent = NULL;
     this->m_shouldStashBeHighlightedForDragAndDrop = true;
     this->m_shouldBackpackBeHighlightedForDragAndDrop = true;
@@ -57,7 +59,7 @@ void AYPlayerController::SyncServerTime() {
 void AYPlayerController::SimulateInputAxis(FKey Key, float Delta, float DeltaTime, int32 NumSamples, bool bGamepad) {
 }
 
-void AYPlayerController::SimulateInput(EYInputActionName inputActionName, TEnumAsByte<EInputEvent> inputType) {
+void AYPlayerController::SimulateInput(EYInputActionName inputActionName, TEnumAsByte<EInputEvent> inputType) const {
 }
 
 void AYPlayerController::ServerSendConsoleCommand_Implementation(const FString& Command) {
@@ -87,7 +89,7 @@ bool AYPlayerController::ServerCrashMe_Validate(float Timer, const FString& Msg)
 void AYPlayerController::ServerCommand(const FString& Command) {
 }
 
-void AYPlayerController::SendAnnouncement(const FString& announcement) {
+void AYPlayerController::SendAnnouncement(const FString& announcement) const {
 }
 
 void AYPlayerController::SC(const FString& Command) {
@@ -108,17 +110,17 @@ void AYPlayerController::OnFrontendCheatDetectionSettingsUpdated() {
 void AYPlayerController::OnFeatureTogglesUpdated(const FYFeatureToggles& featureToggles) {
 }
 
-void AYPlayerController::OnBugreportDataSaved() {
+void AYPlayerController::OnBugreportDataSaved() const {
 }
 
 void AYPlayerController::OnBugreportDataRequest() {
 }
 
-AYPlayerCharacter* AYPlayerController::GetYPlayerCharacter() {
+AYPlayerCharacter* AYPlayerController::GetYPlayerCharacter() const {
     return NULL;
 }
 
-AYHUD* AYPlayerController::GetYHUD() {
+AYHUD* AYPlayerController::GetYHUD() const {
     return NULL;
 }
 
@@ -126,7 +128,7 @@ bool AYPlayerController::GetIsChatEnabled() {
     return false;
 }
 
-void AYPlayerController::FlushPressedActionKeys(EYInputActionName inputAction) {
+void AYPlayerController::FlushPressedActionKeys(EYInputActionName inputAction) const {
 }
 
 void AYPlayerController::FlushAllPressedKeys() {

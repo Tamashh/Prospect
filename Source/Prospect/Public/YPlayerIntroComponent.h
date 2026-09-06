@@ -27,6 +27,11 @@ public:
     UPROPERTY(BlueprintAssignable, BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
     FOnIntroStarted BP_OnIntroStarted;
     
+protected:
+    UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
+    float m_serverIntroTimeoutDuration;
+
+public:
     UYPlayerIntroComponent(const FObjectInitializer& ObjectInitializer);
 
     UFUNCTION(BlueprintCallable)
@@ -39,6 +44,9 @@ protected:
     UFUNCTION(BlueprintCallable, Reliable, Server, WithValidation)
     void ServerAcknowledgeIntroFinished();
     
+    UFUNCTION(BlueprintCallable)
+    void OnServerTntroTimeout();
+
     UFUNCTION(BlueprintCallable)
     void OnIntroFinished();
     

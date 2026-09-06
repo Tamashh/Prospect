@@ -10,7 +10,7 @@ public:
     float m_radius;
     
     UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
-    int32 m_scorePerPlayerInRadius;
+    int32 m_score;
     
     PROSPECT_API FYPlayerStartScoreRule();
 };

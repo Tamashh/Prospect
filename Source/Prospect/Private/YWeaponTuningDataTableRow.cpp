@@ -69,7 +69,6 @@ FYWeaponTuningDataTableRow::FYWeaponTuningDataTableRow() {
     this->m_directDamageEnemyMultiplier = 0.0f;
     this->m_directDamageImpulse = 0.0f;
     this->m_stabilityDamageForDeathRagdoll = 0.0f;
-    this->m_stabilityDamage = 0.0f;
     this->m_radialDamage = 0.0f;
     this->m_radialDamagePlayerMultiplier = 0.0f;
     this->m_radialDamageEnemyMultiplier = 0.0f;

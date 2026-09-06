@@ -3,7 +3,6 @@
 FYAIAggroTuning::FYAIAggroTuning() {
     this->m_weightDistance = 0.0f;
     this->m_weightToken = 0.0f;
-    this->m_weightNotInDBNO = 0.0f;
     this->m_weightTypeBonus = 0.0f;
     this->m_weightDamageReceived = 0.0f;
     this->m_weightVisibility = 0.0f;

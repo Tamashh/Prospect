@@ -9,6 +9,9 @@ UYPlayerBIDataComponent::UYPlayerBIDataComponent(const FObjectInitializer& Objec
 void UYPlayerBIDataComponent::TrySendBIHook_MinimapOpen() {
 }
 
+void UYPlayerBIDataComponent::SetEscapingFlag(bool escaping) {
+}
+
 void UYPlayerBIDataComponent::ServerSendClientMapLoadingStats_Implementation(const TArray<FYClientMapLoadingStats>& clientMapLoadingStats) {
 }
 bool UYPlayerBIDataComponent::ServerSendClientMapLoadingStats_Validate(const TArray<FYClientMapLoadingStats>& clientMapLoadingStats) {

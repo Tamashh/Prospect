@@ -71,6 +71,9 @@ public:
     static bool IsRegionRepingAtMMFailureEnabled(const UObject* objCtx);
     
     UFUNCTION(BlueprintCallable, BlueprintPure)
+    static bool IsPinglimitationsInEditorEnabled();
+
+    UFUNCTION(BlueprintCallable, BlueprintPure)
     static bool IsPingingForSocialActorEnabled(const UObject* objCtx);
     
     UFUNCTION(BlueprintCallable, BlueprintPure)
@@ -89,6 +92,9 @@ public:
     static bool IsMissionChallengesRandomizationEnabled();
     
     UFUNCTION(BlueprintCallable, BlueprintPure)
+    static bool IsLoadoutPresetsEnabled(const UObject* objCtx);
+
+    UFUNCTION(BlueprintCallable, BlueprintPure)
     static bool IsLeaderboardDataUpdatingEnabled();
     
     UFUNCTION(BlueprintCallable, BlueprintPure)
@@ -100,6 +106,9 @@ public:
     UFUNCTION(BlueprintCallable, BlueprintPure)
     static bool IsForceThirdPersonEnabled();
     
+    UFUNCTION(BlueprintCallable, BlueprintPure)
+    static bool IsEvacV2Enabled(const UObject* objCtx);
+
     UFUNCTION(BlueprintCallable, BlueprintPure)
     static bool IsConnectingToVivoxInEditor();
     

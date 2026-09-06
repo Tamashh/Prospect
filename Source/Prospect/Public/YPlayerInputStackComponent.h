@@ -44,13 +44,13 @@ public:
     static bool RemoveHighestInputStack(UObject* objectContext);
     
     UFUNCTION(BlueprintCallable)
-    static bool RegisterNewStackContext(UObject* objectContext, EYInputUIStackType stackType, FYInputStackRuntimeContext StackContext);
+    static bool RegisterNewStackContext(UObject* objectContext, EYInputUIStackType stackType, const FYInputStackRuntimeContext& StackContext);
     
     UFUNCTION(BlueprintCallable, BlueprintPure)
-    static bool IsStackRowHighestActive(UObject* objectContext, FDataTableRowHandle rowHandle);
+    static bool IsStackRowHighestActive(UObject* objectContext, const FDataTableRowHandle& rowHandle);
     
     UFUNCTION(BlueprintCallable, BlueprintPure)
-    static bool IsStackRowActive(UObject* objectContext, FDataTableRowHandle rowHandle);
+    static bool IsStackRowActive(UObject* objectContext, const FDataTableRowHandle& rowHandle);
     
     UFUNCTION(BlueprintCallable, BlueprintPure)
     static bool IsStackInputActive(UObject* objectContext, EYInputUIStackType stackType);

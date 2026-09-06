@@ -3,6 +3,10 @@
 UYDeveloperSettingsFunction::UYDeveloperSettingsFunction() {
 }
 
+bool UYDeveloperSettingsFunction::ShouldRepeatCompletedDynamicOnboardingMissions() {
+    return false;
+}
+
 bool UYDeveloperSettingsFunction::IsBackgroundDropPodEnabled() {
     return false;
 }

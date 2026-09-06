@@ -1,6 +1,7 @@
 #pragma once
 #include "CoreMinimal.h"
 #include "EYCustomizationCategory.h"
+#include "EYCustomizationBodyType.h"
 #include "UObject/NoExportTypes.h"
 #include "Engine/DataTable.h"
 #include "YCharacterCustomizationActorActiveVisualizationEntry.generated.h"
@@ -14,6 +15,9 @@ public:
     UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
     FDataTableRowHandle m_rowHandle;
     
+    UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
+    EYCustomizationBodyType m_bodyType;
+
     UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
     int32 m_materialIndex;
     

@@ -15,6 +15,9 @@ void UYShopManager::OnGetStoreItemsResult(const FYAzureFunctionResult& azureResu
 void UYShopManager::OnFetchEntitlementsResponse(const FYAzureFunctionResult& azureResult) {
 }
 
+void UYShopManager::OnFeatureTogglesUpdated(const FYFeatureToggles& featureToggles) {
+}
+
 void UYShopManager::OnEntitlementsUpdated(const TArray<FName>& entitlements) {
 }
 

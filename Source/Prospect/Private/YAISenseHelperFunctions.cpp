@@ -3,23 +3,10 @@
 UYAISenseHelperFunctions::UYAISenseHelperFunctions() {
 }
 
-bool UYAISenseHelperFunctions::IsSensePrioritySmallerThan(const EYAISenseType& Left, const EYAISenseType& Right) {
-    return false;
-}
-
-bool UYAISenseHelperFunctions::IsSensePrioritySmallerOrEqualThan(const EYAISenseType& Left, const EYAISenseType& Right) {
-    return false;
-}
-
-bool UYAISenseHelperFunctions::IsSensePriorityGreaterThan(const EYAISenseType& Left, const EYAISenseType& Right) {
-    return false;
+void UYAISenseHelperFunctions::RemoveTargetFromAllAIs(AActor* actorToRemove) {
 }
 
 bool UYAISenseHelperFunctions::IsSensePriorityGreaterOrEqualThan(const EYAISenseType& Left, const EYAISenseType& Right) {
-    return false;
-}
-
-bool UYAISenseHelperFunctions::IsSensePriorityEqualTo(const EYAISenseType& Left, const EYAISenseType& Right) {
     return false;
 }
 

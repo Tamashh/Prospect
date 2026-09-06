@@ -15,14 +15,6 @@ UCLASS(Blueprintable, ClassGroup=Custom, meta=(BlueprintSpawnableComponent))
 class PROSPECT_API UYCharacterVehicleComponent : public UActorComponent {
     GENERATED_BODY()
 public:
-protected:
-    UPROPERTY(BlueprintReadWrite, EditAnywhere, ReplicatedUsing=OnRep_BoostStateChanged, meta=(AllowPrivateAccess=true))
-    bool m_boostStateReplicated;
-    
-public:
-    UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
-    bool m_boostStateActiveLocal;
-    
     UPROPERTY(BlueprintAssignable, BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
     FOnVehicleDataTableRowHandleChanged OnDataTableRowHandleChanged;
     
@@ -35,6 +27,14 @@ public:
     UPROPERTY(BlueprintReadWrite, EditAnywhere, ReplicatedUsing=OnRep_Vehicle, meta=(AllowPrivateAccess=true))
     AYVehicle* m_vehicle;
     
+    UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
+    bool m_boostStateActiveLocal;
+
+protected:
+    UPROPERTY(BlueprintReadWrite, EditAnywhere, ReplicatedUsing=OnRep_BoostStateChanged, meta=(AllowPrivateAccess=true))
+    bool m_boostStateReplicated;
+
+public:
     UYCharacterVehicleComponent(const FObjectInitializer& ObjectInitializer);
 
     virtual void GetLifetimeReplicatedProps(TArray<FLifetimeProperty>& OutLifetimeProps) const override;
@@ -56,7 +56,7 @@ protected:
     void OnMovementImpact(const FHitResult& Hit, const FVector& moveDelta);
     
     UFUNCTION(BlueprintCallable)
-    void OnMovementDataChanged(FYMovementModeDataChanged newData);
+    void OnMovementDataChanged(const FYMovementModeDataChanged& newData);
     
 };
 

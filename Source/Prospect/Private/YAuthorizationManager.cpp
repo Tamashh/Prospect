@@ -5,6 +5,9 @@ UYAuthorizationManager::UYAuthorizationManager() {
     this->m_playfabInstance = NULL;
 }
 
+void UYAuthorizationManager::StopTimerAndContinueLogin_DEVELOPMENT(const UObject* objectContext) {
+}
+
 void UYAuthorizationManager::OnSeasonWipeCheckResponse(const FYAzureFunctionResult& azureResult) {
 }
 

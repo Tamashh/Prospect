@@ -19,9 +19,6 @@ private:
     void OnWeaponShopItemPurchasedResponse(const EYPurchaseWeaponShopItemStatus Status) const;
     
     UFUNCTION(BlueprintCallable)
-    void OnRemoved(const FString& UserId, const TArray<FString>& ids) const;
-    
-    UFUNCTION(BlueprintCallable)
     void OnItemsUpdated(const FString& UserId, const TArray<FYCustomItemInfo>& infos) const;
     
     UFUNCTION(BlueprintCallable)

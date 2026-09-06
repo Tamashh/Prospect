@@ -7,9 +7,9 @@
 #include "GameplayTagAssetInterface.h"
 #include "GameplayTagContainer.h"
 #include "EYAIState.h"
-#include "OnAnimNotifyAttackSignatureDelegate.h"
-#include "OnMeleeAttackDelegate.h"
-#include "OnRangedAttackDelegate.h"
+#include "EYEnemyType.h"
+#include "OnResetRequestedDelegateDelegate.h"
+#include "YAIDebugRangedAttackInfo.h"
 #include "OnReceivedGameplayTagsDelegate.h"
 #include "YAIAudio.h"
 #include "YAITuningRow.h"
@@ -31,23 +31,17 @@ UCLASS(Blueprintable)
 class AYAICharacter : public AYCharacter, public IGenericTeamAgentInterface, public IGameplayTagAssetInterface {
     GENERATED_BODY()
 public:
-private:
-    UPROPERTY(BlueprintReadWrite, EditAnywhere, Transient, meta=(AllowPrivateAccess=true))
-    AYAIController* m_aiController;
+    UPROPERTY(BlueprintReadWrite, EditAnywhere, Replicated, Transient, meta=(AllowPrivateAccess=true))
+    FDataTableRowHandle m_variationsRowHandle;
     
-protected:
-    UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
-    FYAIAudio m_audioAIData;
-    
-    UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
-    FDataTableRowHandle m_audioTagRowHandle;
-    
-public:
     UPROPERTY(BlueprintReadWrite, EditAnywhere, Transient, ReplicatedUsing=OnRep_GameplayTags, meta=(AllowPrivateAccess=true))
     FGameplayTagContainer m_gameplayTags;
     
-    UPROPERTY(BlueprintReadWrite, EditAnywhere, Transient, ReplicatedUsing=OnRep_Variations, meta=(AllowPrivateAccess=true))
-    FDataTableRowHandle m_variationsRowHandle;
+    UPROPERTY(BlueprintReadWrite, EditAnywhere, Replicated, Transient, meta=(AllowPrivateAccess=true))
+    bool m_shouldLimitRootMotionVelocity;
+
+    UPROPERTY(BlueprintReadWrite, EditAnywhere, Replicated, Transient, meta=(AllowPrivateAccess=true))
+    FVector m_rootMotionVelocity;
     
     UPROPERTY(BlueprintReadWrite, EditAnywhere, Instanced, Transient, meta=(AllowPrivateAccess=true))
     UYAIDataComponent* m_aiDataComponent;
@@ -65,118 +59,116 @@ public:
     UYAIVariationsComponent* m_variationsComponent;
     
     UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
-    FText m_characterNameOverride;
-    
-    UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
-    FVector m_rangedAttackOriginLocationOffset;
-    
-    UPROPERTY(BlueprintReadWrite, EditAnywhere, Transient, meta=(AllowPrivateAccess=true))
-    bool m_isPlacedInWorld;
-    
-    UPROPERTY(BlueprintReadWrite, EditAnywhere, Replicated, Transient, meta=(AllowPrivateAccess=true))
-    bool m_shouldLimitRootMotionVelocity;
-    
-    UPROPERTY(BlueprintReadWrite, EditAnywhere, Replicated, Transient, meta=(AllowPrivateAccess=true))
-    FVector m_rootMotionVelocity;
-    
-    UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
     FDataTableRowHandle m_aiTuningDataHandle;
     
-    UPROPERTY(BlueprintAssignable, BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
-    FOnAnimNotifyAttackSignature BPOnAttackNotifyDelegate;
-    
-    UPROPERTY(BlueprintAssignable, BlueprintCallable, BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
-    FOnRangedAttack BP_OnRangeAttack;
+    UPROPERTY(BlueprintReadWrite, EditAnywhere, Transient, meta=(AllowPrivateAccess=true))
+    AYAIController* m_aiController;
     
     UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
-    FOnMeleeAttack OnMeleeAttack;
-    
-    UPROPERTY(BlueprintAssignable, BlueprintCallable, BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
-    FOnReceivedGameplayTags BP_OnReceivedGameplayTags;
+    FYAIAudio m_audioAIData;
     
     UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
-    FVector m_overrideTargetLocation;
+    FDataTableRowHandle m_audioTagRowHandle;
+    
+    UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
+    FVector m_forcedShootAtLocation;
     
     UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
     AYProjectile* m_attachedProjectile;
     
-    UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
-    bool m_allowedToReset;
+    UPROPERTY(BlueprintReadWrite, EditAnywhere, Transient, meta=(AllowPrivateAccess=true))
+    FYAIDebugRangedAttackInfo m_debugRangedAttackInfo;
+
+    UPROPERTY(BlueprintAssignable, BlueprintCallable, BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
+    FOnReceivedGameplayTags BP_OnReceivedGameplayTags;
+
+    UPROPERTY(BlueprintAssignable, BlueprintCallable, BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
+    FOnResetRequestedDelegate OnResetRequestedEvent;
     
     AYAICharacter(const FObjectInitializer& ObjectInitializer);
 
     virtual void GetLifetimeReplicatedProps(TArray<FLifetimeProperty>& OutLifetimeProps) const override;
 
+    UFUNCTION(BlueprintCallable, BlueprintPure=false)
+    void TriggerReset() const;
+
+    UFUNCTION(BlueprintCallable, BlueprintPure)
+    FString ToDebugString() const;
+
     UFUNCTION(BlueprintCallable)
     void SetViewRotationBone(FName BoneName, bool ignoreVertical);
-    
-    UFUNCTION(BlueprintCallable)
-    void SetVariations(const FDataTableRowHandle& variationRowHandle);
     
     UFUNCTION(BlueprintCallable)
     void SetMaxSpeed(const FString& Context, float movementSpeed);
     
     UFUNCTION(BlueprintCallable)
-    void ReportAISenseDamageEvent(const FYDealtDamageData& Data);
+    void SetMaxAcceleration(const FString& Context, float accelerationSpeed);
     
-    UFUNCTION(BlueprintCallable, BlueprintImplementableEvent)
-    void PlayMuzzle(FDataTableRowHandle rowHandle);
+    UFUNCTION(BlueprintCallable)
+    void ReportAISenseDamageEvent(const FYDealtDamageData& Data);
     
     UFUNCTION(BlueprintCallable)
     void OnYAIStateHasChanged(EYAIState oldState, EYAIState newState);
     
-private:
-    UFUNCTION(BlueprintCallable)
-    void OnRep_Variations();
-    
     UFUNCTION(BlueprintCallable)
     void OnRep_GameplayTags();
     
-public:
-    UFUNCTION(BlueprintCallable, BlueprintPure)
-    AYAIController* GetYAIController();
-    
-    UFUNCTION(BlueprintCallable, BlueprintPure)
-    FString GetSquadTypeName();
-    
-    UFUNCTION(BlueprintCallable, BlueprintPure)
-    AYAISquad* GetSquad();
-    
-    UFUNCTION(BlueprintCallable, BlueprintPure)
-    void GetGameplayTags(FGameplayTagContainer& characterTags);
-    
-    UFUNCTION(BlueprintCallable, BlueprintPure)
-    FString GetDebugAIInfo();
-    
-    UFUNCTION(BlueprintCallable, BlueprintPure)
-    AActor* GetCombatTarget();
-    
-    UFUNCTION(BlueprintCallable, BlueprintPure)
-    FString GetAIVariationName();
-    
-    UFUNCTION(BlueprintCallable, BlueprintPure)
-    void GetAITuningDataBP(FYAITuningRow& Data);
-    
-    UFUNCTION(BlueprintCallable, BlueprintPure)
-    EYAIState GetAIState();
-    
-    UFUNCTION(BlueprintCallable)
-    UYAIDataComponent* GetAIDataComponent();
-    
-    UFUNCTION(BlueprintCallable, BlueprintPure)
-    FString GetAICharacterType();
-    
-    UFUNCTION(BlueprintCallable, BlueprintPure)
-    FText GetAICharacterName();
-    
-    UFUNCTION(BlueprintCallable, BlueprintPure)
-    void GetAIAudioData(FYAIAudio& audioData);
-    
-    UFUNCTION(BlueprintCallable)
-    void ExecuteAttackAnimationNotify();
-    
     UFUNCTION(BlueprintCallable, BlueprintImplementableEvent)
-    void BP_ReceivedGameplayTags();
+    void OnReceivedGameplayTags();
+
+    UFUNCTION(BlueprintCallable, BlueprintImplementableEvent)
+    void OnPlayMuzzle(FDataTableRowHandle weaponTransportRowHandle);
+
+    UFUNCTION(BlueprintCallable, NetMulticast, Unreliable)
+    void MulticastPlayMuzzle(const FDataTableRowHandle& weaponTransportRowHandle);
+
+    UFUNCTION(BlueprintCallable, BlueprintPure)
+    AYAIController* GetYAIController() const;
+    
+    UFUNCTION(BlueprintCallable, BlueprintPure)
+    FString GetSquadTypeName() const;
+    
+    UFUNCTION(BlueprintCallable, BlueprintPure)
+    AYAISquad* GetSquad() const;
+    
+    UFUNCTION(BlueprintCallable, BlueprintPure)
+    void GetGameplayTags(FGameplayTagContainer& characterTags) const;
+    
+    UFUNCTION(BlueprintCallable, BlueprintPure)
+    FString GetEnemyTypeString() const;
+    
+    UFUNCTION(BlueprintCallable, BlueprintPure)
+    EYEnemyType GetEnemyType() const;
+    
+    UFUNCTION(BlueprintCallable, BlueprintPure)
+    FString GetDebugAIInfo() const;
+    
+    UFUNCTION(BlueprintCallable, BlueprintPure)
+    AActor* GetCombatTarget() const;
+    
+    UFUNCTION(BlueprintCallable, BlueprintPure)
+    FString GetAIVariationName() const;
+    
+    UFUNCTION(BlueprintCallable, BlueprintPure)
+    void GetAITuningDataBP(FYAITuningRow& Data) const;
+    
+    UFUNCTION(BlueprintCallable, BlueprintPure)
+    EYAIState GetAIState() const;
+    
+    UFUNCTION(BlueprintCallable, BlueprintPure)
+    FString GetAIEnemyTypeAsString() const;
+    
+    UFUNCTION(BlueprintCallable, BlueprintPure)
+    EYEnemyType GetAIEnemyType() const;
+    
+    UFUNCTION(BlueprintCallable)
+    UYAIDataComponent* GetAIDataComponent() const;
+    
+    UFUNCTION(BlueprintCallable, BlueprintPure)
+    FText GetAICharacterName() const;
+
+    UFUNCTION(BlueprintCallable, BlueprintPure)
+    void GetAIAudioData(FYAIAudio& audioData) const;
     
     UFUNCTION(BlueprintCallable)
     void AppendGameplayTags(const FGameplayTagContainer& newTags);

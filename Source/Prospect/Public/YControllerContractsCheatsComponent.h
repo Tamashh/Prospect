@@ -25,6 +25,9 @@ public:
     void ServerDebugGivePlayerContractRewards(const FString& UserId, const FString& contractId);
     
     UFUNCTION(BlueprintCallable, Server, Unreliable)
+    void ServerDebugActivateContractWithPredecessor(const FString& UserId, const FString& contractId);
+
+    UFUNCTION(BlueprintCallable, Server, Unreliable)
     void ServerDebugActivateContractByRowName(const FString& UserId, const FString& contractId);
     
     UFUNCTION(BlueprintCallable, BlueprintPure)
@@ -34,6 +37,9 @@ public:
     static UYControllerContractsCheatsComponent* FindContractsCheatComponent(AActor* actorContext);
     
 private:
+    UFUNCTION(BlueprintCallable)
+    void DebugOnPlayerRemovedAllCompletedContracts(const FString& UserId);
+
     UFUNCTION(BlueprintCallable)
     void DebugHandleActiveContractNewProgressReceived(const FString& UserId, const FString& activeContractId, const int32 objectiveIndex, const int32 newProgress);
     

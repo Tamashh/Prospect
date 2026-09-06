@@ -42,6 +42,9 @@ protected:
     UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
     int32 m_maxItemInstancesInContainer;
     
+    UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
+    int32 m_containerLootRollCount;
+
 public:
     AYLootContainer(const FObjectInitializer& ObjectInitializer);
 

@@ -1,11 +1,16 @@
 #pragma once
 #include "CoreMinimal.h"
 #include "DLSSLibrary.h"
+#include "UStreamlineReflexMode.h"
 #include "GameFramework/GameUserSettings.h"
 #include "EFSRUpscalingMode.h"
 #include "EYGfxQualityPreset.h"
+#include "EYDLSSMode.h"
+#include "EYScopeType.h"
+#include "EYSensitivityMode.h"
 #include "YUserSettings.generated.h"
 
+class AActor;
 class APlayerController;
 class AYPlayerController;
 class UYPlayerMutelist;
@@ -142,6 +147,9 @@ public:
     bool m_invertY;
     
     UPROPERTY(BlueprintReadWrite, Config, EditAnywhere, meta=(AllowPrivateAccess=true))
+    bool m_triedEnabledDlssg;
+
+    UPROPERTY(BlueprintReadWrite, Config, EditAnywhere, meta=(AllowPrivateAccess=true))
     bool m_isRotatingMinimapEnabled;
     
     UPROPERTY(BlueprintReadWrite, Config, EditAnywhere, meta=(AllowPrivateAccess=true))
@@ -181,6 +189,12 @@ public:
     bool m_showFpsCounter;
     
     UPROPERTY(BlueprintReadWrite, Config, EditAnywhere, meta=(AllowPrivateAccess=true))
+    float m_fpsLimitStation;
+
+    UPROPERTY(BlueprintReadWrite, Config, EditAnywhere, meta=(AllowPrivateAccess=true))
+    float m_fpsLimitMatch;
+
+    UPROPERTY(BlueprintReadWrite, Config, EditAnywhere, meta=(AllowPrivateAccess=true))
     bool m_enableGpuCrashDebugging;
     
     UPROPERTY(BlueprintReadWrite, Config, EditAnywhere, meta=(AllowPrivateAccess=true))
@@ -193,7 +207,25 @@ public:
     EYGfxQualityPreset m_gfxQuality;
     
     UPROPERTY(BlueprintReadWrite, Config, EditAnywhere, meta=(AllowPrivateAccess=true))
-    UDLSSMode m_dlssQualityMode;
+    bool m_nvidiaDlssEnabled;
+
+    UPROPERTY(BlueprintReadWrite, Config, EditAnywhere, meta=(AllowPrivateAccess=true))
+    EYDLSSMode m_dlssQualityMode;
+
+    UPROPERTY(BlueprintReadWrite, Config, EditAnywhere, meta=(AllowPrivateAccess=true))
+    bool m_dlssFrameGenerationEnabled;
+
+    UPROPERTY(BlueprintReadWrite, Config, EditAnywhere, meta=(AllowPrivateAccess=true))
+    float m_dlssSharpness;
+
+    UPROPERTY(BlueprintReadWrite, Config, EditAnywhere, meta=(AllowPrivateAccess=true))
+    UStreamlineReflexMode m_nvidiaReflexMode;
+
+    UPROPERTY(BlueprintReadWrite, Config, EditAnywhere, meta=(AllowPrivateAccess=true))
+    bool m_disableDlssCommandLine;
+
+    UPROPERTY(BlueprintReadWrite, Config, EditAnywhere, meta=(AllowPrivateAccess=true))
+    bool m_disableStreamlineCommandLine;
     
     UPROPERTY(BlueprintReadWrite, Config, EditAnywhere, meta=(AllowPrivateAccess=true))
     EFSRUpscalingMode m_fsrUpscalingMode;
@@ -207,6 +239,9 @@ public:
     UPROPERTY(BlueprintReadWrite, Config, EditAnywhere, meta=(AllowPrivateAccess=true))
     FString m_countryCode;
     
+    UPROPERTY(BlueprintReadWrite, Config, EditAnywhere, meta=(AllowPrivateAccess=true))
+    FString m_ipAddress;
+
     UPROPERTY(BlueprintReadWrite, Config, EditAnywhere, meta=(AllowPrivateAccess=true))
     bool m_voiceChatMuteInput;
     
@@ -303,8 +338,23 @@ public:
     void OnInputBindingsConflictsDetection(bool hasConflicts);
     
     UFUNCTION(BlueprintCallable, BlueprintPure)
+    bool IsRunningDX12() const;
+
+    UFUNCTION(BlueprintCallable, BlueprintPure)
+    bool HideDLSSGSettingOnUI() const;
+
+    UFUNCTION(BlueprintCallable, BlueprintPure)
     static UYUserSettings* GetYUserSettings();
     
+    UFUNCTION(BlueprintCallable, BlueprintPure)
+    UDLSSMode GetNvidiaDlssSuperResolutionModeInternally() const;
+
+    UFUNCTION(BlueprintCallable, BlueprintPure)
+    bool GetNvidiaDlssFrameGenerationEnabledInternally() const;
+
+    UFUNCTION(BlueprintCallable, BlueprintPure)
+    bool GetNvidiaDlssEnabledInternally() const;
+
     UFUNCTION(BlueprintCallable)
     float GetNormalizedFOVValue();
     
@@ -333,6 +383,9 @@ public:
     void ApplyShadowSettings();
     
     UFUNCTION(BlueprintCallable)
+    static void ApplySensitivity(AActor* playerControllerContext, EYSensitivityMode sensitivityMode, EYScopeType scopeType);
+
+    UFUNCTION(BlueprintCallable)
     void ApplyGamma();
     
     UFUNCTION(BlueprintCallable)
@@ -344,6 +397,9 @@ public:
     UFUNCTION(BlueprintCallable)
     void ApplyEffectsSettings();
     
+    UFUNCTION(BlueprintCallable)
+    void ApplyDLSSSettings();
+
     UFUNCTION(BlueprintCallable)
     void ApplyColorblindSettings(AYPlayerController* PlayerController);
     

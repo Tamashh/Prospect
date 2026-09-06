@@ -5,11 +5,10 @@
 UENUM(BlueprintType)
 enum class EYAggroUpdateState : uint8 {
     None,
-    DataPrepared,
-    InitialAggroCalculated,
-    TargetAggroMapSorted,
+    ReadyToUpdate,
+    BaseAggroCalculated,
     WeightedAggroCalculated,
-    CharacterAggroDataPrepared,
+    TargetInfosSorted,
     UpdateFinished,
 };
 

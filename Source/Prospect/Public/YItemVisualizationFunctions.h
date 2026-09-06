@@ -6,8 +6,6 @@
 #include "YItemMeshVisualizationOverride.h"
 #include "YItemVisualizationFunctions.generated.h"
 
-class UObject;
-
 UCLASS(Blueprintable)
 class UYItemVisualizationFunctions : public UBlueprintFunctionLibrary {
     GENERATED_BODY()
@@ -16,9 +14,6 @@ public:
 
     UFUNCTION(BlueprintCallable)
     static bool RetrieveVisualizationDataForItem(const FDataTableRowHandle& rowHandle, FYItemMeshVisualization& itemMeshVisualizationOut, FYItemMeshVisualizationOverride& itemMeshVisualizationOverrideOut);
-    
-    UFUNCTION(BlueprintCallable, BlueprintPure, meta=(WorldContext="WorldContext"))
-    static bool CreateRowHandle(const UObject* WorldContext, const FName& entityToVisualizeId, const FString& callerContext, FDataTableRowHandle& outRowHandle);
     
 };
 

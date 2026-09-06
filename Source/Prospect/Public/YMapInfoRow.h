@@ -24,6 +24,9 @@ public:
     bool m_isVisible;
     
     UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
+    bool m_isStationMap;
+
+    UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
     TSoftObjectPtr<UTexture2D> m_image;
     
     UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
@@ -35,6 +38,9 @@ public:
     UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
     EYMatchMapDifficulty m_difficulty;
     
+    UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
+    FText m_stormIntensity;
+
     UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
     TSoftObjectPtr<UMaterialInterface> m_hologramMaterial;
     
@@ -57,7 +63,10 @@ public:
     int32 m_maxScoreAllowed;
     
     UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
-    TArray<FYPlayerStartScoreRule> m_playerStartScoreRules;
+    TArray<FYPlayerStartScoreRule> m_playerStartScoreRules_Players;
+
+    UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
+    TArray<FYPlayerStartScoreRule> m_playerStartScoreRules_Howlers;
     
     PROSPECT_API FYMapInfoRow();
 };

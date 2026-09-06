@@ -24,6 +24,7 @@ FYPlayerTuningDataTableRow::FYPlayerTuningDataTableRow() {
     this->m_dotTresholdConsideredSprinting = 0.0f;
     this->m_doubleTapTimeMoveKeys = 0.0f;
     this->m_canStartSlidingFromFalling = false;
+    this->m_canJumpFromSliding = false;
     this->m_slideVelocityReduction = 0.0f;
     this->m_minSlideSpeed = 0.0f;
     this->m_maxSlideSpeed = 0.0f;
@@ -87,8 +88,10 @@ FYPlayerTuningDataTableRow::FYPlayerTuningDataTableRow() {
     this->m_cameraSprintDashFOV = 0.0f;
     this->m_cameraSlideFOV = 0.0f;
     this->m_cameraDefaultFOV = 0.0f;
-    this->m_backwardMovementSpeedReduction = 0.0f;
+    this->m_backwardMovementSpeedMultiplier = 0.0f;
     this->m_sideMovementSpeedMultiplier = 0.0f;
+    this->m_backwardMovementSpeedMultiplierStation = 0.0f;
+    this->m_sideMovementSpeedMultiplierStation = 0.0f;
     this->m_cameraInterpolationTargetingReturnFOVSpeed = 0.0f;
     this->m_cameraInterpolationSprintingReturnFOVSpeed = 0.0f;
     this->m_cameraInterpolationSprintDashReturnFOVSpeed = 0.0f;

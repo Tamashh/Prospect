@@ -7,5 +7,6 @@ enum class EYNavMeshType : uint8 {
     Normal,
     Medium,
     Large,
+    Flying,
 };
 

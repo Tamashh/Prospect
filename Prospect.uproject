@@ -251,6 +251,10 @@
 			"Enabled": true
 		},
 		{
+			"Name": "HoudiniEngine",
+			"Enabled": true
+		},
+		{
 			"Name": "WebBrowserWidget",
 			"Enabled": true
 		},
@@ -440,6 +444,14 @@
 		},
 		{
 			"Name": "ModelingToolsEditorMode",
+			"Enabled": true
+		},
+		{
+			"Name": "FullBodyIK",
+			"Enabled": true
+		},
+		{
+			"Name": "Streamline",
 			"Enabled": true
 		},
 		{

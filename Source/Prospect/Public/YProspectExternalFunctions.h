@@ -1,7 +1,7 @@
 #pragma once
 #include "CoreMinimal.h"
 #include "EYMatchmakeGameModeType.h"
-#include "EYModificationSlotType.h"
+#include "Math/Color.h"
 #include "UObject/NoExportTypes.h"
 #include "UObject/NoExportTypes.h"
 #include "UObject/NoExportTypes.h"
@@ -59,9 +59,6 @@ public:
     UFUNCTION(BlueprintCallable)
     static bool ShouldShowSubtitles();
     
-    UFUNCTION(BlueprintCallable, meta=(WorldContext="WorldContextObject"))
-    static bool ShouldIgnoreDeathForPlacement(UObject* WorldContextObject);
-    
     UFUNCTION(BlueprintCallable)
     static void SetNetAddressable(UActorComponent* ActorComponent);
     
@@ -69,19 +66,22 @@ public:
     static void SetCurrentReplayTimeToSeconds(APlayerController* PlayerController, int32 Seconds);
     
     UFUNCTION(BlueprintCallable)
-    static void SetCurrentReplayPlayRate(APlayerController* PlayerController, float PlayRate);
-    
-    UFUNCTION(BlueprintCallable)
     static void SetComponentCanEverAffectNavigation(UActorComponent* relevantComponent, bool newState);
     
     UFUNCTION(BlueprintCallable, meta=(WorldContext="WorldContextObject"))
     static void RemoveDebugStringViewport(UObject* WorldContextObject, int32 Handle);
     
+    UFUNCTION(BlueprintCallable, meta=(WorldContext="WorldContextObject"))
+    static void RemoveAllDebugStringsFromViewport(UObject* WorldContextObject);
+
     UFUNCTION(BlueprintCallable)
     static void PrintLogError(const FString& LogString);
     
-    UFUNCTION(BlueprintCallable)
-    static void LogMessageWithBPAndNativeStackVerySlow(const FString& logMessageString, int32 stackLength);
+    UFUNCTION(BlueprintCallable, meta=(WorldContext="WorldContextObject"))
+    static void LogCylinder(UObject* WorldContextObject, const FVector& startPoint, const FVector& endpoint, float Radius, const FString& Text, FLinearColor objectColor, FName logCategory, bool bAddToMessageLog);
+
+    UFUNCTION(BlueprintCallable, meta=(WorldContext="WorldContextObject"))
+    static void LogCone(UObject* WorldContextObject, const FVector& originPoint, const FVector& coneDirection, float coneLength, float ConeAngle, const FString& Text, FLinearColor objectColor, FName logCategory, bool bAddToMessageLog);
     
     UFUNCTION(BlueprintCallable)
     static void LoadAssetsSync(const TArray<FSoftObjectPath>& assetPathsToLoad, TArray<UObject*>& outObjectsLoaded);
@@ -92,6 +92,9 @@ public:
     UFUNCTION(BlueprintCallable, BlueprintPure)
     static bool IsWorldServer(const UObject* objectContext);
     
+    UFUNCTION(BlueprintCallable, BlueprintPure)
+    static bool IsValidEMailAddress(const FString& Email);
+
     UFUNCTION(BlueprintCallable, BlueprintPure)
     static bool isUsingNullRHI();
     
@@ -122,6 +125,12 @@ public:
     UFUNCTION(BlueprintCallable, meta=(WorldContext="WorldContextObject"))
     static bool IsRankedMode(UObject* WorldContextObject);
     
+    UFUNCTION(BlueprintCallable, BlueprintPure)
+    static bool IsPointInCylinder(const FVector& pointToTest, const FVector& StartPosition, const FVector& EndPosition, const float& Radius);
+
+    UFUNCTION(BlueprintCallable, BlueprintPure)
+    static bool IsPointInCone(const FVector& pointToTest, const FVector& conePosition, const FVector& coneDirection, const float& coneRadius, const float& ConeAngle);
+
     UFUNCTION(BlueprintCallable)
     static bool IsPlayerInAir(AActor* actorContext);
     
@@ -130,9 +139,6 @@ public:
     
     UFUNCTION(BlueprintCallable, BlueprintPure)
     static bool IsInCinematicMode(UObject* objectContext);
-    
-    UFUNCTION(BlueprintCallable, meta=(WorldContext="WorldContextObject"))
-    static bool IsGameModeType(UObject* WorldContextObject, EYMatchmakeGameModeType gameModeType);
     
     UFUNCTION(BlueprintCallable)
     static bool IsGameInstanceExistingInWorld(const UObject* objectContext);
@@ -165,16 +171,13 @@ public:
     static bool HasTrophy(AActor* actorContext);
     
     UFUNCTION(BlueprintCallable)
-    static bool HasRedTrophy(AActor* actorContext);
-    
-    UFUNCTION(BlueprintCallable)
-    static bool HasGreenTrophy(AActor* actorContext);
-    
-    UFUNCTION(BlueprintCallable)
     static bool HasEscaped(AActor* actorContext);
     
-    UFUNCTION(BlueprintCallable)
-    static int32 GetSlateLayoutCachingValue();
+    UFUNCTION(BlueprintCallable, meta=(WorldContext="WorldContext"))
+    static TArray<AYPlayerCharacter*> GetPlayersWithinDistance(UObject* WorldContext, FVector Location, float Min, float Max);
+
+    UFUNCTION(BlueprintCallable, meta=(WorldContext="WorldContext"))
+    static void GetPlayerCharactersInRadius(UObject* WorldContext, FVector Location, float Radius, TArray<AYPlayerCharacter*>& outPlayerCharacters);
     
     UFUNCTION(BlueprintCallable)
     static float GetPawnHalfHeight(const APawn* relevantPawn);
@@ -195,13 +198,10 @@ public:
     static float GetGCBudget(UObject* WorldContext);
     
     UFUNCTION(BlueprintCallable, meta=(WorldContext="WorldContextObject"))
-    static bool GetGameModeName(UObject* WorldContextObject, const FString& Context, FString& outGameModeName);
-    
-    UFUNCTION(BlueprintCallable, meta=(WorldContext="WorldContextObject"))
     static FString GetFocusedWidget(UObject* WorldContextObject, int32 UserIndex);
     
-    UFUNCTION(BlueprintCallable)
-    static int32 GetCurrentReplayTotalTimeInSeconds(APlayerController* PlayerController);
+    UFUNCTION(BlueprintCallable, meta=(WorldContext="WorldContext"))
+    static float GetDistanceToForLocalPlayer(UObject* WorldContext, FVector Location);
     
     UFUNCTION(BlueprintCallable)
     static int32 GetCurrentReplayCurrentTimeInSeconds(APlayerController* PlayerController);
@@ -209,6 +209,9 @@ public:
     UFUNCTION(BlueprintCallable, BlueprintPure, meta=(WorldContext="WorldContext"))
     static int32 GetCurrentPlayerCount(const UObject* WorldContext);
     
+    UFUNCTION(BlueprintCallable, BlueprintPure, meta=(WorldContext="WorldContext"))
+    static int32 GetCurrentActivePlayerCount(const UObject* WorldContext);
+
     UFUNCTION(BlueprintCallable)
     static bool GetComponentCanEverAffectNavigation(UActorComponent* relevantComponent);
     
@@ -218,9 +221,15 @@ public:
     UFUNCTION(BlueprintCallable)
     static bool GetCauseOfDeathData(AActor* actorContext, FYDealtDamageData& deathData);
     
+    UFUNCTION(BlueprintCallable, meta=(WorldContext="WorldContext"))
+    static void GetAllPlayerCharacters(UObject* WorldContext, TArray<AYPlayerCharacter*>& outPlayerCharacters);
+
     UFUNCTION(BlueprintCallable, BlueprintPure, meta=(WorldContext="WorldContext"))
     static int32 GetAICharacterCount(const UObject* WorldContext);
     
+    UFUNCTION(BlueprintCallable)
+    static void ForceNullptrCrashBlueprintCallable();
+
     UFUNCTION(BlueprintCallable)
     static AYWorldSettings* FindYWorldSettings(UObject* contextObject, const FString& contextString);
     
@@ -262,9 +271,6 @@ public:
     
     UFUNCTION(BlueprintCallable)
     static AYPlayerState* FindPlayerStateFromActorAndOwner(AActor* actorContext);
-    
-    UFUNCTION(BlueprintCallable)
-    static APlayerState* FindPlayerStateByPlayerName(AActor* actorContext, const FString& playerName);
     
     UFUNCTION(BlueprintCallable)
     static APlayerState* FindPlayerStateBase(AActor* actorContext);
@@ -324,9 +330,6 @@ public:
     static void FindAllRelevantPlayerControllers(UObject* WorldContext, TArray<APlayerController*>& outControllers);
     
     UFUNCTION(BlueprintCallable)
-    static void FindAllModsForModType(UObject* objectContext, EYModificationSlotType modType, TArray<FName>& OutNames);
-    
-    UFUNCTION(BlueprintCallable)
     static FGameplayTagContainer FindAllGameplayTagChildren(const FGameplayTag& parentTag);
     
     UFUNCTION(BlueprintCallable, meta=(WorldContext="WorldContextObject"))
@@ -337,9 +340,6 @@ public:
     
     UFUNCTION(BlueprintCallable)
     static bool ConvertStringToFDateTime(const FString& inDateTime, FDateTime& outDateTime, const FString& contextString);
-    
-    UFUNCTION(BlueprintCallable)
-    static FText ConvertGamemodeTypeEnumToFText(UObject* worldCtxObj, EYMatchmakeGameModeType gameModeType);
     
     UFUNCTION(BlueprintCallable, meta=(WorldContext="WorldContextObject"))
     static void ClearFade(UObject* WorldContextObject);

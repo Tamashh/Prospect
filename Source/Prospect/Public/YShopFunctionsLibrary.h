@@ -24,7 +24,7 @@ public:
     static bool StartPlatformOfferCheckout(UObject* objectContext, const FString& bundleRowId);
     
     UFUNCTION(BlueprintCallable)
-    static bool RedeemPlayfabCoupon(UObject* objectContext, const FString& CouponCode, const FString& CatalogVersion);
+    static bool RedeemCoupon(UObject* objectContext, const FString& CouponCode);
     
     UFUNCTION(BlueprintCallable)
     static bool PurchasePlayfabShopItem(UObject* objectContext, const FYPlayfabStoreItemEntry& storeItem);

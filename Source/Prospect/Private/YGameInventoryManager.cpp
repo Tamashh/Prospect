@@ -9,4 +9,7 @@ void UYGameInventoryManager::OnPlayerCurrenciesUpdated(const TArray<FYUserCurren
 void UYGameInventoryManager::OnPlayerCurrenciesAdded(const TArray<FYUserCurrenciesItems>& currencies, const FString& callerContext) {
 }
 
+void UYGameInventoryManager::OnClaimGenericClaimableDataResponse(const TArray<FYCustomItemInfo>& Items, const TArray<FYCurrencyItem>& currencyBalances, const FString& callerContext) {
+}
+
 

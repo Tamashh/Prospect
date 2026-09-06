@@ -1,6 +1,7 @@
 #include "YImpactInitializationData.h"
 
 FYImpactInitializationData::FYImpactInitializationData() {
+    this->m_projectileRadius = 0.0f;
     this->m_owner = NULL;
     this->m_instigator = NULL;
     this->m_damageReduction = 0.0f;

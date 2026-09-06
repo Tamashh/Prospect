@@ -11,6 +11,12 @@ public:
     UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
     TArray<FYOnboardingRewardEntry> m_rewards;
     
+    UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
+    bool m_clearAllOnboardingRewardsBeforeRegranting;
+
+    UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
+    bool m_isWelcomePackageVariant;
+
     PROSPECT_API FYOnboardingRewardRow();
 };
 

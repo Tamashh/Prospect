@@ -30,13 +30,13 @@ bool UYDamageRecapComponent::ServerRequestCondensedDamageInfo_Validate() {
 void UYDamageRecapComponent::OnTakeDamage(const FYDealtDamageData& Data) {
 }
 
-void UYDamageRecapComponent::OnRep_LastDamageDealtEvent() {
+void UYDamageRecapComponent::OnRep_LastDamageDealtEvent() const {
 }
 
-void UYDamageRecapComponent::OnRep_DebugUncondensedDamageInfo() {
+void UYDamageRecapComponent::OnRep_DebugUncondensedDamageInfo() const {
 }
 
-void UYDamageRecapComponent::OnRep_CondensedDamageInfo() {
+void UYDamageRecapComponent::OnRep_CondensedDamageInfo() const {
 }
 
 void UYDamageRecapComponent::OnPawnSet(APawn* oldPawn, APawn* newPawn) {

@@ -1,9 +1,12 @@
 #pragma once
 #include "CoreMinimal.h"
 #include "UObject/Object.h"
-#include "YAiProjectileTransportData.h"
-#include "YAiRangedAttackData.h"
+#include "Engine/DataTable.h"
+#include "YAIProjectileTransportData.h"
+#include "YAIRangedAttackData.h"
 #include "YAIRangedAttackFunctions.generated.h"
+
+class AActor;
 
 UCLASS(Blueprintable)
 class UYAIRangedAttackFunctions : public UObject {
@@ -12,10 +15,16 @@ public:
     UYAIRangedAttackFunctions();
 
     UFUNCTION(BlueprintCallable)
-    static bool DetermineProjectileTransportDataFromRangedAttackData(const FYAiRangedAttackData& rangedAttackData, FYAiProjectileTransportData& outProjectileData, bool useMovementPrediction, bool shouldRefreshBoneTransforms);
+    static void SpawnProjectileActorAttachedToSocket(AActor* Owner, FName SocketName, FDataTableRowHandle rangedAttackDefinitionRowHandle);
+
+    UFUNCTION(BlueprintCallable, BlueprintPure)
+    static bool IsProjectileDataValid(const FYAIProjectileTransportData& projectileData);
+
+    UFUNCTION(BlueprintCallable)
+    static FYAIProjectileTransportData DetermineProjectileAttackData(const FYAIRangedAttackData& attackData);
     
     UFUNCTION(BlueprintCallable)
-    static bool CanHitTargetWithProjectileFromRangedAttackData(const FYAiRangedAttackData& rangedAttackData, bool shouldRefreshBoneTransforms);
+    static bool CanUseRangedAttack(const FYAIRangedAttackData& attackData);
     
 };
 

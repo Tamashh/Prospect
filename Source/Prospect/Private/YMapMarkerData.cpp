@@ -35,7 +35,6 @@ void UYMapMarkerData::GetLifetimeReplicatedProps(TArray<FLifetimeProperty>& OutL
     Super::GetLifetimeReplicatedProps(OutLifetimeProps);
     
     DOREPLIFETIME(UYMapMarkerData, m_owner);
-    DOREPLIFETIME(UYMapMarkerData, m_transponderModes);
     DOREPLIFETIME(UYMapMarkerData, m_forcedVisibilityPlayers);
     DOREPLIFETIME(UYMapMarkerData, m_markerType);
     DOREPLIFETIME(UYMapMarkerData, m_markerState);

@@ -2,8 +2,10 @@
 #include "CoreMinimal.h"
 #include "Engine/DataTable.h"
 #include "EYContractObjectiveType.h"
+#include "EYFaction.h"
 #include "YActionBaseConditions.h"
 #include "YActionKillConditions.h"
+#include "YLootContainerCondition.h"
 #include "YContractObjective.generated.h"
 
 class UTexture2D;
@@ -36,6 +38,15 @@ public:
     UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
     FDataTableRowHandle m_itemToOwnRowHandle;
     
+    UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
+    EYFaction m_FactionLevelCondition;
+
+    UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
+    FDataTableRowHandle m_missionFinishedCondition;
+
+    UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
+    FYLootContainerCondition m_lootContainerCondition;
+
     UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
     FYActionBaseConditions m_objectiveConditions;
     

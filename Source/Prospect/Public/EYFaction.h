@@ -8,6 +8,7 @@ enum class EYFaction : uint8 {
     ICA,
     Korolev,
     Osiris,
+    Badum,
     MAX,
 };
 

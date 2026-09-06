@@ -61,9 +61,9 @@ FYDataTablePropertyData::FYDataTablePropertyData() {
     this->m_scopeTuningDataTable = NULL;
     this->m_notificationDataTable = NULL;
     this->m_matchmakingDataTable = NULL;
+    this->m_newsDataTable = NULL;
     this->m_factionsDataTable = NULL;
     this->m_contractsDataTable = NULL;
-    this->m_shopOffersDataTable = NULL;
     this->m_playFabStoresDataTable = NULL;
     this->m_seasonTuningDataTable = NULL;
     this->m_seasonsDataTable = NULL;
@@ -100,7 +100,6 @@ FYDataTablePropertyData::FYDataTablePropertyData() {
     this->m_materialGameDataTable = NULL;
     this->m_metaSettingsDataTable = NULL;
     this->m_modSettingsDataTable = NULL;
-    this->m_promotionsDataTable = NULL;
     this->m_globalVanityDefaultsDataTable = NULL;
     this->m_bannerDataTable = NULL;
     this->m_deathEmoteDataTable = NULL;
@@ -133,14 +132,20 @@ FYDataTablePropertyData::FYDataTablePropertyData() {
     this->m_lootTuningDataTable = NULL;
     this->m_rarityDataTable = NULL;
     this->m_characterCustomizationItemsDataTable = NULL;
+    this->m_characterVanityHeadBaseSuitConstructionPiecesDataTable = NULL;
     this->m_explicitCustomizationDataTable = NULL;
     this->m_characterCustomizationSetDataTable = NULL;
     this->m_effortDataTable = NULL;
     this->m_insuranceDataTable = NULL;
     this->m_playerReportOptionsDataTable = NULL;
+    this->m_freeLoadoutTuningDataTable = NULL;
+    this->m_freeLoadoutsDataTable = NULL;
     this->m_bundlesDataTable = NULL;
     this->m_bundlesPlatformDataTable = NULL;
+    this->m_bundlesPublishingDataTable = NULL;
+    this->m_bundlesSeasonPassDataTable = NULL;
     this->m_veteranPacksDataTable = NULL;
+    this->m_uiAudioDataTable = NULL;
     this->m_weaponAssetLoadingTimestamp = 0.0f;
 }
 

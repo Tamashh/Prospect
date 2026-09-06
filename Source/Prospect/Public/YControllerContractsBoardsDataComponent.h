@@ -40,18 +40,18 @@ public:
     UFUNCTION(BlueprintCallable, BlueprintPure=false)
     void TryRequestActiveObjectivesAndBoardsData(bool forceRequest) const;
     
-    UFUNCTION(BlueprintCallable)
-    void RequestClaimCompletedActiveContract(const FString& contractId);
+    UFUNCTION(BlueprintCallable, BlueprintPure=false)
+    void RequestClaimCompletedActiveContract(const FString& contractId) const;
     
-    UFUNCTION(BlueprintCallable)
-    void RequestActivateContract(const FString& contractId);
+    UFUNCTION(BlueprintCallable, BlueprintPure=false)
+    void RequestActivateContract(const FString& contractId) const;
     
 private:
     UFUNCTION(BlueprintCallable)
     void RefreshTimerDisplay();
     
     UFUNCTION(BlueprintCallable)
-    void OnBoardRefreshTimerElapsed();
+    void OnBoardRefreshTimerElapsed() const;
     
 public:
     UFUNCTION(BlueprintCallable, BlueprintPure)
@@ -79,7 +79,7 @@ public:
     
 private:
     UFUNCTION(BlueprintCallable)
-    void EnableContractInteractionAgain(const FString& callerUserId, bool isFail, bool anActiveContractHasBeenCancelled, FYContractStatusChangeInfo Info);
+    void EnableContractInteractionAgain(const FString& callerUserId, bool isFail, bool anActiveContractHasBeenCancelled, const FYContractStatusChangeInfo& Info);
     
 };
 

@@ -5,7 +5,6 @@
 #include "YRadialDamageEntry.generated.h"
 
 class AActor;
-class UYDamageComponent;
 
 USTRUCT(BlueprintType)
 struct FYRadialDamageEntry {
@@ -13,9 +12,6 @@ struct FYRadialDamageEntry {
 public:
     UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
     AActor* m_hitActor;
-    
-    UPROPERTY(BlueprintReadWrite, EditAnywhere, Instanced, meta=(AllowPrivateAccess=true))
-    UYDamageComponent* m_hitDamageComponent;
     
     UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
     FVector m_hitLocation;

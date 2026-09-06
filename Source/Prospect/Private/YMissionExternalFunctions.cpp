@@ -3,6 +3,9 @@
 UYMissionExternalFunctions::UYMissionExternalFunctions() {
 }
 
+void UYMissionExternalFunctions::RequestSetActiveOnboardingMission(UObject* objectContext, const FDataTableRowHandle& missionRow, const int32 progress) {
+}
+
 bool UYMissionExternalFunctions::IsOnOnboardingByMissionRowAndStepIndex(AActor* actorContext, const FDataTableRowHandle& missionRow, int32 stepIndex) {
     return false;
 }
@@ -24,6 +27,14 @@ bool UYMissionExternalFunctions::GetPlayerActiveMissionInstance(AActor* actorCon
 
 bool UYMissionExternalFunctions::GetPlayerActiveMissionBaseRowHandles(AActor* actorContext, TArray<FDataTableRowHandle>& outData) {
     return false;
+}
+
+bool UYMissionExternalFunctions::GetCurrentOnboardingStepData(AActor* actorContext, FYMissionRuntimeData& outStepData) {
+    return false;
+}
+
+FGameplayTagContainer UYMissionExternalFunctions::GetCurrentOnboardingStepCustomRules(AActor* actorContext) {
+    return FGameplayTagContainer{};
 }
 
 bool UYMissionExternalFunctions::GetBlockedFeatureDataTableRowByScene(AActor* actorContext, FName sceneId, FYOnboardingBlockedFeaturesDataTableRow& Data) {

@@ -6,12 +6,8 @@ UENUM(BlueprintType)
 enum class EYGameplayAttribute : uint8 {
     None,
     AbilityCooldownTime,
-    AIAmountAttackPhaseCount,
-    AIAmountOfShots,
     AIDetectionHearingModifier,
     AIDetectionSightModifier,
-    AIRefireTime,
-    AIStabilityDamageReceived,
     BagSizeIncrease,
     BombardmentDamage,
     CarriedWeightReduction,
@@ -21,6 +17,7 @@ enum class EYGameplayAttribute : uint8 {
     CarriedWeightReductionFauna,
     CarriedWeightReductionMinerals,
     CarriedWeightReductionShield,
+    CarriedWeightReductionBag,
     CarriedWeightReductionWeapons,
     CurrentHealth,
     CurrentShield,
@@ -38,6 +35,7 @@ enum class EYGameplayAttribute : uint8 {
     DamageScalingReceivedFromStorm,
     DamageSelf,
     DamageSelfInvincibility,
+    ExplosiveDamageScaling,
     FallingDamageReduction,
     FallingVelocityReduction,
     GravityScaling,
@@ -145,7 +143,9 @@ enum class EYGameplayAttribute : uint8 {
     StaminaConsumptionRate,
     StaminaConsumptionScaling,
     StaminaRegenerationDelayScaling,
+    OverallSenseMultiplier,
     MaxStamina,
+    MaxAcceleration,
     GPA_HAS_BEEN_REMOVED,
 };
 

@@ -1,6 +1,8 @@
 #pragma once
 #include "CoreMinimal.h"
 #include "YUserCurrenciesItems.h"
+#include "YCurrencyItem.h"
+#include "YCustomItemInfo.h"
 #include "UObject/Object.h"
 #include "YOnLocalPlayerUpdatedCurrenciesSignatureDelegate.h"
 #include "YGameInventoryManager.generated.h"
@@ -24,5 +26,9 @@ protected:
     UFUNCTION(BlueprintCallable)
     void OnPlayerCurrenciesAdded(const TArray<FYUserCurrenciesItems>& currencies, const FString& callerContext);
     
+private:
+    UFUNCTION(BlueprintCallable)
+    void OnClaimGenericClaimableDataResponse(const TArray<FYCustomItemInfo>& Items, const TArray<FYCurrencyItem>& currencyBalances, const FString& callerContext);
+
 };
 

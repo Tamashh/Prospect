@@ -4,12 +4,12 @@
 UYCharacterDeathComponent::UYCharacterDeathComponent(const FObjectInitializer& ObjectInitializer) : Super(ObjectInitializer) {
     this->m_isExplodingOnDeath = false;
     this->m_minRagdollDuration = 10.0f;
-    this->m_maxRagdollDuration = 30.0f;
     this->m_minDotRagdollCleanUp = 0.0f;
     this->m_minDistanceRagdollCleanUp = 1500.0f;
     this->m_freezeRagdollDelay = 5.0f;
     this->m_intervalRetryRagdollCleanUp = 1.0f;
     this->m_destroyOwnerDelay = 2.0f;
+    this->m_isInActiveRagdoll = false;
 }
 
 void UYCharacterDeathComponent::TryRagdollCleanUp() {
@@ -27,7 +27,7 @@ void UYCharacterDeathComponent::OnDeath_Authority(UYHealthComponent* healthCompo
 void UYCharacterDeathComponent::FreezeRagdoll() {
 }
 
-void UYCharacterDeathComponent::DestroyOwner() {
+void UYCharacterDeathComponent::DestroyOwner() const {
 }
 
 void UYCharacterDeathComponent::BlendToRagdollAndTriggerDestroy() {

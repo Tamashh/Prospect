@@ -11,9 +11,6 @@ UAudioComponent* UYExternalAudioFunctions::SpawnSoundAttachedFromDatatable(UScen
     return NULL;
 }
 
-void UYExternalAudioFunctions::SetSoundMixClassOverrideYager(const UObject* contextHelperObject, USoundMix* InSoundMixModifier, USoundClass* InSoundClass, float Volume, float Pitch, float FadeInTime, bool bApplyToChildren) {
-}
-
 void UYExternalAudioFunctions::PushSoundMixModifier(UObject* WorldContextObject, USoundMix* soundMixModifier, const FString& Context) {
 }
 

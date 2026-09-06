@@ -81,9 +81,6 @@ public:
     UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
     TArray<UObject*> m_loadedWeaponAssets;
     
-    UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
-    bool m_blockEquip;
-    
 protected:
     UPROPERTY(BlueprintReadWrite, EditAnywhere, Instanced, meta=(AllowPrivateAccess=true))
     TArray<UYSkeletalMeshComponentFOV*> m_fovAffectedMeshFOVComponents;
@@ -133,11 +130,14 @@ public:
     
 protected:
     UFUNCTION(BlueprintCallable)
-    void OnUpdateWeaponSpinup();
+    void OnUpdateWeaponSpinup() const;
     
     UFUNCTION(BlueprintCallable)
     void OnStopWeaponSpinup(bool wasInterupted);
     
+    UFUNCTION(BlueprintCallable)
+    void OnStopWeaponInspectState(bool wasInterrupted);
+
     UFUNCTION(BlueprintCallable)
     void OnStopTargeting(bool wasInterrupted);
     
@@ -145,7 +145,7 @@ protected:
     void OnStopReloadAnimation(bool wasInterrupted);
     
     UFUNCTION(BlueprintCallable)
-    void OnStopPlayPlayerAnimationPending(UAnimInstance* characterInstance, UAnimMontage* MontageToPlay);
+    void OnStopPlayPlayerAnimationPending(UAnimInstance* characterInstance, UAnimMontage* MontageToPlay) const;
     
     UFUNCTION(BlueprintCallable)
     void OnStopPlayAnimationPending(EYWeaponPlayState weaponState);
@@ -193,7 +193,7 @@ protected:
     void OnSetTargetingWeaponFOV();
     
     UFUNCTION(BlueprintCallable)
-    void OnRep_VisualState();
+    void OnRep_VisualState() const;
     
     UFUNCTION(BlueprintCallable)
     void OnRep_ActiveDataTableRow();
@@ -232,7 +232,7 @@ protected:
     
 public:
     UFUNCTION(BlueprintCallable)
-    bool IsAmmoEmpty();
+    bool IsAmmoEmpty() const;
     
 protected:
     UFUNCTION(BlueprintCallable)
@@ -240,34 +240,34 @@ protected:
     
 public:
     UFUNCTION(BlueprintCallable, BlueprintPure)
-    EYDeviceCategory GetEquippedWeaponDeviceCategory();
+    EYDeviceCategory GetEquippedWeaponDeviceCategory() const;
     
     UFUNCTION(BlueprintCallable, BlueprintPure)
-    EYEquipedAnimationWeaponType GetEquipedWeaponType();
+    EYEquipedAnimationWeaponType GetEquipedWeaponType() const;
     
     UFUNCTION(BlueprintCallable, BlueprintPure)
-    EYEquipedWeaponPoseType GetEquipedWeaponPose();
+    EYEquipedWeaponPoseType GetEquipedWeaponPose() const;
     
     UFUNCTION(BlueprintCallable, BlueprintPure)
-    FYCharacterAnimThirdPerson GetCharacterAnimThirdPerson();
+    FYCharacterAnimThirdPerson GetCharacterAnimThirdPerson() const;
     
     UFUNCTION(BlueprintCallable, BlueprintPure)
-    FYCharacterAnimFirstPerson GetCharacterAnimFirstPerson();
+    FYCharacterAnimFirstPerson GetCharacterAnimFirstPerson() const;
     
     UFUNCTION(BlueprintCallable, BlueprintPure)
-    TSubclassOf<UAnimInstance> GetCharacterAnimationAnimLayer();
+    TSubclassOf<UAnimInstance> GetCharacterAnimationAnimLayer() const;
     
     UFUNCTION(BlueprintCallable, BlueprintPure)
-    float FindUntargetingTime();
+    float FindUntargetingTime() const;
     
     UFUNCTION(BlueprintCallable, BlueprintPure)
-    float FindTargetingTime();
+    float FindTargetingTime() const;
     
     UFUNCTION(BlueprintCallable, BlueprintPure)
-    float FindRetargetingMinimumNormalizedTime();
+    float FindRetargetingMinimumNormalizedTime() const;
     
-    UFUNCTION(BlueprintCallable)
-    void FindAllRelevantMeshes(TArray<UMeshComponent*>& OutComponents, bool includeBaseCharacter);
+    UFUNCTION(BlueprintCallable, BlueprintPure)
+    void FindAllRelevantMeshes(TArray<UMeshComponent*>& OutComponents, bool includeBaseCharacter) const;
     
     UFUNCTION(BlueprintCallable)
     void EarlyExitAnimNotify(UAnimInstance* AnimInstance, UAnimMontage* AnimMontage);
@@ -275,10 +275,6 @@ public:
 protected:
     UFUNCTION(BlueprintCallable, Client, Reliable)
     void ClientForceUpdateEquippedWeapon();
-    
-public:
-    UFUNCTION(BlueprintCallable)
-    void BlockEquipState();
     
 };
 

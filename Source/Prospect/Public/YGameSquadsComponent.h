@@ -13,7 +13,7 @@ public:
     UYGameSquadsComponent(const FObjectInitializer& ObjectInitializer);
 
     UFUNCTION(BlueprintCallable, BlueprintPure)
-    bool HasSquadWithPlayer(AYPlayerState* PlayerState) const;
+    bool HasSquadWithPlayer(const AYPlayerState* PlayerState) const;
     
     UFUNCTION(BlueprintCallable, BlueprintPure)
     bool HasSquadWithId(const FString& squadId) const;

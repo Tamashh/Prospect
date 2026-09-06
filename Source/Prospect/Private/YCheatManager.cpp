@@ -8,9 +8,6 @@ UYCheatManager::UYCheatManager() {
 void UYCheatManager::YToggleVSDebugger() {
 }
 
-void UYCheatManager::YToggleAIPrototypeSpawning() const {
-}
-
 void UYCheatManager::YSkipMatchState() const {
 }
 
@@ -72,6 +69,9 @@ void UYCheatManager::YDebugUpdatePresenceState(int32 State) {
 }
 
 void UYCheatManager::YDebugUpdateDeveloperMode(bool Enabled) {
+}
+
+void UYCheatManager::YDebugUnsubscribeMarketingEmail() const {
 }
 
 void UYCheatManager::YDebugTriggerServerInventoryConcurrencyTest() const {
@@ -144,6 +144,9 @@ void UYCheatManager::YDebugToggleDrawWeaponCollisionPrimitives() {
 }
 
 void UYCheatManager::YDebugToggleDrawCollisionDebug() {
+}
+
+void UYCheatManager::YDebugToggleDiscountedPricesSteam(bool useDiscountedPrices) {
 }
 
 void UYCheatManager::YDebugToggleCustomOcclusionTraceSize(bool State) const {
@@ -236,6 +239,12 @@ void UYCheatManager::YDebugShowCameraCollision() {
 void UYCheatManager::YDebugShopTryOfferCheckout(const FString& OfferId, int32 quantity) {
 }
 
+void UYCheatManager::YDebugSetWeakspotDebugDuration(float Duration) {
+}
+
+void UYCheatManager::YDebugSetVanityMigrationState(const FString& State) const {
+}
+
 void UYCheatManager::YDebugSetTutorialUserDataTutorialFlag(bool flag) const {
 }
 
@@ -302,6 +311,9 @@ void UYCheatManager::YDebugSetGlobalVanityIdBackend(const FString& ID, int32 var
 void UYCheatManager::YDebugSetFeatureToggleFlag(const FName& featureToggleName, int32 newState) const {
 }
 
+void UYCheatManager::YDebugSetEquippedArchetypeBeforeVanityMigration() const {
+}
+
 void UYCheatManager::YDebugSetCharacterRelevancyDistance(int32 newRelevancyDistance) const {
 }
 
@@ -353,9 +365,6 @@ void UYCheatManager::YDebugResetPlayer() const {
 void UYCheatManager::YDebugResetPersistentMatch() const {
 }
 
-void UYCheatManager::YDebugResetPassiveGenerator(const FString& generatorId) const {
-}
-
 void UYCheatManager::YDebugResetOnboardingProgress() const {
 }
 
@@ -365,10 +374,13 @@ void UYCheatManager::YDebugResetMission(const FString& missionArcId, const FStri
 void UYCheatManager::YDebugResetInitialize() const {
 }
 
+void UYCheatManager::YDebugResetGenerator(const FString& generatorId) const {
+}
+
 void UYCheatManager::YDebugResetFactionProgress(const FString& factionId) {
 }
 
-void UYCheatManager::YDebugResetAllPassiveGenerators() const {
+void UYCheatManager::YDebugResetAllGenerators() const {
 }
 
 void UYCheatManager::YDebugResetAllFactionsProgress() {
@@ -393,6 +405,9 @@ void UYCheatManager::YDebugRequestResourceStateChange(bool clearResources) const
 }
 
 void UYCheatManager::YDebugRequestInventoryRefresh() const {
+}
+
+void UYCheatManager::YDebugRequestGenericClaimableData() const {
 }
 
 void UYCheatManager::YDebugReportPlayer(const EYReportPlayerType reportType, const FString& UserId, const FString& Message) {
@@ -446,6 +461,9 @@ void UYCheatManager::YDebugRemoveAllFriends() {
 void UYCheatManager::YDebugRemoveAllActiveContracts() {
 }
 
+void UYCheatManager::YDebugRegisterForMarketing(const FString& Email, const FString& Locale) const {
+}
+
 void UYCheatManager::YDebugRefreshAndLogActiveContractProgress() {
 }
 
@@ -458,7 +476,7 @@ void UYCheatManager::YDebugReducePlayerQuartersUpgradeTime(int32 Duration) const
 void UYCheatManager::YDebugReduceCraftingTime(int32 Duration) const {
 }
 
-void UYCheatManager::YDebugRedeemPlayfabCoupon(const FString& CouponCode, const FString& CatalogVersion) {
+void UYCheatManager::YDebugRedeemCoupon(const FString& CouponCode) {
 }
 
 void UYCheatManager::YDebugReconnectSignalR() const {
@@ -494,7 +512,7 @@ void UYCheatManager::YDebugPrintRelevancyLookup() const {
 void UYCheatManager::YDebugPrintPlayerStates() const {
 }
 
-void UYCheatManager::YDebugPrintNetworkTime() {
+void UYCheatManager::YDebugPrintNetworkTime() const {
 }
 
 void UYCheatManager::YDebugPrintMissionData() const {
@@ -575,6 +593,9 @@ void UYCheatManager::YDebugLogin(const FString& Username, const FString& Passwor
 void UYCheatManager::YDebugLogAllFactionsProgress() const {
 }
 
+void UYCheatManager::YDebugLogAllConnectUserIds() const {
+}
+
 void UYCheatManager::YDebugListSquadInfo() const {
 }
 
@@ -620,6 +641,9 @@ void UYCheatManager::YDebugListCachedInboxMessages() {
 void UYCheatManager::YDebugListCachedGrants() const {
 }
 
+void UYCheatManager::YDebugListCachedGenericClaimableData() const {
+}
+
 void UYCheatManager::YDebugListAcceptedLegalAgreements() const {
 }
 
@@ -642,6 +666,9 @@ void UYCheatManager::YDebugJoinSquad(const FString& squadId) const {
 }
 
 void UYCheatManager::YDebugInteractionTrace() {
+}
+
+void UYCheatManager::YDebugInspectCoupon(const FString& CouponCode) {
 }
 
 void UYCheatManager::YDebugInitializationDebugState() const {
@@ -686,7 +713,13 @@ void UYCheatManager::YDebugGivePlayerContractRewards(const FString& contractId) 
 void UYCheatManager::YDebugGiveMod(FName RowName) const {
 }
 
+void UYCheatManager::YDebugGetVanityWithGenderSuffix() const {
+}
+
 void UYCheatManager::YDebugGetStat(const FString& statName, const FString& gameModeType, const FString& activityType) const {
+}
+
+void UYCheatManager::YDebugGetSelectedVanityItemWithGenderSuffix(const FString& ItemId) const {
 }
 
 void UYCheatManager::YDebugGetAIStats() const {
@@ -746,6 +779,9 @@ void UYCheatManager::YDebugDumpNPCInfo() const {
 void UYCheatManager::YDebugDumpNetworkActors() const {
 }
 
+void UYCheatManager::YDebugDumpLoginAuthToken() const {
+}
+
 void UYCheatManager::YDebugDumpLatencyAnalytics() const {
 }
 
@@ -791,6 +827,9 @@ void UYCheatManager::YDebugCraftItemAllShopsAllRarities(const FName& blueprintNa
 void UYCheatManager::YDebugConnectionStarted() const {
 }
 
+void UYCheatManager::YDebugConfirmMarketingEmail() const {
+}
+
 void UYCheatManager::YDebugCompleteContract(const FString& contractId) {
 }
 
@@ -813,6 +852,9 @@ void UYCheatManager::YDebugClearAllHighlighting() const {
 }
 
 void UYCheatManager::YDebugClearAllCompletedContracts() {
+}
+
+void UYCheatManager::YDebugClaimGenericClaimableData(const FString& ID, const EYGenericClaimableOrigin Origin) const {
 }
 
 void UYCheatManager::YDebugChangeServerStationShardBackend(int32 shardIndex) const {
@@ -873,6 +915,9 @@ void UYCheatManager::YDebugAddDebugText(const FString& DebugText, int32 colorTyp
 }
 
 void UYCheatManager::YDebugAddAllVanityOfType(int32 vanityType) const {
+}
+
+void UYCheatManager::YDebugActivateContractWithPredecessor(const FString& contractId) {
 }
 
 void UYCheatManager::YDebugActivateContractByRowName(const FString& contractId) {
@@ -945,6 +990,9 @@ void UYCheatManager::SetAllCraftingMaterialsAmountOfPlayer(const FName& UserId, 
 }
 
 void UYCheatManager::SetAllCraftingMaterialsAmount(int32 Amount) const {
+}
+
+void UYCheatManager::ServerEnableDebugCamera() {
 }
 
 void UYCheatManager::SendTestAnalyticsEvent() const {

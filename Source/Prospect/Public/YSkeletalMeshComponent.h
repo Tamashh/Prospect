@@ -7,11 +7,12 @@ UCLASS(Blueprintable, EditInlineNew, ClassGroup=Custom, meta=(BlueprintSpawnable
 class UYSkeletalMeshComponent : public USkeletalMeshComponent {
     GENERATED_BODY()
 public:
-private:
     UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
     bool m_preventPhysicsStateCreationOnDedicatedServer;
     
-public:
+    UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
+    bool m_forceUpdateTransform;
+
     UYSkeletalMeshComponent(const FObjectInitializer& ObjectInitializer);
 
 };

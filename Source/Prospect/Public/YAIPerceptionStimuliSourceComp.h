@@ -10,15 +10,17 @@ class UYAIPerceptionStimuliSourceComp : public UAIPerceptionStimuliSourceCompone
 public:
     UYAIPerceptionStimuliSourceComp(const FObjectInitializer& ObjectInitializer);
 
+private:
     UFUNCTION(BlueprintCallable)
     void UpdatePerceptionStatus();
     
+public:
     UFUNCTION(BlueprintCallable)
     void RemoveActorFromPerceptionSystemAndAllAIs();
     
 private:
     UFUNCTION(BlueprintCallable)
-    void OnStateChanged(bool wasInterrupted);
+    void OnReviveStateDeactivated(bool wasInterrupted);
     
     UFUNCTION(BlueprintCallable)
     void OnAbilityStateChanged(const FYAbilityStateInfo& Info);

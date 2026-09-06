@@ -1,6 +1,8 @@
 #pragma once
 #include "CoreMinimal.h"
 #include "Engine/DataTable.h"
+#include "GameplayTagContainer.h"
+#include "YMissionVOData.h"
 #include "YMissionRuntimeData.generated.h"
 
 USTRUCT(BlueprintType)
@@ -20,7 +22,7 @@ public:
     FText m_missionStepNpcText;
     
     UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
-    bool m_useVoiceOver;
+    FGameplayTagContainer m_customRules;
     
     UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
     bool m_sendBackendUpdateOnStepCompletion;
@@ -29,7 +31,16 @@ public:
     bool m_sendAnalyticsOnClient;
     
     UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
-    FDataTableRowHandle m_missionStartVoiceOver;
+    bool m_useVoiceOverOnStepStart;
+
+    UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
+    FYMissionVOData m_startVOData;
+
+    UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
+    bool m_useVoiceOverOnStepEnd;
+
+    UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
+    FYMissionVOData m_endVOData;
     
     UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
     TArray<FDataTableRowHandle> m_featureToUnlock;

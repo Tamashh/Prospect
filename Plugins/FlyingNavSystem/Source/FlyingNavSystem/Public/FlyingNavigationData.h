@@ -76,6 +76,9 @@ public:
     UPROPERTY(BlueprintAssignable, BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
     FFlyingNavGenerationFinishedEvent OnFlyingNavGenerationFinished;
     
+    UPROPERTY(Config, EditAnywhere, meta=(AllowPrivateAccess=true))
+    uint32 m_memoryLimitMBForMapCheck;
+
     AFlyingNavigationData(const FObjectInitializer& ObjectInitializer);
 
     virtual void Serialize(FArchive& Ar) override;

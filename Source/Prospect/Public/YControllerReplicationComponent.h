@@ -6,6 +6,7 @@
 #include "EYInventoryAudioActionPerformed.h"
 #include "EYMatchState.h"
 #include "EYPlayerSetType.h"
+#include "OnAICombatStartedDelegate.h"
 #include "OnAnyPlayerTeleportedDBNODelegate.h"
 #include "OnLatencySampleReceivedDelegate.h"
 #include "OnSpawnLocationSetDelegate.h"
@@ -42,6 +43,9 @@ public:
     UPROPERTY(BlueprintAssignable, BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
     FOnSpawnLocationSet OnSpawnLocationSet;
     
+    UPROPERTY(BlueprintAssignable, BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
+    FOnAICombatStarted OnAICombatStarted;
+
     UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
     FOnLatencySampleReceived OnLatencySampleReceived;
     
@@ -128,5 +132,8 @@ public:
     UFUNCTION(BlueprintCallable)
     static void ApplyImpulseOnPlayer(AActor* actorContext, const FVector& Impulse, const FString& Context);
     
+    UFUNCTION(BlueprintCallable, Client, Reliable)
+    void AISpottedPlayer(AActor* aiActor);
+
 };
 

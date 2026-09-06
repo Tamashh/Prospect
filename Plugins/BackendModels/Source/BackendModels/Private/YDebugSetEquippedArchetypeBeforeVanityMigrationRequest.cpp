@@ -1,0 +1,4 @@
+#include "YDebugSetEquippedArchetypeBeforeVanityMigrationRequest.h"
+
+FYDebugSetEquippedArchetypeBeforeVanityMigrationRequest::FYDebugSetEquippedArchetypeBeforeVanityMigrationRequest() {
+}

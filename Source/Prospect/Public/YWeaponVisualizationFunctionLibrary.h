@@ -38,6 +38,9 @@ public:
     static void ApplyWeaponMainMeshVisual(USkeletalMeshComponent* skelMeshComponent, const FYWeaponVanityRow& weaponVanityRow);
     
     UFUNCTION(BlueprintCallable)
+    static void ApplyWeaponAttachmentMeshVisuals(USkeletalMeshComponent* skelMeshComponent, const FYWeaponVanityRow& weaponVanityRow, const FName AttachmentSocketName);
+
+    UFUNCTION(BlueprintCallable)
     static void ApplyModVisuals(UYSkeletalMeshComponentFOV* skelMeshComponent, const FDataTableRowHandle& weaponRowHandle, const FYStoredModData& modData, const FYWeaponVanityRow& weaponVanityRow);
     
     UFUNCTION(BlueprintCallable)

@@ -1,6 +1,7 @@
 #pragma once
 #include "CoreMinimal.h"
 #include "EYTwitchDropToastReponseType.h"
+#include "YCurrencyItem.h"
 #include "YCustomItemInfo.h"
 #include "YTwitchDropsClaimPackageResult.generated.h"
 
@@ -11,6 +12,9 @@ public:
     UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
     FString UserId;
     
+    UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
+    TArray<FYCurrencyItem> GrantedCurrencies;
+
     UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
     TArray<FYCustomItemInfo> GrantedItems;
     

@@ -1,8 +1,6 @@
 #pragma once
 #include "CoreMinimal.h"
-#include "EYAISenseType.h"
 #include "YAIAggroTuning.h"
-#include "YAISenseTuning.h"
 #include "YDataTableRowBase.h"
 #include "YAISenseTuningRow.generated.h"
 
@@ -23,13 +21,10 @@ public:
     float m_peripheralVisionAngleDegrees;
     
     UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
-    float m_lostSightTimeout;
+    float m_timeUntilAIResetsAfterLostSight;
     
     UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
     float m_hearingRange;
-    
-    UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
-    float m_losHearingRange;
     
     UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
     float m_hearingEventsRangeMultiplier;
@@ -38,10 +33,10 @@ public:
     float m_shareSenseRadius;
     
     UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
-    FYAIAggroTuning m_aggroTuning;
+    float m_proximitySenseRadius;
     
     UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
-    TMap<EYAISenseType, FYAISenseTuning> m_senses;
+    FYAIAggroTuning m_aggroTuning;
     
     PROSPECT_API FYAISenseTuningRow();
 };

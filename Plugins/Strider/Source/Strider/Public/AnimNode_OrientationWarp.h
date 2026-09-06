@@ -34,6 +34,9 @@ public:
 	UPROPERTY(EditAnywhere, Category = Inputs, meta = (PinHiddenByDefault))
 	FVector UpAxis;
 
+	UPROPERTY(EditAnywhere, Category = Inputs, meta = (PinHiddenByDefault))
+	FVector SpineUpAxis;
+
 	/** How much influence this node should have to the overall pose (0.0 - 1.0) */
 	UPROPERTY(EditAnywhere, Category = Input, meta = (AlwaysAsPin, ClampMin = 0.0f, ClampMax = 1.0f))
 	float Alpha;

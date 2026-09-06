@@ -37,7 +37,7 @@ void AYLootContainerVariation::OnInteractionCompleted(EYInteractionType interact
 void AYLootContainerVariation::MulticastPlayOpenSound_Implementation(bool isOpening) {
 }
 
-void AYLootContainerVariation::Initialize(FDataTableRowHandle rowHandle, EYLootContainerTier lootTier) {
+void AYLootContainerVariation::Initialize(FDataTableRowHandle rowHandle, EYLootContainerTier lootTier, int32 containerLootRollCount) {
 }
 
 void AYLootContainerVariation::GetLifetimeReplicatedProps(TArray<FLifetimeProperty>& OutLifetimeProps) const {

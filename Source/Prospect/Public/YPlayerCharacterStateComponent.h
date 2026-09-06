@@ -5,7 +5,7 @@
 #include "YActivateStateBlueprintDelegate.h"
 #include "YAnyStateActivatedDelegate.h"
 #include "YAnyStateChangedDelegate.h"
-#include "YAnyStateDeactivatedDelegate.h"
+#include "YAnyStatesDeactivatedDelegate.h"
 #include "YAuthorithyPlayerState.h"
 #include "YDeActivateStateBlueprintDelegate.h"
 #include "YOnAnyStateChangedWithCancelDelegate.h"
@@ -21,10 +21,10 @@ class UYPlayerCharacterStateComponent : public UActorComponent {
     GENERATED_BODY()
 public:
     UPROPERTY(BlueprintAssignable, BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
-    FYAnyStateDeactivated OnAnyStatesDeactivated;
+    FYAnyStatesDeactivated OnAnyStatesDeactivated;
     
     UPROPERTY(BlueprintAssignable, BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
-    FYAnyStateActivated OnAnyStatesActivated;
+    FYAnyStateActivated OnAnyStateActivated;
     
     UPROPERTY(BlueprintAssignable, BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
     FYAnyStateChanged OnAnyStateChanged;
@@ -52,7 +52,7 @@ public:
     
 private:
     UFUNCTION(BlueprintCallable, Reliable, Server, WithValidation)
-    void ServerClearStates(const TArray<FYStateChangedData>& States, bool wasInterupted);
+    void ServerClearStates(const TArray<FYStateChangedData>& states, bool wasInterupted);
     
     UFUNCTION(BlueprintCallable, Reliable, Server, WithValidation)
     void ServerClearState(FYStateChangedData State, bool wasInterupted);

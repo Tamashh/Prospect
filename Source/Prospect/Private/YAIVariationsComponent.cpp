@@ -3,7 +3,7 @@
 UYAIVariationsComponent::UYAIVariationsComponent(const FObjectInitializer& ObjectInitializer) : Super(ObjectInitializer) {
 }
 
-void UYAIVariationsComponent::OnLoadedAssets() {
+void UYAIVariationsComponent::OnLoadedAssets() const {
 }
 
 

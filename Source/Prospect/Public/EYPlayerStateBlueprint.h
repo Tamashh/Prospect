@@ -34,7 +34,7 @@ enum class EYPlayerStateBlueprint : uint8 {
     Vehicle,
     VehicleLeaving,
     Banner,
-    NOTUSED3,
+    Inspect,
     ChargingAttack,
     Ability,
     NOTUSED1,

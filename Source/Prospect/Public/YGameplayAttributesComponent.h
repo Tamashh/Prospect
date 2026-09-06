@@ -56,23 +56,23 @@ public:
     
 private:
     UFUNCTION(BlueprintCallable)
-    void OnRep_ActivePreAddModifiers();
+    void OnRep_ActivePreAddModifiers() const;
     
     UFUNCTION(BlueprintCallable)
-    void OnRep_ActivePostAddModifiers();
+    void OnRep_ActivePostAddModifiers() const;
     
     UFUNCTION(BlueprintCallable)
-    void OnRep_ActiveOverrideModifiers();
+    void OnRep_ActiveOverrideModifiers() const;
     
     UFUNCTION(BlueprintCallable)
-    void OnRep_ActiveAddModifiers();
+    void OnRep_ActiveAddModifiers() const;
     
 public:
     UFUNCTION(BlueprintCallable)
     static void LogGameplayAttrbutes(AActor* Actor);
     
-    UFUNCTION(BlueprintCallable)
-    void LogAllGameplayAttrbutes();
+    UFUNCTION(BlueprintCallable, BlueprintPure=false)
+    void LogAllGameplayAttrbutes() const;
     
     UFUNCTION(BlueprintCallable, BlueprintPure)
     static bool IsAnyModifierOfAttributeTypeActiveStatic(AActor* actorContext, EYGameplayAttribute Attribute, EYGameplayContextType contextType);

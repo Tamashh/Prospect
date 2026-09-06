@@ -6,6 +6,7 @@ FYMatchmakingDebugSessionUserInfo::FYMatchmakingDebugSessionUserInfo() {
     this->beginnerMode = EYMatchmakingBeginnerMode::None;
     this->isShieldedSession = false;
     this->bracketIdx = 0;
+    this->gearStrengthBracketIdx = 0;
     this->transitionTime = 0LL;
 }
 

@@ -1,7 +1,6 @@
 #pragma once
 #include "CoreMinimal.h"
 #include "EYCustomizationBodyType.h"
-#include "YFactionProgress.h"
 #include "EYMatchState.h"
 #include "EYPlayerMatchFinishedResult.h"
 #include "EYPlayerMatchState.h"
@@ -152,9 +151,6 @@ public:
     void SetSelectedFaction(FName factionId);
     
     UFUNCTION(BlueprintCallable)
-    void SetPlayerNameBP(const FString& newPlayerName);
-    
-    UFUNCTION(BlueprintCallable)
     void SetPlayerMatchState(EYPlayerMatchState newState, const FString& contextString);
     
     UFUNCTION(BlueprintCallable)
@@ -176,7 +172,7 @@ protected:
     
 public:
     UFUNCTION(BlueprintCallable)
-    void OnRep_CosmeticDataChanged(FYPlayerCosmeticReplicatedData oldData) const;
+    void OnRep_CosmeticDataChanged(const FYPlayerCosmeticReplicatedData& oldData) const;
     
 private:
     UFUNCTION(BlueprintCallable)
@@ -222,17 +218,8 @@ public:
     UFUNCTION(BlueprintCallable, BlueprintPure)
     FYProspectorLevelData GetInitialProspectorLevelProgress() const;
     
-    UFUNCTION(BlueprintCallable, BlueprintPure)
-    FYFactionProgress GetInitialFactionProgress() const;
-    
     UFUNCTION(BlueprintCallable)
     FYActiveWeaponCharacterInitializationData GetEquippedWeaponData() const;
-    
-    UFUNCTION(BlueprintAuthorityOnly, BlueprintCallable, BlueprintPure)
-    int32 GetCachedPlayerSeasonXP() const;
-    
-    UFUNCTION(BlueprintAuthorityOnly, BlueprintCallable, BlueprintPure)
-    int32 GetCachedPlayerSeasonLevel() const;
     
     UFUNCTION(BlueprintAuthorityOnly, BlueprintCallable)
     void CachePlayerSeasonLevelAndXP(int32 Level, int32 xp);

@@ -13,9 +13,6 @@ bool UYControllerNewsComponent::ShouldShowNewsScreen(bool returningFromMatch) co
     return false;
 }
 
-void UYControllerNewsComponent::RefreshNewsData() const {
-}
-
 void UYControllerNewsComponent::OnWindowFocusChanged(bool isFocused) {
 }
 
@@ -78,10 +75,6 @@ FDateTime UYControllerNewsComponent::GetLastCacheUpdateTime() const {
 }
 
 TArray<FYNewsItem> UYControllerNewsComponent::GetCurrentNewsItems() const {
-    return TArray<FYNewsItem>();
-}
-
-TArray<FYNewsItem> UYControllerNewsComponent::GetAllNewsItems() const {
     return TArray<FYNewsItem>();
 }
 

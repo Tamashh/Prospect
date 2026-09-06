@@ -16,10 +16,10 @@ class UYHideableBushManagerComponent;
 class UYKilledEventAnalyticsComponent;
 class UYMatchDifficultyComponent;
 class UYMissionGameManagerComponent;
+class UYPersistentActorSpawnerComponent;
 class UYPlayerKillsTrackingComponent;
 class UYPlayerStatsDeathsComponent;
 class UYServerResourceManagerComponent;
-class UYSpawnManagerComponent;
 class UYWeaponAnalyticsComponent;
 
 UCLASS(Blueprintable, NonTransient)
@@ -60,7 +60,7 @@ public:
     UYMissionGameManagerComponent* m_missionManagerComponent;
     
     UPROPERTY(BlueprintReadWrite, EditAnywhere, Instanced, meta=(AllowPrivateAccess=true))
-    UYSpawnManagerComponent* m_spawnManager;
+    UYPersistentActorSpawnerComponent* m_persistentActorSpawner;
     
     UPROPERTY(BlueprintReadWrite, EditAnywhere, Instanced, meta=(AllowPrivateAccess=true))
     UYHideableBushManagerComponent* m_hideableBushManager;

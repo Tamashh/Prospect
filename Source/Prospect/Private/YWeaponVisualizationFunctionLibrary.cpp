@@ -21,6 +21,9 @@ void UYWeaponVisualizationFunctionLibrary::ApplyWeaponVisuals(const FYActiveWeap
 void UYWeaponVisualizationFunctionLibrary::ApplyWeaponMainMeshVisual(USkeletalMeshComponent* skelMeshComponent, const FYWeaponVanityRow& weaponVanityRow) {
 }
 
+void UYWeaponVisualizationFunctionLibrary::ApplyWeaponAttachmentMeshVisuals(USkeletalMeshComponent* skelMeshComponent, const FYWeaponVanityRow& weaponVanityRow, const FName AttachmentSocketName) {
+}
+
 void UYWeaponVisualizationFunctionLibrary::ApplyModVisuals(UYSkeletalMeshComponentFOV* skelMeshComponent, const FDataTableRowHandle& weaponRowHandle, const FYStoredModData& modData, const FYWeaponVanityRow& weaponVanityRow) {
 }
 

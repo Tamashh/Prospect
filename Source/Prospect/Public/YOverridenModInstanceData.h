@@ -2,7 +2,7 @@
 #include "CoreMinimal.h"
 #include "Engine/DataTable.h"
 #include "YFullscreenCrosshairData.h"
-#include "YGameplayAttributeModifier.h"
+#include "YModInstanceGameplayAttributeModifierData.h"
 #include "YModAttachEntry.h"
 #include "YOverridenModInstanceData.generated.h"
 
@@ -19,7 +19,7 @@ public:
     TArray<FYModAttachEntry> m_meshAttachments;
     
     UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
-    TArray<FYGameplayAttributeModifier> m_attributeMods;
+    TArray<FYModInstanceGameplayAttributeModifierData> m_instanceAttributeMods;
     
     UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
     FDataTableRowHandle m_fxCategoryHandle;

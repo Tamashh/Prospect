@@ -13,6 +13,8 @@ FYFPSMatchSummaryServerEvent::FYFPSMatchSummaryServerEvent() {
     this->virtual_memory_max = 0;
     this->players_max = 0;
     this->players_avg = 0;
+    this->active_players_max = 0;
+    this->active_players_avg = 0;
     this->ai_max = 0;
     this->ai_avg = 0;
     this->gc_time_avg = 0.0f;

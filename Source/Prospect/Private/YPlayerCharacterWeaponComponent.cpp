@@ -13,7 +13,6 @@ UYPlayerCharacterWeaponComponent::UYPlayerCharacterWeaponComponent(const FObject
     this->m_staticMeshChild = NULL;
     this->m_beamParticleSystem = NULL;
     this->m_spinupParticle = NULL;
-    this->m_blockEquip = false;
     this->m_weaponScopeParameterCollection = NULL;
     this->m_visualState = EYWeaponVisualState::Normal;
     this->m_missingAmmo = 0;
@@ -37,10 +36,13 @@ void UYPlayerCharacterWeaponComponent::PlayReloadLoopAnimation(const bool wasAmm
 void UYPlayerCharacterWeaponComponent::PlayEquipState() {
 }
 
-void UYPlayerCharacterWeaponComponent::OnUpdateWeaponSpinup() {
+void UYPlayerCharacterWeaponComponent::OnUpdateWeaponSpinup() const {
 }
 
 void UYPlayerCharacterWeaponComponent::OnStopWeaponSpinup(bool wasInterupted) {
+}
+
+void UYPlayerCharacterWeaponComponent::OnStopWeaponInspectState(bool wasInterrupted) {
 }
 
 void UYPlayerCharacterWeaponComponent::OnStopTargeting(bool wasInterrupted) {
@@ -49,7 +51,7 @@ void UYPlayerCharacterWeaponComponent::OnStopTargeting(bool wasInterrupted) {
 void UYPlayerCharacterWeaponComponent::OnStopReloadAnimation(bool wasInterrupted) {
 }
 
-void UYPlayerCharacterWeaponComponent::OnStopPlayPlayerAnimationPending(UAnimInstance* characterInstance, UAnimMontage* MontageToPlay) {
+void UYPlayerCharacterWeaponComponent::OnStopPlayPlayerAnimationPending(UAnimInstance* characterInstance, UAnimMontage* MontageToPlay) const {
 }
 
 void UYPlayerCharacterWeaponComponent::OnStopPlayAnimationPending(EYWeaponPlayState weaponState) {
@@ -97,7 +99,7 @@ void UYPlayerCharacterWeaponComponent::OnSpinupPercentChanged(float newPercentag
 void UYPlayerCharacterWeaponComponent::OnSetTargetingWeaponFOV() {
 }
 
-void UYPlayerCharacterWeaponComponent::OnRep_VisualState() {
+void UYPlayerCharacterWeaponComponent::OnRep_VisualState() const {
 }
 
 void UYPlayerCharacterWeaponComponent::OnRep_ActiveDataTableRow() {
@@ -133,59 +135,56 @@ void UYPlayerCharacterWeaponComponent::MeleeLooping() {
 void UYPlayerCharacterWeaponComponent::MeleeHeavyLooping() {
 }
 
-bool UYPlayerCharacterWeaponComponent::IsAmmoEmpty() {
+bool UYPlayerCharacterWeaponComponent::IsAmmoEmpty() const {
     return false;
 }
 
 void UYPlayerCharacterWeaponComponent::HandleOnDeath(UYHealthComponent* healthComponent, AActor* Instigator) {
 }
 
-EYDeviceCategory UYPlayerCharacterWeaponComponent::GetEquippedWeaponDeviceCategory() {
+EYDeviceCategory UYPlayerCharacterWeaponComponent::GetEquippedWeaponDeviceCategory() const {
     return EYDeviceCategory::AssaultRifle;
 }
 
-EYEquipedAnimationWeaponType UYPlayerCharacterWeaponComponent::GetEquipedWeaponType() {
+EYEquipedAnimationWeaponType UYPlayerCharacterWeaponComponent::GetEquipedWeaponType() const {
     return EYEquipedAnimationWeaponType::Invalid;
 }
 
-EYEquipedWeaponPoseType UYPlayerCharacterWeaponComponent::GetEquipedWeaponPose() {
+EYEquipedWeaponPoseType UYPlayerCharacterWeaponComponent::GetEquipedWeaponPose() const {
     return EYEquipedWeaponPoseType::Invalid;
 }
 
-FYCharacterAnimThirdPerson UYPlayerCharacterWeaponComponent::GetCharacterAnimThirdPerson() {
+FYCharacterAnimThirdPerson UYPlayerCharacterWeaponComponent::GetCharacterAnimThirdPerson() const {
     return FYCharacterAnimThirdPerson{};
 }
 
-FYCharacterAnimFirstPerson UYPlayerCharacterWeaponComponent::GetCharacterAnimFirstPerson() {
+FYCharacterAnimFirstPerson UYPlayerCharacterWeaponComponent::GetCharacterAnimFirstPerson() const {
     return FYCharacterAnimFirstPerson{};
 }
 
-TSubclassOf<UAnimInstance> UYPlayerCharacterWeaponComponent::GetCharacterAnimationAnimLayer() {
+TSubclassOf<UAnimInstance> UYPlayerCharacterWeaponComponent::GetCharacterAnimationAnimLayer() const {
     return NULL;
 }
 
-float UYPlayerCharacterWeaponComponent::FindUntargetingTime() {
+float UYPlayerCharacterWeaponComponent::FindUntargetingTime() const {
     return 0.0f;
 }
 
-float UYPlayerCharacterWeaponComponent::FindTargetingTime() {
+float UYPlayerCharacterWeaponComponent::FindTargetingTime() const {
     return 0.0f;
 }
 
-float UYPlayerCharacterWeaponComponent::FindRetargetingMinimumNormalizedTime() {
+float UYPlayerCharacterWeaponComponent::FindRetargetingMinimumNormalizedTime() const {
     return 0.0f;
 }
 
-void UYPlayerCharacterWeaponComponent::FindAllRelevantMeshes(TArray<UMeshComponent*>& OutComponents, bool includeBaseCharacter) {
+void UYPlayerCharacterWeaponComponent::FindAllRelevantMeshes(TArray<UMeshComponent*>& OutComponents, bool includeBaseCharacter) const {
 }
 
 void UYPlayerCharacterWeaponComponent::EarlyExitAnimNotify(UAnimInstance* AnimInstance, UAnimMontage* AnimMontage) {
 }
 
 void UYPlayerCharacterWeaponComponent::ClientForceUpdateEquippedWeapon_Implementation() {
-}
-
-void UYPlayerCharacterWeaponComponent::BlockEquipState() {
 }
 
 void UYPlayerCharacterWeaponComponent::GetLifetimeReplicatedProps(TArray<FLifetimeProperty>& OutLifetimeProps) const {

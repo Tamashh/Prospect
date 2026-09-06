@@ -15,6 +15,9 @@ public:
     FYPlayFabSquad squadInfo;
     
     UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
+    TArray<FString> pendingInvitedMembers;
+
+    UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
     FString Error;
     
     BACKENDMODELS_API FYSendSquadInviteResponse();

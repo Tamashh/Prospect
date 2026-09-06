@@ -17,6 +17,7 @@
 #include "YGameplayAttributeModifier.h"
 #include "YMovementCosmeticDataPerState.h"
 #include "YPlayerMeleeData.h"
+#include "YPlayerMovementModifiersPerState.h"
 #include "YPlayerUIHealthBarDeltaSettings.h"
 #include "YWeaponFireDelayStateData.h"
 #include "YPlayerTuningDataTableRow.generated.h"
@@ -124,8 +125,14 @@ public:
     TMap<EYPlayerStateBlueprint, FYMovementCosmeticDataPerState> m_stateChangedCosmeticData;
     
     UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
+    TMap<EYPlayerStateBlueprint, FYPlayerMovementModifiersPerState> m_stateMovementModifiers;
+
+    UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
     bool m_canStartSlidingFromFalling;
     
+    UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
+    bool m_canJumpFromSliding;
+
     UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
     float m_slideVelocityReduction;
     
@@ -334,11 +341,17 @@ public:
     float m_cameraDefaultFOV;
     
     UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
-    float m_backwardMovementSpeedReduction;
+    float m_backwardMovementSpeedMultiplier;
     
     UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
     float m_sideMovementSpeedMultiplier;
     
+    UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
+    float m_backwardMovementSpeedMultiplierStation;
+
+    UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
+    float m_sideMovementSpeedMultiplierStation;
+
     UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
     float m_cameraInterpolationTargetingReturnFOVSpeed;
     

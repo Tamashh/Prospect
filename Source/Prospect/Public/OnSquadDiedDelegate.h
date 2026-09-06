@@ -3,7 +3,7 @@
 #include "OnSquadDiedDelegate.generated.h"
 
 class AActor;
-class UYPersistentDataAISquad;
+class UYPersistentActorInfoAISquad;
 
-UDELEGATE(BlueprintCallable) DECLARE_DYNAMIC_MULTICAST_DELEGATE_TwoParams(FOnSquadDied, UYPersistentDataAISquad*, squadDied, AActor*, killer);
+UDELEGATE(BlueprintCallable) DECLARE_DYNAMIC_MULTICAST_DELEGATE_TwoParams(FOnSquadDied, UYPersistentActorInfoAISquad*, squadDied, AActor*, killer);
 

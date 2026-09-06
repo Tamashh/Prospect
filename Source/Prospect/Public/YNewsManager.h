@@ -18,7 +18,7 @@ public:
 
 private:
     UFUNCTION(BlueprintCallable)
-    void OnTitleDataUpdate();
+    void OnNewsDataUpdate();
     
 };
 

@@ -48,9 +48,12 @@ public:
     UFUNCTION(BlueprintCallable, BlueprintPure)
     static bool GetModByType(AActor* actorCtx, EYModificationSlotType slotType, FYModEntry& foundMod);
     
-    UFUNCTION(BlueprintCallable, BlueprintPure)
+    UFUNCTION(BlueprintCallable)
     static TArray<FDataTableRowHandle> GetCompatibleWeaponsForMod(UObject* objectContext, const FDataTableRowHandle& modRowHandle);
     
+    UFUNCTION(BlueprintCallable)
+    static TArray<FDataTableRowHandle> GetCompatibleModsForWeapon(const UObject* objectContext, const FDataTableRowHandle& weaponRowHandle, EYModificationSlotType optionalModSlotType);
+
     UFUNCTION(BlueprintCallable, BlueprintPure)
     static EYModificationSlotType FindModTypeFromRow(const FDataTableRowHandle& row);
     

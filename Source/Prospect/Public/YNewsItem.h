@@ -1,24 +1,25 @@
 #pragma once
 #include "CoreMinimal.h"
-#include "UObject/NoExportTypes.h"
+#include "Engine/DataTable.h"
+#include "FYNewsItemWidgetType.h"
 #include "YNewsItemUIData.h"
 #include "YNewsItem.generated.h"
 
 USTRUCT(BlueprintType)
-struct FYNewsItem {
+struct FYNewsItem : public FTableRowBase {
     GENERATED_BODY()
 public:
     UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
     FString m_id;
     
     UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
-    FDateTime m_startDate;
+    FString m_startDate;
     
     UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
-    FDateTime m_endDate;
+    FString m_endDate;
     
     UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
-    TArray<FDateTime> m_recurrenceDates;
+    TArray<FString> m_recurrenceDates;
     
     UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
     float m_priority;
@@ -30,7 +31,7 @@ public:
     bool m_showAfterMatchIfUnread;
     
     UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
-    FString m_widgetType;
+    FYNewsItemWidgetType m_widgetType;
     
     UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
     FYNewsItemUIData m_uiData;

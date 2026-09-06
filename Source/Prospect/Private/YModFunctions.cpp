@@ -42,6 +42,10 @@ TArray<FDataTableRowHandle> UYModFunctions::GetCompatibleWeaponsForMod(UObject* 
     return TArray<FDataTableRowHandle>();
 }
 
+TArray<FDataTableRowHandle> UYModFunctions::GetCompatibleModsForWeapon(const UObject* objectContext, const FDataTableRowHandle& weaponRowHandle, EYModificationSlotType optionalModSlotType) {
+    return TArray<FDataTableRowHandle>();
+}
+
 EYModificationSlotType UYModFunctions::FindModTypeFromRow(const FDataTableRowHandle& row) {
     return EYModificationSlotType::None;
 }

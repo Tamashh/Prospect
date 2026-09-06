@@ -129,6 +129,10 @@ float UYInventoryContextUtils::GetCurrentBagWeightByContext(AActor* actorContext
     return 0.0f;
 }
 
+int32 UYInventoryContextUtils::FindTotalItemAmountFromStashAndLoadout(AActor* actorContext, FName baseItemId, const FString& contextString) {
+    return 0;
+}
+
 int32 UYInventoryContextUtils::FindTotalItemAmountFromActor(AActor* actorContext, FName baseItemId, const FString& contextString) {
     return 0;
 }
@@ -200,7 +204,7 @@ bool UYInventoryContextUtils::CanStoreItemInBag(AActor* actorContext, const FYIn
     return false;
 }
 
-bool UYInventoryContextUtils::CanStoreItemInAlienForgeLootContainer(AActor* actorContext, const FYInventoryItem& inItem, int32 componentId) {
+bool UYInventoryContextUtils::CanStoreItemInAlienForgeLootContainer(AActor* actorContext, const FYInventoryItem& inItem, int32 componentId, int32& outAllowedAmount) {
     return false;
 }
 

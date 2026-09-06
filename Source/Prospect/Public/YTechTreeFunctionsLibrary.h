@@ -146,9 +146,6 @@ public:
     static bool CanAffordTechTreeCostsSet(UObject* WorldContext, const TArray<FYCostEntryRow>& costs);
     
     UFUNCTION(BlueprintCallable, meta=(WorldContext="WorldContext"))
-    static bool CanAffordPlayerQuartersNextLevelPurchase(UObject* WorldContext, const FString& contextString);
-    
-    UFUNCTION(BlueprintCallable, meta=(WorldContext="WorldContext"))
     static bool AreUnlockDependenciesSatisfiedForTechTreeNode(UObject* WorldContext, const FName& nodeId, const FString& contextString);
     
 };

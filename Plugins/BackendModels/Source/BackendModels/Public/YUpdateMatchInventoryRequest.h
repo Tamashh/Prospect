@@ -46,6 +46,9 @@ public:
     FYTimestamp deathTime;
     
     UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
+    FYTimestamp freeLoadoutUsedTime;
+
+    UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
     TArray<FString> safePocketsItemsConsumed;
     
     BACKENDMODELS_API FYUpdateMatchInventoryRequest();

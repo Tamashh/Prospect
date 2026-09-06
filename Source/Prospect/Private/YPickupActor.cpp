@@ -25,6 +25,7 @@ AYPickupActor::AYPickupActor(const FObjectInitializer& ObjectInitializer) : Supe
     this->m_projectileMovementComponent = CreateDefaultSubobject<UProjectileMovementComponent>(TEXT("MovementComponent"));
     this->m_mapmarkerComponent = NULL;
     this->m_actorUIComponent = NULL;
+    this->m_loopingAudioComponent = NULL;
     this->m_characterCollectingPickUpActor = NULL;
     this->m_exclusivePlayerState = NULL;
     this->m_preventAutoSwitchOffTick = false;
@@ -79,7 +80,7 @@ void AYPickupActor::OnMakeMeshComponentVisible() const {
 void AYPickupActor::OnCollected(EYInteractionType interactionType, AYPlayerController_Match* collectingPlayer) {
 }
 
-bool AYPickupActor::IsBlockedByExclusivity(AYPlayerState* PlayerState) const {
+bool AYPickupActor::IsBlockedByExclusivity(const AYPlayerState* PlayerState) const {
     return false;
 }
 

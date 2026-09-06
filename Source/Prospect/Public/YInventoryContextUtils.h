@@ -120,6 +120,9 @@ public:
     static float GetCurrentBagWeightByContext(AActor* actorContext);
     
     UFUNCTION(BlueprintCallable)
+    static int32 FindTotalItemAmountFromStashAndLoadout(AActor* actorContext, FName baseItemId, const FString& contextString);
+
+    UFUNCTION(BlueprintCallable)
     static int32 FindTotalItemAmountFromActor(AActor* actorContext, FName baseItemId, const FString& contextString);
     
     UFUNCTION(BlueprintCallable, BlueprintPure, meta=(WorldContext="WorldContext"))
@@ -174,7 +177,7 @@ public:
     static bool CanStoreItemInBag(AActor* actorContext, const FYInventoryItem& inItem, int32& outAllowedAmount);
     
     UFUNCTION(BlueprintCallable, BlueprintPure)
-    static bool CanStoreItemInAlienForgeLootContainer(AActor* actorContext, const FYInventoryItem& inItem, int32 componentId);
+    static bool CanStoreItemInAlienForgeLootContainer(AActor* actorContext, const FYInventoryItem& inItem, int32 componentId, int32& outAllowedAmount);
     
     UFUNCTION(BlueprintCallable, BlueprintPure)
     static bool CanMoveItem(AActor* actorContext, const FYInventoryItem& Item, int32 amountToMove, int32 originInventoryComponentId, int32 targetInventoryComponentId, EYPlayerSetType targetSetType, const bool ignoreStacking, int32& outAllowedAmount, FString& resultCode);

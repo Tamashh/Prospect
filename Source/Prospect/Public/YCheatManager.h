@@ -1,6 +1,7 @@
 #pragma once
 #include "CoreMinimal.h"
 #include "GameFramework/CheatManager.h"
+#include "EYGenericClaimableOrigin.h"
 #include "EYActivityType.h"
 #include "EYAnnouncementType.h"
 #include "EYReportPlayerType.h"
@@ -17,9 +18,6 @@ public:
 private:
     UFUNCTION(BlueprintCallable, Exec)
     static void YToggleVSDebugger();
-    
-    UFUNCTION(BlueprintCallable, Exec)
-    void YToggleAIPrototypeSpawning() const;
     
     UFUNCTION(BlueprintCallable, Exec)
     void YSkipMatchState() const;
@@ -88,6 +86,9 @@ public:
     void YDebugUpdateDeveloperMode(bool Enabled);
     
 private:
+    UFUNCTION(BlueprintCallable, Exec)
+    void YDebugUnsubscribeMarketingEmail() const;
+
     UFUNCTION(BlueprintCallable, Exec)
     void YDebugTriggerServerInventoryConcurrencyTest() const;
     
@@ -160,6 +161,9 @@ private:
     UFUNCTION(BlueprintCallable, Exec)
     static void YDebugToggleDrawCollisionDebug();
     
+    UFUNCTION(BlueprintCallable, Exec)
+    void YDebugToggleDiscountedPricesSteam(bool useDiscountedPrices);
+
     UFUNCTION(BlueprintCallable, Exec)
     void YDebugToggleCustomOcclusionTraceSize(bool State) const;
     
@@ -236,7 +240,7 @@ private:
     void YDebugSocialAcceptFriendRequest(const FString& targetPlayFabId) const;
     
     UFUNCTION(BlueprintCallable, Exec)
-    void YDebugSleepThread(float TimeInSeconds);
+    static void YDebugSleepThread(float TimeInSeconds);
     
     UFUNCTION(BlueprintCallable, Exec)
     void YDebugSkipLegalAgreements() const;
@@ -250,6 +254,12 @@ private:
     UFUNCTION(BlueprintCallable, Exec)
     void YDebugShopTryOfferCheckout(const FString& OfferId, int32 quantity);
     
+    UFUNCTION(BlueprintCallable, Exec)
+    static void YDebugSetWeakspotDebugDuration(float Duration);
+
+    UFUNCTION(BlueprintCallable, Exec)
+    void YDebugSetVanityMigrationState(const FString& State) const;
+
     UFUNCTION(BlueprintCallable, Exec)
     void YDebugSetTutorialUserDataTutorialFlag(bool flag) const;
     
@@ -317,6 +327,9 @@ private:
     void YDebugSetFeatureToggleFlag(const FName& featureToggleName, int32 newState) const;
     
     UFUNCTION(BlueprintCallable, Exec)
+    void YDebugSetEquippedArchetypeBeforeVanityMigration() const;
+
+    UFUNCTION(BlueprintCallable, Exec)
     void YDebugSetCharacterRelevancyDistance(int32 newRelevancyDistance) const;
     
     UFUNCTION(BlueprintCallable, Exec)
@@ -335,7 +348,7 @@ private:
     void YDebugSetActiveContractProgress(const FString& contractId, int32 objectiveIndex, int32 newProgress);
     
     UFUNCTION(BlueprintCallable, Exec)
-    static void YDebugSendTestFile();
+    void YDebugSendTestFile();
     
     UFUNCTION(BlueprintCallable, Exec)
     void YDebugSendServerFPSSummary() const;
@@ -344,7 +357,7 @@ private:
     void YDebugSendNotification(FName notificationRow, TMap<FString, FString> textParameters, TMap<FString, FString> localizedParameters) const;
     
     UFUNCTION(BlueprintCallable, Exec)
-    static void YDebugSendLogFile();
+    void YDebugSendLogFile();
     
     UFUNCTION(BlueprintCallable, Exec)
     void YDebugSearchUserName(const FString& Username) const;
@@ -368,9 +381,6 @@ private:
     void YDebugResetPersistentMatch() const;
     
     UFUNCTION(BlueprintCallable, Exec)
-    void YDebugResetPassiveGenerator(const FString& generatorId) const;
-    
-    UFUNCTION(BlueprintCallable, Exec)
     void YDebugResetOnboardingProgress() const;
     
     UFUNCTION(BlueprintCallable, Exec)
@@ -380,10 +390,13 @@ private:
     void YDebugResetInitialize() const;
     
     UFUNCTION(BlueprintCallable, Exec)
+    void YDebugResetGenerator(const FString& generatorId) const;
+
+    UFUNCTION(BlueprintCallable, Exec)
     void YDebugResetFactionProgress(const FString& factionId);
     
     UFUNCTION(BlueprintCallable, Exec)
-    void YDebugResetAllPassiveGenerators() const;
+    void YDebugResetAllGenerators() const;
     
     UFUNCTION(BlueprintCallable, Exec)
     void YDebugResetAllFactionsProgress();
@@ -409,6 +422,9 @@ private:
     UFUNCTION(BlueprintCallable, Exec)
     void YDebugRequestInventoryRefresh() const;
     
+    UFUNCTION(BlueprintCallable, Exec)
+    void YDebugRequestGenericClaimableData() const;
+
     UFUNCTION(BlueprintCallable, Exec)
     static void YDebugReportPlayer(const EYReportPlayerType reportType, const FString& UserId, const FString& Message);
     
@@ -461,6 +477,9 @@ private:
     void YDebugRemoveAllActiveContracts();
     
     UFUNCTION(BlueprintCallable, Exec)
+    void YDebugRegisterForMarketing(const FString& Email, const FString& Locale) const;
+
+    UFUNCTION(BlueprintCallable, Exec)
     void YDebugRefreshAndLogActiveContractProgress();
     
     UFUNCTION(BlueprintCallable, Exec)
@@ -473,7 +492,7 @@ private:
     void YDebugReduceCraftingTime(int32 Duration) const;
     
     UFUNCTION(BlueprintCallable, Exec)
-    void YDebugRedeemPlayfabCoupon(const FString& CouponCode, const FString& CatalogVersion);
+    void YDebugRedeemCoupon(const FString& CouponCode);
     
     UFUNCTION(BlueprintCallable, Exec)
     void YDebugReconnectSignalR() const;
@@ -509,7 +528,7 @@ private:
     void YDebugPrintPlayerStates() const;
     
     UFUNCTION(BlueprintCallable, Exec)
-    void YDebugPrintNetworkTime();
+    void YDebugPrintNetworkTime() const;
     
     UFUNCTION(BlueprintCallable, Exec)
     void YDebugPrintMissionData() const;
@@ -590,6 +609,9 @@ private:
     void YDebugLogAllFactionsProgress() const;
     
     UFUNCTION(BlueprintCallable, Exec)
+    void YDebugLogAllConnectUserIds() const;
+
+    UFUNCTION(BlueprintCallable, Exec)
     void YDebugListSquadInfo() const;
     
     UFUNCTION(BlueprintCallable, Exec)
@@ -635,6 +657,9 @@ private:
     void YDebugListCachedGrants() const;
     
     UFUNCTION(BlueprintCallable, Exec)
+    void YDebugListCachedGenericClaimableData() const;
+
+    UFUNCTION(BlueprintCallable, Exec)
     void YDebugListAcceptedLegalAgreements() const;
     
     UFUNCTION(BlueprintCallable, Exec)
@@ -658,6 +683,9 @@ private:
     UFUNCTION(BlueprintCallable, Exec)
     static void YDebugInteractionTrace();
     
+    UFUNCTION(BlueprintCallable, Exec)
+    void YDebugInspectCoupon(const FString& CouponCode);
+
     UFUNCTION(BlueprintCallable, Exec)
     void YDebugInitializationDebugState() const;
     
@@ -692,7 +720,7 @@ private:
     void YDebugGodMode() const;
     
     UFUNCTION(BlueprintCallable, Exec)
-    void YDebugGiveSteamInventoryItem(const int32 itemDef, int32 Amount);
+    static void YDebugGiveSteamInventoryItem(const int32 itemDef, int32 Amount);
     
     UFUNCTION(BlueprintCallable, Exec)
     void YDebugGivePlayerContractRewards(const FString& contractId);
@@ -701,8 +729,14 @@ private:
     void YDebugGiveMod(FName RowName) const;
     
     UFUNCTION(BlueprintCallable, Exec)
+    void YDebugGetVanityWithGenderSuffix() const;
+
+    UFUNCTION(BlueprintCallable, Exec)
     void YDebugGetStat(const FString& statName, const FString& gameModeType, const FString& activityType) const;
     
+    UFUNCTION(BlueprintCallable, Exec)
+    void YDebugGetSelectedVanityItemWithGenderSuffix(const FString& ItemId) const;
+
     UFUNCTION(BlueprintCallable, Exec)
     void YDebugGetAIStats() const;
     
@@ -761,6 +795,9 @@ private:
     void YDebugDumpNetworkActors() const;
     
     UFUNCTION(BlueprintCallable, Exec)
+    void YDebugDumpLoginAuthToken() const;
+
+    UFUNCTION(BlueprintCallable, Exec)
     void YDebugDumpLatencyAnalytics() const;
     
     UFUNCTION(BlueprintCallable, Exec)
@@ -806,6 +843,9 @@ private:
     void YDebugConnectionStarted() const;
     
     UFUNCTION(BlueprintCallable, Exec)
+    void YDebugConfirmMarketingEmail() const;
+
+    UFUNCTION(BlueprintCallable, Exec)
     void YDebugCompleteContract(const FString& contractId);
     
     UFUNCTION(BlueprintCallable, Exec)
@@ -829,6 +869,9 @@ private:
     UFUNCTION(BlueprintCallable, Exec)
     void YDebugClearAllCompletedContracts();
     
+    UFUNCTION(BlueprintCallable, Exec)
+    void YDebugClaimGenericClaimableData(const FString& ID, const EYGenericClaimableOrigin Origin) const;
+
     UFUNCTION(BlueprintCallable, Exec)
     void YDebugChangeServerStationShardBackend(int32 shardIndex) const;
     
@@ -889,6 +932,9 @@ private:
     UFUNCTION(BlueprintCallable, Exec)
     void YDebugAddAllVanityOfType(int32 vanityType) const;
     
+    UFUNCTION(BlueprintCallable, Exec)
+    void YDebugActivateContractWithPredecessor(const FString& contractId);
+
     UFUNCTION(BlueprintCallable, Exec)
     void YDebugActivateContractByRowName(const FString& contractId);
     
@@ -961,6 +1007,9 @@ private:
     UFUNCTION(BlueprintCallable, Exec)
     void SetAllCraftingMaterialsAmount(int32 Amount) const;
     
+    UFUNCTION(BlueprintCallable, Exec)
+    void ServerEnableDebugCamera();
+
     UFUNCTION(BlueprintCallable, Exec)
     void SendTestAnalyticsEvent() const;
     

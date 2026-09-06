@@ -5,7 +5,6 @@
 #include "UObject/NoExportTypes.h"
 #include "EYMapMarkerState.h"
 #include "EYMapMarkerType.h"
-#include "EYTransponderMode.h"
 #include "Templates/SubclassOf.h"
 #include "YMapMarkerData.generated.h"
 
@@ -23,9 +22,6 @@ public:
     
     UPROPERTY(BlueprintReadWrite, EditAnywhere, Replicated, meta=(AllowPrivateAccess=true))
     AActor* m_owner;
-    
-    UPROPERTY(BlueprintReadWrite, EditAnywhere, Replicated, meta=(AllowPrivateAccess=true))
-    TArray<EYTransponderMode> m_transponderModes;
     
     UPROPERTY(BlueprintReadWrite, EditAnywhere, Instanced, meta=(AllowPrivateAccess=true))
     UYCharacterCloakComponent* m_cloakComponent;

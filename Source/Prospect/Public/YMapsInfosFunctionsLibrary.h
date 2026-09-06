@@ -16,6 +16,9 @@ public:
     UYMapsInfosFunctionsLibrary();
 
     UFUNCTION(BlueprintCallable)
+    static bool IsStationMap(UObject* objectContext, const FString& mapName);
+
+    UFUNCTION(BlueprintCallable)
     static FText GetName(UObject* objectContext, const FString& mapInfoRowId, const FString& contextString);
     
     UFUNCTION(BlueprintCallable, BlueprintPure)

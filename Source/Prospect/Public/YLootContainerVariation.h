@@ -79,7 +79,7 @@ private:
     
 public:
     UFUNCTION(BlueprintCallable)
-    void Initialize(FDataTableRowHandle rowHandle, EYLootContainerTier lootTier);
+    void Initialize(FDataTableRowHandle rowHandle, EYLootContainerTier lootTier, int32 containerLootRollCount);
     
 };
 

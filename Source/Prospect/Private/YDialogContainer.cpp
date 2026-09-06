@@ -16,6 +16,9 @@ void UYDialogContainer::ShowPlayerSupportWidget(bool newState) {
 void UYDialogContainer::ShowLoadingOverlay(const FText& Message) {
 }
 
+void UYDialogContainer::OnToggleQuickMenuVisiblity(bool newVisibility) {
+}
+
 void UYDialogContainer::OnShowPlayerDialogSupportMessage(const FText headline, const FText Message, const FText buttonText) {
 }
 

@@ -10,7 +10,6 @@
 #include "YInventoryAmmoFunctions.generated.h"
 
 class AActor;
-class UTexture2D;
 
 UCLASS(Blueprintable)
 class UYInventoryAmmoFunctions : public UObject {
@@ -22,11 +21,11 @@ public:
     static bool TryGetAmmoDataFromInventoryItem(AActor* actorContext, const FYInventoryItem& inventoryItem, FYUIWeaponAmmoData& uiWeaponAmmoData);
     
     UFUNCTION(BlueprintCallable)
-    static bool GetCompatibleWeaponsForAmmoType(UObject* objectContext, const FName& ammoId, TMap<FString, TSoftObjectPtr<UTexture2D>>& outWeaponData);
-    
-    UFUNCTION(BlueprintCallable)
     static FName GetAmmoTypeFromSlot(AActor* actorContext, EYPlayerSetType Slot);
     
+    UFUNCTION(BlueprintCallable, meta=(WorldContext="WorldContextObject"))
+    static FDataTableRowHandle GetAmmoRowByWeaponID(UObject* WorldContextObject, FName RowName);
+
     UFUNCTION(BlueprintCallable)
     static FName GetAmmoIDFromWeaponRow(const FDataTableRowHandle& rowHandle);
     

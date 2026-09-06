@@ -9,8 +9,9 @@ class PROSPECT_API UYAIVariationsComponent : public UActorComponent {
 public:
     UYAIVariationsComponent(const FObjectInitializer& ObjectInitializer);
 
+private:
     UFUNCTION(BlueprintCallable)
-    void OnLoadedAssets();
+    void OnLoadedAssets() const;
     
 };
 

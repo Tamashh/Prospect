@@ -29,6 +29,7 @@ AFlyingNavigationData::AFlyingNavigationData(const FObjectInitializer& ObjectIni
     this->bDrawNeighbourConnections = false;
     this->bDrawSimplifiedConnections = true;
     this->NodeCentreRadius = 100.0f;
+    this->m_memoryLimitMBForMapCheck = 50;
 }
 
 void AFlyingNavigationData::Serialize(FArchive& Ar)

@@ -12,6 +12,9 @@ public:
     UYMissionCheatFunctions();
 
     UFUNCTION(BlueprintCallable)
+    static void DebugSetCompletedMissionIds(AActor* actorContext, const TArray<FString>& completedMissionIds);
+
+    UFUNCTION(BlueprintCallable)
     static void DebugSetActiveOnboardingMission(AActor* actorContext, const FString& missionId, int32 stepId);
     
     UFUNCTION(BlueprintCallable)

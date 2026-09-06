@@ -38,7 +38,7 @@ void UYControllerInventoryInsuranceComponent::HandleOnPlayerSetItemAddedOrUpdate
 void UYControllerInventoryInsuranceComponent::HandleOnInventoryInitialized() {
 }
 
-void UYControllerInventoryInsuranceComponent::HandleOnInventoryDataUpdated(TArray<EYInventoryPlayerTypes> changed) {
+void UYControllerInventoryInsuranceComponent::HandleOnInventoryDataUpdated(const TArray<EYInventoryPlayerTypes>& typesChanged) {
 }
 
 void UYControllerInventoryInsuranceComponent::HandleOnInsurancePayoutPackageVoided(const TArray<FYInsurancePayoutPackage>& remainingPackages) {

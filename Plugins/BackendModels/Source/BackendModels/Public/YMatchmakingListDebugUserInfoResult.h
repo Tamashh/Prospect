@@ -42,6 +42,12 @@ public:
     bool dataTableBeginnerFlagEnabled;
     
     UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
+    bool featureToggleUseSingleNvrBracket;
+
+    UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
+    bool featureToggleUseSingleKdrBracket;
+
+    UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
     bool featureToggleShieldedMatchmakingEnabled;
     
     UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
@@ -53,6 +59,12 @@ public:
     UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
     bool featureToggleVeteranPointsEnabled;
     
+    UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
+    bool featureToggleTotalCompletedContractsEnabled;
+
+    UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
+    bool featureToggleTotalEvacsEnabled;
+
     BACKENDMODELS_API FYMatchmakingListDebugUserInfoResult();
 };
 

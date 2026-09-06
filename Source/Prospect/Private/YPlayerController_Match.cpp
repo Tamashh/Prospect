@@ -37,9 +37,6 @@ AYPlayerController_Match::AYPlayerController_Match(const FObjectInitializer& Obj
     this->m_damageOverTimeCurve = NULL;
 }
 
-void AYPlayerController_Match::YDebugGiveRerollTokens(int32 Count) const {
-}
-
 void AYPlayerController_Match::ToggleZoom() {
 }
 
@@ -55,9 +52,6 @@ void AYPlayerController_Match::Timeout() {
 void AYPlayerController_Match::StartToLeaveMap() {
 }
 
-void AYPlayerController_Match::ShowNotificationReplicatedForPlayer(const FText& Message, FVector colorOverride, float Duration, EYNotificationType notificationType, EYNotificationPlacement notificationImportance) {
-}
-
 void AYPlayerController_Match::ShowNotification(const FText& Message, FVector colorOverride, float Duration, EYNotificationType notificationType, EYNotificationPlacement notificationImportance) {
 }
 
@@ -68,9 +62,6 @@ void AYPlayerController_Match::ServerKillPawnDueVoluntaryLeave_Implementation(bo
 }
 
 void AYPlayerController_Match::Server_ToggleZoom_Implementation() {
-}
-
-void AYPlayerController_Match::PrintChallengesOfType(const TArray<FYCompleteQuestState>& quests, EYMetaMissionType metaMissionType) {
 }
 
 void AYPlayerController_Match::OnReconnectTimeout() {
@@ -104,10 +95,6 @@ AYPlayerState* AYPlayerController_Match::GetYPlayerState() const {
     return NULL;
 }
 
-int32 AYPlayerController_Match::GetTeamId() {
-    return 0;
-}
-
 UYSpectateComponent* AYPlayerController_Match::GetSpectateComponent() const {
     return NULL;
 }
@@ -115,26 +102,11 @@ UYSpectateComponent* AYPlayerController_Match::GetSpectateComponent() const {
 void AYPlayerController_Match::DoDamageOverTimeEndOfMatch(int32 ElapsedTime) {
 }
 
-void AYPlayerController_Match::DebugSetQuestCount(const FString& questId, int32 Count) {
-}
-
-void AYPlayerController_Match::DebugSetQuestCompleted(const FString& questId, int32 Count) {
-}
-
-void AYPlayerController_Match::DebugGetQuests() {
-}
-
-void AYPlayerController_Match::DebugGetDailyChallenges() {
-}
-
 bool AYPlayerController_Match::CloseMatchInventory() {
     return false;
 }
 
 void AYPlayerController_Match::ClientLeaveMatch_Implementation() {
-}
-
-void AYPlayerController_Match::ClearSocialInput() const {
 }
 
 void AYPlayerController_Match::ClearBlockMatchInput() {
@@ -150,9 +122,6 @@ void AYPlayerController_Match::BP_StartDamageOverTime_Implementation() {
 
 
 
-
-void AYPlayerController_Match::BlockSocialInput() const {
-}
 
 void AYPlayerController_Match::BlockAllMatchInput() {
 }

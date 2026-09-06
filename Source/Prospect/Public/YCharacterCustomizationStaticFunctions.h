@@ -12,6 +12,7 @@
 #include "YCharacterCustomizationStaticFunctions.generated.h"
 
 class UAnimMontage;
+class USkeletalMesh;
 class UTexture2D;
 
 UCLASS(Blueprintable)
@@ -29,6 +30,9 @@ public:
     UFUNCTION(BlueprintCallable)
     static TSoftObjectPtr<UTexture2D> FindCustomizationImageFromBodyPart(FYCharacterCustomizationBodyPart part);
     
+    UFUNCTION(BlueprintCallable)
+    static void FindCompatibleSkeletalMeshesForBodytype(EYCustomizationBodyType bodyType, const FDataTableRowHandle& baseRowHandle, TSoftObjectPtr<USkeletalMesh>& firstPersonMeshOut, TSoftObjectPtr<USkeletalMesh>& thirdPersonMeshOut);
+
     UFUNCTION(BlueprintCallable)
     static bool FindCompatibleItemsForCategory(const UObject* objCtx, const TArray<EYCustomizationCategory>& Categories, FName archetypeId, TArray<FYVanityItemData>& outRowHandles, EYCustomizationBodyType bodyType);
     

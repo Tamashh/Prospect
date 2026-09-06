@@ -1,14 +1,15 @@
 #pragma once
 #include "CoreMinimal.h"
 #include "EYSquadActionResult.h"
-#include "UObject/Object.h"
+#include "Kismet/BlueprintFunctionLibrary.h"
 #include "EYSquadID.h"
 #include "YSquadHelperFunctions.generated.h"
 
 class AActor;
+class UObject;
 
 UCLASS(Blueprintable)
-class PROSPECT_API UYSquadHelperFunctions : public UObject {
+class PROSPECT_API UYSquadHelperFunctions : public UBlueprintFunctionLibrary {
     GENERATED_BODY()
 public:
     UYSquadHelperFunctions();
@@ -31,6 +32,9 @@ public:
     UFUNCTION(BlueprintCallable)
     static void RequestChangeMap(const UObject* objectContext, const FString& selectedMapName);
     
+    UFUNCTION(BlueprintCallable)
+    static void LogSquadsInfo(const FString& Message);
+
     UFUNCTION(BlueprintCallable)
     static bool LeaveSquad(UObject* objectContext);
     
@@ -65,7 +69,7 @@ public:
     static FText GetSquadName(const EYSquadID squadId);
     
     UFUNCTION(BlueprintCallable, BlueprintPure)
-    static int32 GetNumSquadMembersAliveOrEscaped(AActor* Context, const EYSquadID squadId);
+    static int32 GetNumSquadMembersAliveOrEscaped();
     
     UFUNCTION(BlueprintCallable, BlueprintPure)
     static int32 GetMaxSquadSize(const UObject* objectContext);

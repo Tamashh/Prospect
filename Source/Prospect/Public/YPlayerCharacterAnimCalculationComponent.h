@@ -6,6 +6,7 @@
 #include "YAdditiveMovementData.h"
 #include "YCharacterAnimFirstPerson.h"
 #include "YCharacterAnimThirdPerson.h"
+#include "YFeatureToggles.h"
 #include "YLedgeClimbingData.h"
 #include "YPlayerAimDirectionData.h"
 #include "YPlayerEquippedWeaponData.h"
@@ -87,7 +88,13 @@ public:
     
 protected:
     UFUNCTION(BlueprintCallable)
+    void OnNewWeaponAdded();
+
+    UFUNCTION(BlueprintCallable)
     void OnJumpedCallback(int32 jumpCount);
     
+    UFUNCTION(BlueprintCallable)
+    void OnFeatureToggleReceivedCallback(const FYFeatureToggles& featureToggles);
+
 };
 

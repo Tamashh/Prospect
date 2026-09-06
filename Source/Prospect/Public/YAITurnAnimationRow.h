@@ -1,7 +1,6 @@
 #pragma once
 #include "CoreMinimal.h"
-#include "EYAIState.h"
-#include "YAITurnAnimationsData.h"
+#include "YAITurnAnimation.h"
 #include "YDataTableRowBase.h"
 #include "YAITurnAnimationRow.generated.h"
 
@@ -10,7 +9,7 @@ struct FYAITurnAnimationRow : public FYDataTableRowBase {
     GENERATED_BODY()
 public:
     UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
-    TMap<EYAIState, FYAITurnAnimationsData> m_turnsAnimationPerState;
+    TArray<FYAITurnAnimation> m_animations;
     
     PROSPECT_API FYAITurnAnimationRow();
 };

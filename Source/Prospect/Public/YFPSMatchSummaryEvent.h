@@ -71,8 +71,14 @@ public:
     int32 hitchframecount_gpu;
     
     UPROPERTY(EditAnywhere, meta=(AllowPrivateAccess=true))
+    uint32 physical_memory_avg;
+
+    UPROPERTY(EditAnywhere, meta=(AllowPrivateAccess=true))
     uint32 physical_memory_max;
     
+    UPROPERTY(EditAnywhere, meta=(AllowPrivateAccess=true))
+    uint32 virtual_memory_avg;
+
     UPROPERTY(EditAnywhere, meta=(AllowPrivateAccess=true))
     uint32 virtual_memory_max;
     

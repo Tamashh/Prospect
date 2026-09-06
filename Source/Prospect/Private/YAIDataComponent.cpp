@@ -3,22 +3,25 @@
 
 UYAIDataComponent::UYAIDataComponent(const FObjectInitializer& ObjectInitializer) : Super(ObjectInitializer) {
     this->m_squad = NULL;
-    this->m_peacefull = false;
     this->m_combatTargetReplicated = NULL;
     this->m_aiState = EYAIState::None;
     this->m_isAngry = false;
-}
-
-void UYAIDataComponent::SetStateToDead(UYHealthComponent* healthComponent, AActor* Instigator) {
+    this->m_notifyPlayerOnCombatStarted = false;
 }
 
 void UYAIDataComponent::SetReplicatedCombatTarget(AActor* Actor) {
 }
 
+void UYAIDataComponent::SetIsAngry(bool isAngry) {
+}
+
 void UYAIDataComponent::SetAIState(EYAIState aiState) {
 }
 
-void UYAIDataComponent::OnRep_AIState(EYAIState previouseState) {
+void UYAIDataComponent::OnRep_AIState(EYAIState PreviousState) {
+}
+
+void UYAIDataComponent::OnAIDied(UYHealthComponent* healthComponent, AActor* Instigator) {
 }
 
 bool UYAIDataComponent::GetIsAngry() {

@@ -28,16 +28,16 @@ void UYControllerInventoryBackendComponent::InitializeInventoryFromDataAsset(UYD
 void UYControllerInventoryBackendComponent::InitializeInventory() {
 }
 
-void UYControllerInventoryBackendComponent::HandleOnInventoryInitialized() {
-}
-
-void UYControllerInventoryBackendComponent::HandleOnInventoryDataUpdated(TArray<EYInventoryPlayerTypes> changed) {
+void UYControllerInventoryBackendComponent::HandleOnInventoryDataUpdated(const TArray<EYInventoryPlayerTypes>& typesChanged) {
 }
 
 void UYControllerInventoryBackendComponent::HandleOnEndOfMatchDataChanged() {
 }
 
 void UYControllerInventoryBackendComponent::HandleOnBackendInventoryChanged() const {
+}
+
+void UYControllerInventoryBackendComponent::HandleBackendInventoryModelInitialized() {
 }
 
 void UYControllerInventoryBackendComponent::GetLifetimeReplicatedProps(TArray<FLifetimeProperty>& OutLifetimeProps) const {

@@ -2,6 +2,7 @@
 #include "CoreMinimal.h"
 #include "YCharacterAnimFirstPersonEntry.generated.h"
 
+class UAimOffsetBlendSpace;
 class UAnimSequence;
 class UBlendSpace;
 
@@ -93,6 +94,9 @@ public:
     UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
     TSoftObjectPtr<UAnimSequence> m_toDefaultCrouchFirstPerson;
     
+    UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
+    TSoftObjectPtr<UAimOffsetBlendSpace> m_defaultAimOffsetFirstPerson;
+
     PROSPECT_API FYCharacterAnimFirstPersonEntry();
 };
 

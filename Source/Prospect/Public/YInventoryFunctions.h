@@ -1,7 +1,7 @@
 #pragma once
 #include "CoreMinimal.h"
 #include "EYItemType.h"
-#include "UObject/Object.h"
+#include "Kismet/BlueprintFunctionLibrary.h"
 #include "Engine/DataTable.h"
 #include "EYPlayerSetType.h"
 #include "EYPlayerSetTypeSimplified.h"
@@ -12,12 +12,13 @@
 
 class AActor;
 class APlayerState;
+class UObject;
 class UYBackendInventoryModel;
 class UYInventoryManager;
 class UYStateInventoryComponent;
 
 UCLASS(Blueprintable)
-class UYInventoryFunctions : public UObject {
+class UYInventoryFunctions : public UBlueprintFunctionLibrary {
     GENERATED_BODY()
 public:
     UYInventoryFunctions();
@@ -35,7 +36,10 @@ public:
     static bool IsSplittable(const FYInventoryItem& inInventoryItem);
     
     UFUNCTION(BlueprintCallable, BlueprintPure)
-    static bool IsItemTypeInInventory(AActor* actorContext, FDataTableRowHandle itemRowHandle);
+    static bool IsItemTypeInInventory(AActor* actorContext, const FDataTableRowHandle& itemRowHandle, FYInventoryItem& outInventoryItem);
+
+    UFUNCTION(BlueprintCallable, BlueprintPure)
+    static bool IsItemStackableByItemId(const UObject* wrldCtx, const FString& baseItemId, const FString& contextStr, bool noLogError);
     
     UFUNCTION(BlueprintCallable, BlueprintPure)
     static bool IsItemInInventory(const FYPlayerInventory& Inventory, const FYInventoryItem& itemToCheck);
@@ -104,16 +108,10 @@ public:
     static bool FindInventoryItemSlotFromActor(AActor* actorContext, const FYInventoryItem& Item, EYPlayerSetType& outInventoryItemSlot);
     
     UFUNCTION(BlueprintCallable)
-    static bool FindInventoryItemsFromSlots(AActor* actorContext, TArray<EYPlayerSetType> Slots, TArray<FYInventoryItem>& outItems);
-    
-    UFUNCTION(BlueprintCallable)
     static bool FindInventoryItemsByItemType(AActor* actorContext, EYItemType desiredItemType, TArray<FYInventoryItem>& outItems);
     
     UFUNCTION(BlueprintCallable)
     static bool FindInventoryItemFromComponentWithId(AActor* actorContext, int32 componentId, const FString& ItemId, const FString& callerContext, FYInventoryItem& outInventoryItem);
-    
-    UFUNCTION(BlueprintCallable)
-    static bool FindFirstStashItemByRowId(AActor* actorCtx, const FName& rowId, FYInventoryItem& outInventoryItem);
     
     UFUNCTION(BlueprintCallable)
     static bool FindFirstInventoryItemByRowId(AActor* actorCtx, const FName& rowId, FYInventoryItem& outInventoryItem);
@@ -140,16 +138,7 @@ public:
     static bool DestroyItemInMatchInventory(UYStateInventoryComponent* inventoryComponent, const FYInventoryItem& itemToRemove);
     
     UFUNCTION(BlueprintAuthorityOnly, BlueprintCallable)
-    static void ConsumeItemOfTypeInInventory(AActor* actorContext, const FDataTableRowHandle& itemRowHandle);
-    
-    UFUNCTION(BlueprintCallable, BlueprintPure)
-    static float CalculateWeightForItems(const TArray<FYInventoryItem>& inInventoryItems, const bool isInBag, AActor* contextObject);
-    
-    UFUNCTION(BlueprintCallable, BlueprintPure)
-    static float CalculateWeightForInventory(const FYPlayerInventory& Inventory, const bool isInBag, AActor* contextObject);
-    
-    UFUNCTION(BlueprintCallable, BlueprintPure)
-    static float CalculateStackWeight(const FYInventoryItem& StackedItem, bool isInBag, AActor* contextObject);
+    static void ConsumeItemSpecificInInventory(AActor* actorContext, const FYInventoryItem& itemToConsume);
     
     UFUNCTION(BlueprintCallable, BlueprintPure)
     static bool CalculateInventoryDiff(const FYPlayerInventory& oldInventory, const FYPlayerInventory& newInventory, TArray<FYInventoryItem>& outItemsAdded, TArray<FYInventoryItem>& outItemsUpdated, TArray<FYInventoryItem>& outItemsRemoved);

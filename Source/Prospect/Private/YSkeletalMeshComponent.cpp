@@ -2,6 +2,7 @@
 
 UYSkeletalMeshComponent::UYSkeletalMeshComponent(const FObjectInitializer& ObjectInitializer) : Super(ObjectInitializer) {
     this->m_preventPhysicsStateCreationOnDedicatedServer = true;
+    this->m_forceUpdateTransform = false;
 }
 
 

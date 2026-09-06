@@ -10,9 +10,9 @@ bool UYPlayerCharacterStateComponent::ShouldBypassEncumbrance() const {
     return false;
 }
 
-void UYPlayerCharacterStateComponent::ServerClearStates_Implementation(const TArray<FYStateChangedData>& States, bool wasInterupted) {
+void UYPlayerCharacterStateComponent::ServerClearStates_Implementation(const TArray<FYStateChangedData>& states, bool wasInterupted) {
 }
-bool UYPlayerCharacterStateComponent::ServerClearStates_Validate(const TArray<FYStateChangedData>& States, bool wasInterupted) {
+bool UYPlayerCharacterStateComponent::ServerClearStates_Validate(const TArray<FYStateChangedData>& states, bool wasInterupted) {
     return true;
 }
 

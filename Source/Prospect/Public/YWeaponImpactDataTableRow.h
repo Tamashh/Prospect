@@ -2,6 +2,7 @@
 #include "CoreMinimal.h"
 #include "Engine/DataTable.h"
 #include "EYImpactActorRotation.h"
+#include "EYPlayerLocalEffect.h"
 #include "Templates/SubclassOf.h"
 #include "YGameplayAttributeModifier.h"
 #include "YImpactDataTableRow.h"
@@ -40,6 +41,9 @@ public:
     UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
     bool m_useOwnerAsInstigatorForSenseTrigger;
     
+    UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
+    EYPlayerLocalEffect m_playerLocalEffect;
+
     PROSPECT_API FYWeaponImpactDataTableRow();
 };
 

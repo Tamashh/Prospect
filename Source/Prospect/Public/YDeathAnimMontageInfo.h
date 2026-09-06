@@ -21,7 +21,7 @@ public:
     bool m_deathToRagdoll;
     
     UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
-    float m_serverTimestamp;
+    float m_serverTimeStamp;
     
     UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
     FYDealtDamageData m_lastTimeDamagedData;

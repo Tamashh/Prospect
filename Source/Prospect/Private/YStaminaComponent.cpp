@@ -4,12 +4,12 @@
 UYStaminaComponent::UYStaminaComponent(const FObjectInitializer& ObjectInitializer) : Super(ObjectInitializer) {
     this->m_staminaBelowTenPercent = 0;
     this->m_infiniteStaminaActivated = false;
-    this->m_currentStamina = 0.0f;
     this->m_characterStateComponent = NULL;
     this->m_character = NULL;
     this->m_ownerGameplayAttributeComponent = NULL;
     this->m_characterMovementComponent = NULL;
     this->m_characterHelmetGoggleComponent = NULL;
+    this->m_currentStamina = 0.0f;
 }
 
 void UYStaminaComponent::SetResourceDataRow(FDataTableRowHandle newRowHandle) {

@@ -5,7 +5,7 @@ UYItemActorSpawner::UYItemActorSpawner(const FObjectInitializer& ObjectInitializ
     this->m_defaultPickupActorClass = AYPickupActor::StaticClass();
 }
 
-AYPickupActor* UYItemActorSpawner::SpawnSpecificLootItem(UObject* contextObject, const FDataTableRowHandle& pickupItem, const FTransform& SpawnTransform, int32 Amount, bool adjustSpawnLocationToGround, FVector spawnVelocity, EYLootSourceType lootType, UObject* instigatorObject, float spawnNavmeshRadiusMin, float spawnNavmeshRadiusMax) {
+AYPickupActor* UYItemActorSpawner::SpawnSpecificLootItem(UObject* contextObject, const FDataTableRowHandle& pickupItem, const FTransform& SpawnTransform, const TArray<FDataTableRowHandle>& modsToAdd, int32 Amount, bool adjustSpawnLocationToGround, FVector spawnVelocity, bool forceProjectileMovement, bool forceDisableInitialScaling, EYLootSourceType lootType, UObject* instigatorObject, float spawnNavmeshRadiusMin, float spawnNavmeshRadiusMax) {
     return NULL;
 }
 

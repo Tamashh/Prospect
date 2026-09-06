@@ -4,7 +4,7 @@ UYNewsManager::UYNewsManager() {
     this->m_model = NULL;
 }
 
-void UYNewsManager::OnTitleDataUpdate() {
+void UYNewsManager::OnNewsDataUpdate() {
 }
 
 

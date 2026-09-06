@@ -7,7 +7,13 @@ bool UYCharacterCameraTransitionComponent::StartCameraTransition(AActor* Owner, 
     return false;
 }
 
+void UYCharacterCameraTransitionComponent::OnAnyStatesDeactivated(const TArray<EYPlayerStateBlueprint>& states) {
+}
+
 void UYCharacterCameraTransitionComponent::OnAnyStateChanged() {
+}
+
+void UYCharacterCameraTransitionComponent::OnAnyStateActivated(EYPlayerStateBlueprint State) {
 }
 
 bool UYCharacterCameraTransitionComponent::IsTransitionActive(AActor* Owner) {

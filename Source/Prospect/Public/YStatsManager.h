@@ -13,7 +13,7 @@ class UYStatsManager : public UObject {
 public:
     DECLARE_DYNAMIC_MULTICAST_DELEGATE(FYStatsFetchedSignature);
     
-    UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
+    UPROPERTY(BlueprintAssignable, BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
     FYStatsFetchedSignature StatsFetched;
     
     UYStatsManager();

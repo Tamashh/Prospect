@@ -1,0 +1,24 @@
+{
+	"FileVersion": 3,
+	"Version": 1,
+	"VersionName": "1.0",
+	"FriendlyName": "YLazyScrollGrid",
+	"Description": "",
+	"Category": "Other",
+	"CreatedBy": "Roman Hwang \\ Yager",
+	"CreatedByURL": "",
+	"DocsURL": "",
+	"MarketplaceURL": "",
+	"SupportURL": "",
+	"CanContainContent": true,
+	"IsBetaVersion": false,
+	"IsExperimentalVersion": false,
+	"Installed": false,
+	"Modules": [
+		{
+			"Name": "YLazyScrollGrid",
+			"Type": "Runtime",
+			"LoadingPhase": "Default"
+		}
+	]
+}

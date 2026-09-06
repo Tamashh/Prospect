@@ -32,6 +32,9 @@ public:
 	UPROPERTY(EditAnywhere, Category = Inputs, meta = (PinHiddenByDefault))
 	FVector UpAxis;
 
+	UPROPERTY(EditAnywhere, Category = Inputs, meta = (PinHiddenByDefault))
+	FVector SpineUpAxis;
+
 	/** The amount of bending (in degrees) that the torso should perform per unit of 'Acceleration' */
 	UPROPERTY(EditAnywhere, Category = Settings, meta = (ClampMin = 0.0f))
 	float TorsoBendRatio;

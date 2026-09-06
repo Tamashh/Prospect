@@ -2,6 +2,6 @@
 
 FYPlayerStartScoreRule::FYPlayerStartScoreRule() {
     this->m_radius = 0.0f;
-    this->m_scorePerPlayerInRadius = 0;
+    this->m_score = 0;
 }
 

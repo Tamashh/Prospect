@@ -44,6 +44,7 @@ UYUserSettings::UYUserSettings() {
     this->m_imageSharpening = 0.0f;
     this->m_invertX = false;
     this->m_invertY = false;
+    this->m_triedEnabledDlssg = false;
     this->m_isRotatingMinimapEnabled = true;
     this->m_showSubtitles = true;
     this->m_isToggleInputModeEnabledForSprint = false;
@@ -57,11 +58,19 @@ UYUserSettings::UYUserSettings() {
     this->m_showCreditsOnKill = true;
     this->m_showKillIndicator = false;
     this->m_showFpsCounter = false;
+    this->m_fpsLimitStation = 144.0f;
+    this->m_fpsLimitMatch = 0.0f;
     this->m_enableGpuCrashDebugging = false;
     this->m_enableDX12 = true;
     this->m_enableMultiThreadedRendering = true;
     this->m_gfxQuality = EYGfxQualityPreset::Custom;
-    this->m_dlssQualityMode = UDLSSMode::Quality;
+    this->m_nvidiaDlssEnabled = true;
+    this->m_dlssQualityMode = EYDLSSMode::Quality;
+    this->m_dlssFrameGenerationEnabled = true;
+    this->m_dlssSharpness = 0.0f;
+    this->m_nvidiaReflexMode = UStreamlineReflexMode::Enabled;
+    this->m_disableDlssCommandLine = false;
+    this->m_disableStreamlineCommandLine = false;
     this->m_fsrUpscalingMode = EFSRUpscalingMode::Off;
     this->m_resolutionQuality = 100.0f;
     this->m_uiScale = 0.899999976f;
@@ -113,8 +122,28 @@ void UYUserSettings::OnInputBindingsMissingDetection(bool hasMissingBindings) {
 void UYUserSettings::OnInputBindingsConflictsDetection(bool hasConflicts) {
 }
 
+bool UYUserSettings::IsRunningDX12() const {
+    return false;
+}
+
+bool UYUserSettings::HideDLSSGSettingOnUI() const {
+    return false;
+}
+
 UYUserSettings* UYUserSettings::GetYUserSettings() {
     return NULL;
+}
+
+UDLSSMode UYUserSettings::GetNvidiaDlssSuperResolutionModeInternally() const {
+    return UDLSSMode::Off;
+}
+
+bool UYUserSettings::GetNvidiaDlssFrameGenerationEnabledInternally() const {
+    return false;
+}
+
+bool UYUserSettings::GetNvidiaDlssEnabledInternally() const {
+    return false;
 }
 
 float UYUserSettings::GetNormalizedFOVValue() {
@@ -150,6 +179,9 @@ void UYUserSettings::ApplyUnfocusedAudioSettings() {
 void UYUserSettings::ApplyShadowSettings() {
 }
 
+void UYUserSettings::ApplySensitivity(AActor* playerControllerContext, EYSensitivityMode sensitivityMode, EYScopeType scopeType) {
+}
+
 void UYUserSettings::ApplyGamma() {
 }
 
@@ -160,6 +192,9 @@ void UYUserSettings::ApplyFoliageSettings() {
 }
 
 void UYUserSettings::ApplyEffectsSettings() {
+}
+
+void UYUserSettings::ApplyDLSSSettings() {
 }
 
 void UYUserSettings::ApplyColorblindSettings(AYPlayerController* PlayerController) {

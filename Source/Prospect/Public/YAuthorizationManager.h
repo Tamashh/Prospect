@@ -35,6 +35,9 @@ private:
 public:
     UYAuthorizationManager();
 
+    UFUNCTION(BlueprintCallable)
+    static void StopTimerAndContinueLogin_DEVELOPMENT(const UObject* objectContext);
+
 private:
     UFUNCTION(BlueprintCallable)
     void OnSeasonWipeCheckResponse(const FYAzureFunctionResult& azureResult);

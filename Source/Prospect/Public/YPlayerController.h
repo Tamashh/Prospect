@@ -24,9 +24,11 @@ class UInputComponent;
 class UPrimitiveComponent;
 class UWidget;
 class UYControllerCheatSimComponent;
+class UYControllerGeneratorsComponent;
 class UYControllerInventoryBackendComponent;
 class UYControllerInventoryInsuranceComponent;
 class UYControllerInventoryRuntimeComponent;
+class UYControllerLoadoutPresetComponent;
 class UYControllerNewsComponent;
 class UYControllerPlayerMapMarkerComponent;
 class UYControllerPlayerQuarterComponent;
@@ -37,7 +39,6 @@ class UYControllerTravelComponent;
 class UYControllerVictimCompensationComponent;
 class UYPlayerFactionsProgressionComponent;
 class UYPlayerInitializationComponent;
-class UYPlayerPassiveGeneratorsComponent;
 class UYVivoxComponent;
 
 UCLASS(Blueprintable, Config=Engine)
@@ -84,7 +85,7 @@ public:
     UYControllerPlayerQuarterComponent* m_playerQuarterComponent;
     
     UPROPERTY(BlueprintReadWrite, EditAnywhere, Instanced, meta=(AllowPrivateAccess=true))
-    UYPlayerPassiveGeneratorsComponent* m_playerPassiveGeneratorsComponent;
+    UYControllerGeneratorsComponent* m_controllerGeneratorsComponent;
     
     UPROPERTY(BlueprintReadWrite, EditAnywhere, Instanced, meta=(AllowPrivateAccess=true))
     UYControllerInventoryRuntimeComponent* m_controllerInventoryRuntimeComponent;
@@ -153,6 +154,9 @@ public:
     UYControllerNewsComponent* m_newsComponent;
     
     UPROPERTY(BlueprintReadWrite, EditAnywhere, Instanced, meta=(AllowPrivateAccess=true))
+    UYControllerLoadoutPresetComponent* m_loadoutPresetComponent;
+
+    UPROPERTY(BlueprintReadWrite, EditAnywhere, Instanced, meta=(AllowPrivateAccess=true))
     UYControllerCheatSimComponent* m_cheatSimComponent;
     
     UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
@@ -175,8 +179,8 @@ public:
     void SimulateInputAxis(FKey Key, float Delta, float DeltaTime, int32 NumSamples, bool bGamepad);
     
 protected:
-    UFUNCTION(BlueprintCallable)
-    void SimulateInput(EYInputActionName inputActionName, TEnumAsByte<EInputEvent> inputType);
+    UFUNCTION(BlueprintCallable, BlueprintPure=false)
+    void SimulateInput(EYInputActionName inputActionName, TEnumAsByte<EInputEvent> inputType) const;
     
 public:
     UFUNCTION(BlueprintCallable, Reliable, Server, WithValidation)
@@ -198,7 +202,7 @@ public:
     
 protected:
     UFUNCTION(BlueprintCallable, Exec)
-    void SendAnnouncement(const FString& announcement);
+    void SendAnnouncement(const FString& announcement) const;
     
 public:
     UFUNCTION(BlueprintCallable, Exec)
@@ -222,22 +226,22 @@ protected:
     
 public:
     UFUNCTION(BlueprintCallable)
-    void OnBugreportDataSaved();
+    void OnBugreportDataSaved() const;
     
     UFUNCTION(BlueprintCallable)
     void OnBugreportDataRequest();
     
     UFUNCTION(BlueprintCallable, BlueprintPure)
-    AYPlayerCharacter* GetYPlayerCharacter();
+    AYPlayerCharacter* GetYPlayerCharacter() const;
     
-    UFUNCTION(BlueprintCallable)
-    AYHUD* GetYHUD();
+    UFUNCTION(BlueprintCallable, BlueprintPure)
+    AYHUD* GetYHUD() const;
     
     UFUNCTION(BlueprintCallable)
     bool GetIsChatEnabled();
     
-    UFUNCTION(BlueprintCallable)
-    void FlushPressedActionKeys(EYInputActionName inputAction);
+    UFUNCTION(BlueprintCallable, BlueprintPure=false)
+    void FlushPressedActionKeys(EYInputActionName inputAction) const;
     
     UFUNCTION(BlueprintCallable)
     void FlushAllPressedKeys();

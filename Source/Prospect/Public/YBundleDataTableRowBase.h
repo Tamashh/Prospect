@@ -30,6 +30,9 @@ public:
     UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
     FYItemMeshVisualizationOverride m_itemVisOverride;
     
+    UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
+    TArray<FYBundleEntry> m_itemPreviewCollection;
+
     PROSPECT_API FYBundleDataTableRowBase();
 };
 

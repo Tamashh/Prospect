@@ -17,4 +17,7 @@ UYControllerTrackerInventoryComponent* UYControllerTrackerInventoryComponent::Fi
     return NULL;
 }
 
+void UYControllerTrackerInventoryComponent::CheckContainerOpened(const FYInteractionUpdateData& Data) {
+}
+
 

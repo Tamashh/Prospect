@@ -7,6 +7,7 @@ FYServerPerformanceData::FYServerPerformanceData() {
     this->m_memory = 0;
     this->m_memoryHighest = 0;
     this->m_numPlayers = 0;
+    this->m_numActivePlayers = 0;
     this->m_numAIs = 0;
     this->m_serverLifetime = 0.0f;
     this->m_inPacketLoss = 0;

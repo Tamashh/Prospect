@@ -1,6 +1,6 @@
 #pragma once
 #include "CoreMinimal.h"
-#include "UObject/NoExportTypes.h"
+#include "YNewsItemLocalizedAsset.h"
 #include "YNewsItemButtonData.h"
 #include "YNewsItemLocalizedString.h"
 #include "YNewsItemOfferData.h"
@@ -26,16 +26,16 @@ public:
     FYNewsItemLocalizedString m_additionalText;
     
     UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
-    FYNewsItemLocalizedString m_previewImage;
+    FYNewsItemLocalizedAsset m_previewImage;
     
     UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
-    FYNewsItemLocalizedString m_mainImage;
+    FYNewsItemLocalizedAsset m_mainImage;
     
     UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
-    FYNewsItemLocalizedString m_backgroundImage;
+    FYNewsItemLocalizedAsset m_backgroundImage;
     
     UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
-    FDateTime m_countdownDate;
+    FString m_countdownDate;
     
     UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
     TArray<FYNewsItemOfferData> m_itemData;

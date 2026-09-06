@@ -21,7 +21,7 @@ public:
     void RequestCustomizationItemShow(const FYUpdateBodyPartRequestData& Data);
     
     UFUNCTION(BlueprintCallable)
-    void RequestArchetypeIdPreview(FDataTableRowHandle archetypeRowHandle);
+    void RequestArchetypeIdPreview(FDataTableRowHandle archetypeRowHandle, const bool showDefaultArchetype);
     
     UFUNCTION(BlueprintCallable, BlueprintPure)
     static UYControllerCharacterCustomizationTemporaryComponent* FindControllerCharacterCustomizationTemporaryComponent(const UObject* objCtx);
