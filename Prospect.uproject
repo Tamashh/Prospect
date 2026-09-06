@@ -1,6 +1,6 @@
 {
 	"FileVersion": 3,
-	"EngineAssociation": "{57AA33EA-4E67-5FD2-38A6-5DB83D95B0CF}",
+	"EngineAssociation": "{E9C13B36-485B-7768-CCB5-BDB0E1237886}",
 	"Category": "",
 	"Description": "",
 	"Modules": [
@@ -452,7 +452,8 @@
 		},
 		{
 			"Name": "Streamline",
-			"Enabled": true
+			"Enabled": true,
+			"MarketplaceURL": "https://www.unrealengine.com/marketplace/en-US/product/nvidia-dlss"
 		},
 		{
 			"Name": "OpenXREyeTracker",
