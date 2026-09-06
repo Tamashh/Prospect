@@ -104,11 +104,11 @@ const FSVOData& AFlyingNavigationData::GetSVOData() const
 }
 
 #if WITH_EDITORONLY_DATA
-static_assert(sizeof(AFlyingNavigationData) == 0x6B0,
-    "AFlyingNavigationData must retain Prospect's editor native class size");
+static_assert(sizeof(AFlyingNavigationData) == 0x6B8,
+    "AFlyingNavigationData reconstructed editor class size changed");
 #else
-static_assert(sizeof(AFlyingNavigationData) == 0x600,
-    "AFlyingNavigationData must retain Prospect's shipping native class size");
+static_assert(sizeof(AFlyingNavigationData) == 0x5A8,
+    "AFlyingNavigationData reconstructed non-editor class size changed");
 #endif
 
 

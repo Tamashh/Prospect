@@ -1,7 +1,7 @@
 #pragma once
 #include "CoreMinimal.h"
 #include "DLSSLibrary.h"
-#include "UStreamlineReflexMode.h"
+#include "StreamlineLibraryReflex.h"
 #include "GameFramework/GameUserSettings.h"
 #include "EFSRUpscalingMode.h"
 #include "EYGfxQualityPreset.h"
