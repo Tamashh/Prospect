@@ -13,6 +13,10 @@
 !*.uplugin
 !*.uproject
 
+# Houdini Engine ships cooked plugin assets and editor resources.
+!Plugins/HoudiniEngine/Content/**
+!Plugins/HoudiniEngine/Resources/**
+
 # Unreal build products, including plugin-local intermediates.
 **/Intermediate/
 Saved/
